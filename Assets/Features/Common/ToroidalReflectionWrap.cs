@@ -32,22 +32,21 @@ namespace Features.Common
             }
 
             float3 position = transform.position;
-            float3 extents = _worldBounds.extents;
-            float3 maxExtents = _worldBounds.extents - bounds.extents;
-            float3 minExtents = -_worldBounds.extents + bounds.extents;
-            float3 mirrorSize = _worldBounds.size - bounds.size;
             float3 wrapSize = _worldBounds.size;
 
-            var mirrored = math.select(position - mirrorSize, position + mirrorSize, position < 0);
-            mirrored.y = 0;
+            var diagonalOffset = position + wrapSize*0.5f;
+            diagonalOffset.y = 0;
+
+            var wrapped = diagonalOffset;
+            while (math.any(math.abs(wrapped) > wrapSize))
+            {
+                var greaterWrapped = math.select(wrapped, wrapped - wrapSize, wrapped > wrapSize);
+                var fullyWrapped = math.select(greaterWrapped, wrapped + wrapSize, wrapped < -wrapSize);
+                fullyWrapped.y = 0;
+                wrapped = fullyWrapped;
+            }
             
-            var greaterWrapped = math.select(position, position - wrapSize, position > maxExtents);
-            var fullyWrapped = math.select(greaterWrapped, position + wrapSize, position < minExtents);
-            fullyWrapped.y = 0;
-            
-            //var fullyWrapped = math.select(position, -position, math.abs(position) > maxExtents);
-            
-            _reflection.transform.position = fullyWrapped;
+            _reflection.transform.position = wrapped;
             _reflection.SetActive(true); 
         }
 
