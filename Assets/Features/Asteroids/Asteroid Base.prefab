@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -3045249594538662202}
   - component: {fileID: 6758609620760163168}
   - component: {fileID: 632640429400485211}
+  - component: {fileID: 1898652313534692276}
   m_Layer: 0
   m_Name: Asteroid Base
   m_TagString: Untagged
@@ -129,6 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd104bc247dae4647be559327ec9bf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _worldBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 12, y: 5, z: 12}
 --- !u!114 &-3045249594538662202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +181,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1898652313534692276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756458137397592947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9dbc9aee698d44c9e51cfa78d6498d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
