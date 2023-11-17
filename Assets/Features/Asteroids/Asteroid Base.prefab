@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3914622544273223889}
   - component: {fileID: 2935983636243217348}
   - component: {fileID: 4250552742727909141}
+  - component: {fileID: 5880858264370060028}
   - component: {fileID: -3045249594538662202}
   - component: {fileID: 6758609620760163168}
   - component: {fileID: 632640429400485211}
@@ -116,6 +117,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remnantsToSpawn: 0
   remnantPrefabs: []
+--- !u!114 &5880858264370060028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756458137397592947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd104bc247dae4647be559327ec9bf10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-3045249594538662202
 MonoBehaviour:
   m_ObjectHideFlags: 0
