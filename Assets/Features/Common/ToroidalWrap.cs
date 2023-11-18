@@ -1,3 +1,4 @@
+using Tiger.Math;
 using UnityEngine;
 using Unity.Mathematics;
 
@@ -6,12 +7,16 @@ namespace Features.Common
     [RequireComponent(typeof(MeshRenderer))]
     public class ToroidalWrap : MonoBehaviour
     {
-        private MeshRenderer _meshRenderer;
         private GameObject _reflection;
+        
+        private MeshRenderer _ownRenderer;
+        private MeshRenderer _refRenderer;
 
         [SerializeField]
         private Bounds _worldBounds;
-        private Bounds bounds => _meshRenderer.bounds;
+
+        private Bounds ownBounds => _ownRenderer.bounds;
+        private Bounds refBounds => _refRenderer.bounds;
         
         private Vector3 _lastPosition;
         private float3 _velocity;
@@ -20,40 +25,54 @@ namespace Features.Common
         {
             _lastPosition = transform.position;
             
-            _meshRenderer = GetComponent<MeshRenderer>();
+            _ownRenderer = GetComponent<MeshRenderer>();
            
             _reflection = new GameObject("reflection", typeof(MeshRenderer), typeof(MeshFilter), typeof(RenderBounds));
             _reflection.SetActive(false);
             _reflection.transform.localScale = transform.localScale;
             _reflection.GetComponent<MeshFilter>().sharedMesh = GetComponent<MeshFilter>().sharedMesh;
-            _reflection.GetComponent<MeshRenderer>().sharedMaterial = _meshRenderer.sharedMaterial;
+            _refRenderer = _reflection.GetComponent<MeshRenderer>();
+            _refRenderer.sharedMaterial = _ownRenderer.sharedMaterial;
         }
 
         public Vector3 speed;
         private void LateUpdate()
         {
-            _velocity = speed * Time.deltaTime * 3;
-            transform.position += (Vector3) _velocity;
+            //TODO: Put into motion class.
+            transform.position += speed * 0.016f * 3;
 
-            WrapOrSwap();
+            //Derive our velocity from our transform change.
+            _velocity = transform.position - _lastPosition;
+            _lastPosition = transform.position;
             
             // Nothing to do if original is fully inside the bounds.
-            var fullyInside = _worldBounds.Contains(bounds.min) && _worldBounds.Contains(bounds.max);
-            if (fullyInside)
-            {
-                _reflection.SetActive(false);
-                return;
-            }
+            KeepOrDespawnReflection();
+            WrapOrSwap();
             
             //If we have one reflection, we keep it till it's fully inside the first time.
             if (_reflection.activeSelf)
             {
                 //Move reflection with the original object
-                _velocity = transform.position - _lastPosition;
-                _reflection.transform.Translate(_velocity);
+                _reflection.transform.Translate(_velocity, Space.World);
                 _reflection.transform.rotation = transform.rotation;
-                _lastPosition = transform.position;
             } 
+        }
+
+        private void KeepOrDespawnReflection()
+        {
+            if (!_reflection.activeSelf) return;
+            
+            var fullyInside = _worldBounds.Contains(ownBounds.min) && _worldBounds.Contains(ownBounds.max);
+            if (fullyInside)
+            {
+                _reflection.SetActive(false);
+            }
+
+            var fullyOutside = !_worldBounds.Contains(refBounds.min) && !_worldBounds.Contains(refBounds.max);
+            if (fullyOutside)
+            {
+                _reflection.SetActive(false);
+            }
         }
 
         /// <summary>
@@ -71,8 +90,8 @@ namespace Features.Common
             var reflected = Reflect(position);
             transform.position = reflected;
 
-            //Warp position for delta motion
-            _lastPosition = reflected;
+            //Also wrap position for delta motion, so we don't get a huge velocity spike
+            _lastPosition = reflected - _velocity;
         }
 
         /// <summary>
@@ -81,36 +100,41 @@ namespace Features.Common
         private void WrapOrSwap()
         {
             float3 position = transform.position;
-            float3 extents = _worldBounds.extents;
+            float3 extents = _worldBounds.extents - ownBounds.extents;
 
-            //If we're out AND are moving further out, reflect position
-            if (math.any(math.abs(position) > extents) && math.dot(_velocity, position) > 0)
+            //No action needed if we're moving towards the origin, or are fully inside
+            if (math.dot(_velocity, position) < 0 || !math.any(math.abs(position) > extents)) return;
+
+            //We're out AND are moving further out, reflect position
+            if (_reflection.activeSelf)
             {
-                if (_reflection.activeSelf)
-                {
-                    // we already have a reflection, so we just swap
-                    (_reflection.transform.position, transform.position) = (transform.position, _reflection.transform.position);
-                }
-                else
-                {
-                    SpawnReflection();
-                }
+                // we already have a reflection, so we just swap
+                (_reflection.transform.position, transform.position) = (transform.position, _reflection.transform.position);
+            }
+            else
+            {
+                SpawnReflection();
             }
         }
 
         private float3 Reflect(float3 position)
         {
-            var wrapSize = (float3) (_worldBounds.extents);
             var absPosition = math.abs(position);
 
             //pseudo-toroidal wrapping, reflecting around superior axis
             //and slightly twiddling inferior axes for reflection (any axis smaller than the largest)
-            var toroidal = position * math.select(-1f, UnityEngine.Random.Range(0.9f, 1.1f), math.cmax(absPosition) > absPosition);
+            var toroidal = -position * math.select(1f, UnityEngine.Random.Range(0.4f, 0.6f), absPosition < math.cmax(absPosition));
             
             //offset by the AABB of the object, so it begins coming in just as the original begins to leave
-            toroidal += math.sign(toroidal) * bounds.size;
+            toroidal += math.sign(toroidal) * ownBounds.size;
             
-            return math.clamp(toroidal, -wrapSize + float.Epsilon, wrapSize - float.Epsilon);
+            //on some trajectories, the reflection will be fully outside the volume, but
+            //the original will be NOT be fully inside. In this case, we need to ensure our
+            //new reflection spawns in at the edge of the screen
+            float3 wrapSize = _worldBounds.extents - ownBounds.extents;
+            toroidal = math.select(toroidal, math.sign(toroidal) * wrapSize, absPosition < math.cmax(absPosition));
+
+            return toroidal;
         }
 
         
