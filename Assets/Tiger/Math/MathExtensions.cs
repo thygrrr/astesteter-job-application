@@ -7,7 +7,8 @@ namespace Tiger.Math
     public static partial class mathex
     {
         /// <summary>
-        /// Euclidean Modulus, aka "remainder" (but in a way that makes sense)
+        /// Euclidean Modulus, aka "remainder".
+        /// Differs from fmod in that its sign is defined by sign(b), not sign(a).
         /// </summary>
         /// <param name="a">dividend</param>
         /// <param name="b">divisor</param>
