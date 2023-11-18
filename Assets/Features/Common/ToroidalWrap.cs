@@ -19,8 +19,8 @@ namespace Features.Common
             get => _reflection.activeSelf;
             set => _reflection.SetActive(value);
         }
-        private bool originalOutside => !_spawnBounds.Contains(ownBounds.min) && !_spawnBounds.Contains(ownBounds.max);
-        private bool reflectionOutside => !_spawnBounds.Contains(refBounds.min) && !_spawnBounds.Contains(refBounds.max);
+        private bool originalOutside => !_worldBounds.Contains(ownBounds.min) && !_worldBounds.Contains(ownBounds.max);
+        private bool reflectionOutside => !_worldBounds.Contains(refBounds.min) && !_worldBounds.Contains(refBounds.max);
 
         private Bounds _spawnBounds;
         private Bounds ownBounds => _ownRenderer.bounds;
@@ -99,9 +99,6 @@ namespace Features.Common
             float3 position = transform.position;
             float3 extents = _worldBounds.extents - ownBounds.extents;
 
-            //No action needed if we are fully inside the world bounds
-            if (!math.any(math.abs(position) > extents)) return;
-            
             // We totally should have a reflection!
             if (!reflecting) SpawnReflection();
             
@@ -110,6 +107,7 @@ namespace Features.Common
             {
                 // we already have a reflection, so we just swap
                 transform.position = _reflection.transform.position;
+                
                 // fix up velocity after swap
                 _lastPosition = transform.position;
 
@@ -119,12 +117,13 @@ namespace Features.Common
 
         /// <summary>
         /// Pseudo-toroidal wrapping, reflecting a position around any axis that is individually moving away from the origin
+        /// Will slightly place the object inside for better hysteresis when wrapping back and forth.
         /// </summary>
         /// <param name="position"></param>
         /// <returns>true if calculated toroidal reflection is a spawnable location</returns>
         private float3 Reflect(float3 position)
         {
-            return 0.99f * _spawnBounds.ClosestPoint(position * -2);
+            return -1f * _spawnBounds.ClosestPoint(2f * position);
         }
 
         
