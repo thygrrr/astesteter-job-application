@@ -1,21 +1,42 @@
 ﻿using Unity.Mathematics;
-using UnityEngine;
 
-namespace Jovian.Tiger.Math
+// ReSharper disable file InconsistentNaming
+
+namespace Tiger.Math
 {
-    public static class MathEx
+    public static partial class mathex
     {
+        /// <summary>
+        /// Euclidean Modulus, aka "remainder" (but in a way that makes sense)
+        /// </summary>
+        /// <param name="a">dividend</param>
+        /// <param name="b">divisor</param>
+        /// <returns>euclidean remainder, e.g. eumod(-3, 2) == 1</returns>
+        public static float3 eumod(float3 a, float3 b)
+        {
+            return a - b * math.floor(a / b);
+        }
+
+    }
+    
+    public static partial class MathExtensions
+    {
+
+        public static float3 x0z(this float3 v) => new float3(v.x, 0, v.z);
+        public static float3 z0x(this float3 v) => new float3(v.z, 0, v.x);
+        public static float3 x00(this float3 v) => new float3(v.x, 0, 0);
+        public static float3 y00(this float3 v) => new float3(v.y, 0, 0);
+        public static float3 z00(this float3 v) => new float3(v.z, 0, 0);
+
+        /// <summary>
+        /// Unity.Mathematics style variant of UnityEngine.Vector3's ProjectOnPlane.
+        /// Extension method that lets us use float3 like Vector3 for this purpose
+        /// </summary>
         public static float3 ProjectOnPlane(this float3 vector, float3 planeNormal)
         {
-            var num1 = math.dot(planeNormal, planeNormal);
-            if ((double) num1 < (double) float.Epsilon)
-                return vector;
-        
-            var num2 = math.dot(vector, planeNormal);
-        
-            return new float3(vector.x - planeNormal.x * num2 / num1, vector.y - planeNormal.y * num2 / num1, vector.z - planeNormal.z * num2 / num1);
+            return vector - math.project(vector, planeNormal);
         }
-        
+
         public static double Angle(double3 from, double3 to)
         {
             var dot = math.dot(math.normalizesafe(from), math.normalize(to));

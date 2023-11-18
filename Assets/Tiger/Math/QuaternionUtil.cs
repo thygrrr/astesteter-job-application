@@ -7,11 +7,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-namespace Jovian.Tiger.Math
+namespace Tiger.Math
 {
-	public static class QuaternionUtil 
+	public static partial class _ 
 	{
-		public static Quaternion AngularVelocitytoDerivative(Quaternion current, Vector3 angVel) {
+		private static Quaternion AngularVelocityToDerivative(Quaternion current, Vector3 angVel) {
 			var spin = new Quaternion(angVel.x, angVel.y, angVel.z, 0f);
 			var result = spin * current;
 			return new Quaternion(0.5f * result.x, 0.5f * result.y, 0.5f * result.z, 0.5f * result.w);
@@ -24,26 +24,26 @@ namespace Jovian.Tiger.Math
 
 		public static Quaternion IntegrateRotation(Quaternion rotation, Vector3 angularVelocity, float dt) {
 			if (dt < Mathf.Epsilon) return rotation;
-			var deriv = AngularVelocitytoDerivative(rotation, angularVelocity);
-			var pred = new Vector4(
-			                       rotation.x + deriv.x * dt,
-			                       rotation.y + deriv.y * dt,
-			                       rotation.z + deriv.z * dt,
-			                       rotation.w + deriv.w * dt
+			var derivative = AngularVelocityToDerivative(rotation, angularVelocity);
+			var prediction = new Vector4(
+			                       rotation.x + derivative.x * dt,
+			                       rotation.y + derivative.y * dt,
+			                       rotation.z + derivative.z * dt,
+			                       rotation.w + derivative.w * dt
 			                      ).normalized;
-			return new Quaternion(pred.x, pred.y, pred.z, pred.w);
+			return new Quaternion(prediction.x, prediction.y, prediction.z, prediction.w);
 		}
 	
 		public static Quaternion SmoothDamp(Quaternion rot, Quaternion target, ref Quaternion deriv, float time, float dt) {
 			if (dt < Mathf.Epsilon) return rot;
-			// account for double-cover
+			// accounting for double-cover
 			var dot = Quaternion.Dot(rot, target);
 			var multi = dot > 0f ? 1f : -1f;
 			target.x *= multi;
 			target.y *= multi;
 			target.z *= multi;
 			target.w *= multi;
-			// smooth damp (nlerp approx)
+			// smooth damp (nlerp approximation)
 			var result = new Vector4(
 			                         Mathf.SmoothDamp(rot.x, target.x, ref deriv.x, time),
 			                         Mathf.SmoothDamp(rot.y, target.y, ref deriv.y, time),
@@ -51,12 +51,12 @@ namespace Jovian.Tiger.Math
 			                         Mathf.SmoothDamp(rot.w, target.w, ref deriv.w, time)
 			                        ).normalized;
 		
-			// ensure deriv is tangent
-			var derivError = Vector4.Project(new Vector4(deriv.x, deriv.y, deriv.z, deriv.w), result);
-			deriv.x -= derivError.x;
-			deriv.y -= derivError.y;
-			deriv.z -= derivError.z;
-			deriv.w -= derivError.w;		
+			// ensure derivative is tangent
+			var derivativeError = Vector4.Project(new Vector4(deriv.x, deriv.y, deriv.z, deriv.w), result);
+			deriv.x -= derivativeError.x;
+			deriv.y -= derivativeError.y;
+			deriv.z -= derivativeError.z;
+			deriv.w -= derivativeError.w;		
 		
 			return new Quaternion(result.x, result.y, result.z, result.w);
 		}

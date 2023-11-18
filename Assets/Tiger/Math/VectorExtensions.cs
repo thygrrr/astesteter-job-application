@@ -1,10 +1,25 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace Tiger.Util
+namespace Tiger.Math
 {
     public static class VectorExtensions
     {
+        public static float ManhattanDistance(this Vector2 v, Vector2 other = default)
+        {
+            return math.csum(math.abs(v - other));
+        }
+
+        public static float ManhattanDistance(this Vector3 v, Vector3 other = default)
+        {
+            return math.csum(math.abs(v - other));
+        }
+
+        public static float ManhattanDistance(this Vector4 v, Vector4 other = default)
+        {
+            return math.csum(math.abs(v - other));
+        }
+
         public static Vector2 Round(this Vector2 v)
         {
             return new Vector2(Mathf.Round(v.x), Mathf.Round(v.y));
@@ -57,7 +72,7 @@ namespace Tiger.Util
 }
 
 /*
-Written by Tiger Blue in 2018
+Written by Tiger Blue in 2018, 2023
 
 This is free and unencumbered software released into the public domain.
 

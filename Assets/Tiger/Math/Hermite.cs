@@ -1,7 +1,7 @@
 ﻿using System;
 using Unity.Mathematics;
 
-namespace Jovian.Tiger.Math
+namespace Tiger.Math
 {
 	public static class Hermite
 	{

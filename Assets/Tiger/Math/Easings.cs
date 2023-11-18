@@ -57,7 +57,7 @@
 
 using UnityEngine;
 
-namespace Jovian.Tiger.Math
+namespace Tiger.Math
 {
     public static class Easing
     {

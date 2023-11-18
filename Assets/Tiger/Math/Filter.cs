@@ -1,7 +1,7 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace Jovian.Tiger.Math
+namespace Tiger.Math
 {
     /// <summary>
     /// A frame rate independent finite impulse response filter suite.
