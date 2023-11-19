@@ -2,6 +2,7 @@
 using Tiger.Loggers;
 using UnityEngine;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 namespace Tiger.Events
 {
@@ -22,10 +23,11 @@ namespace Tiger.Events
         {
             subscribers.RemoveListener(action);
         }
-        
-        public void Invoke(T data)
+
+        // ReSharper disable Unity.PerformanceAnalysis
+        public void Invoke(T data, Object context = null)
         {
-            if (debugSettings.enabled) debugSettings.Log($"<b>EVENT</b> {name} : {data}");
+            if (debugSettings.enabled) debugSettings.Log($"<b>EVENT</b> {name} : {data}", context != null ? context : this);
 
             subscribers.Invoke(data);
         }

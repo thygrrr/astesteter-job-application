@@ -2,6 +2,7 @@
 using Tiger.Loggers;
 using UnityEngine;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 namespace Tiger.Events
 {
@@ -14,11 +15,11 @@ namespace Tiger.Events
         [NonSerialized]
         public readonly UnityEvent subscribers = new UnityEvent();
         
-        public void Invoke()
+        public void Invoke(Object context = null)
         {
             if (debugSettings.enabled)
             {
-                debugSettings.Log($"<b>EVENT</b> {name}");
+                debugSettings.Log($"<b>EVENT</b> {name}", context != null ? context : this);
             }
             subscribers.Invoke();
         }

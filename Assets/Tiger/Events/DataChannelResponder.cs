@@ -1,10 +1,8 @@
-﻿
-using Tiger.Events;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Jovian.Tiger.Events
+namespace Tiger.Events
 {
     public abstract class DataChannelResponder<TChannel, T> : MonoBehaviour where TChannel : DataChannel<T>
     {
@@ -43,6 +41,11 @@ namespace Jovian.Tiger.Events
             {
                 Handles.Label(transform.position, "not subscribed");
             }
+        }
+
+        private void OnValidate()
+        {
+            if (!channel) Debug.Log("DataChannelResponder: Channel is not set.", this);
         }
 #endif
     }

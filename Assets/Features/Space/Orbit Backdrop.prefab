@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6592137191569320137}
   - component: {fileID: 6165957335500672401}
   - component: {fileID: 554390908323565004}
+  - component: {fileID: 592710739261725080}
   m_Layer: 10
   m_Name: Backdrop Sun
   m_TagString: Untagged
@@ -209,7 +210,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   useOcclusion: 1
-  occlusionRadius: 0.1
+  occlusionRadius: 0.25
   useBackgroundCloudOcclusion: 0
   sampleCount: 32
   occlusionOffset: 0.05
@@ -245,6 +246,22 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+--- !u!114 &592710739261725080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724657358511670570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b832136fb1ba5d44a139e109e9dee09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunlightChannel: {fileID: 11400000, guid: 01ddb001a65812d4a99c9eee3f9b3222, type: 2}
+  occlusionLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &2169027834480048943
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +342,7 @@ GameObject:
   m_Layer: 10
   m_Name: Local Sun
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -456,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435663224203846379}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8137977, y: -0.17101009, z: 0.46984634, w: 0.29619816}
+  m_LocalRotation: {x: 0.8137977, y: -0.17101012, z: 0.46984625, w: 0.29619816}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

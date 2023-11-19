@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: Unlicense
 using UnityEngine;
 
 namespace Tiger.Events.Concrete
