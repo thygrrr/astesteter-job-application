@@ -27,12 +27,16 @@ namespace Tiger.Math
         /// </summary>
         public static float wrap(float a, float min, float max)
         {
-            var mn = math.select(min, max, min >= max);
-            var mx = math.select(min, max, min < max);
-            return math.select(
-                mn + math.fmod(a - mn, mx - mn),
-                mx + math.fmod(a - mn, mx - mn),
-                a < 0);
+            if (min > max)
+            {
+                (min, max) = (max, min);
+            }
+
+            if (a < min) return a + (max - min);
+            if (a > max) return a - (max - min);
+            return a;   
+            
+            //return (a < 0 ? max : min) + math.fmod(a - min, max - min);
         }
 
         /// <summary>
@@ -40,12 +44,7 @@ namespace Tiger.Math
         /// </summary>
         public static float2 wrap(float2 a, float2 min, float2 max)
         {
-            var mn = math.select(min, max, min >= max);
-            var mx = math.select(min, max, min < max);
-            return math.select(
-                mn + math.fmod(a - mn, mx - mn),
-                mx + math.fmod(a - mn, mx - mn),
-                a < 0);
+            return new float2(wrap(a.x, min.x, max.x), wrap(a.y, min.y, max.y));
         }
 
         /// <summary>
@@ -53,12 +52,7 @@ namespace Tiger.Math
         /// </summary>
         public static float3 wrap(float3 a, float3 min, float3 max)
         {
-            var mn = math.select(min, max, min > max);
-            var mx = math.select(min, max, min <= max);
-            return math.select(
-                mn + math.fmod(a - mn, mx - mn),
-                mx + math.fmod(a - mn, mx - mn),
-                a < 0);
+            return new float3(wrap(a.x, min.x, max.x), wrap(a.y, min.y, max.y), wrap(a.z, min.z, max.z));
         }
     }
 

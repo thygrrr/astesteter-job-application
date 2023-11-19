@@ -1,9 +1,9 @@
 ﻿using System;
-using Jovian.Tiger.Debug;
+using Tiger.Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Jovian.Tiger.Events
+namespace Tiger.Events
 {
     [CreateAssetMenu(fileName="New (void) Channel", menuName="Event/(void) Channel", order=0)]
     public class Channel : ScriptableObject

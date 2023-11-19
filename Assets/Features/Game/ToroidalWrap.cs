@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: Unlicense
 using Features.Space;
 using UnityEngine;
 using Unity.Mathematics;
@@ -7,7 +8,7 @@ namespace Features.Common
     [RequireComponent(typeof(Rigidbody))]
     public class ToroidalWrap : MonoBehaviour
     {
-        private World _world;
+        private WorldBounds _worldBounds;
         private Rigidbody _body;
         private Bounds _wrapBounds;
 
@@ -43,7 +44,7 @@ namespace Features.Common
         
         private void SetUpBounds()
         {
-            _world = FindAnyObjectByType<World>();
+            _worldBounds = FindAnyObjectByType<WorldBounds>();
             
             var renderBounds = new Bounds();
             foreach (var r in GetComponentsInChildren<Renderer>())
@@ -51,7 +52,7 @@ namespace Features.Common
                 renderBounds.Encapsulate(r.bounds);
             }
 
-            _wrapBounds = _world.bounds;
+            _wrapBounds = _worldBounds.bounds;
             _wrapBounds.Expand(renderBounds.size);
         }
 

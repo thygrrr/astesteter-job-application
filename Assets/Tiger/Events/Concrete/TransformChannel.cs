@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Tiger.Events;
+using UnityEngine;
 
 namespace Jovian.Tiger.Events.Concrete
 {

@@ -1,8 +1,11 @@
+//SPDX-License-Identifier: Unlicense
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Features.Common
 {
+    using Log = Loggers.Create<SpawnOnDestroy>;
+    
     public class SpawnOnDestroy : MonoBehaviour
     {
         [Header("OnDestroy")] [SerializeField]
@@ -25,7 +28,7 @@ namespace Features.Common
         {
             if (remnantPrefabs.Count == 0 && remnantsToSpawn > 0)
             {
-                Debug.LogError($"SplitOnDestroy will want to spawn {remnantsToSpawn} remnants, and therefore needs at least 1 prefab", this);
+                Log.Error($"SplitOnDestroy will want to spawn {remnantsToSpawn} remnants, and therefore needs at least 1 prefab", this);
             }
         }
     }

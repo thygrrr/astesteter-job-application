@@ -7,6 +7,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable once CheckNamespace
 namespace Loggers
 {
     /// <summary>

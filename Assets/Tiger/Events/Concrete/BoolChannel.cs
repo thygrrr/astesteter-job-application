@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Jovian.Tiger.Events.Concrete
+namespace Tiger.Events.Concrete
 {
     [CreateAssetMenu(menuName = "Event/Basic/(bool) Channel", fileName = "New (bool) Channel", order = 0)]
     public class BoolChannel : DataChannel<bool>{};

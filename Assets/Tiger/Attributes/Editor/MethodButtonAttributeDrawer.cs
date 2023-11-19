@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Reflection;
+using Tiger.Util;
 using UnityEditor;
-using System.Reflection;
+using UnityEngine;
 
-namespace Tiger.Util.Editor
+namespace Tiger.Attributes.Editor
 {
     [CustomPropertyDrawer(typeof(MethodButtonAttribute))]
     public class MethodButtonAttributeDrawer : PropertyDrawer

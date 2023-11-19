@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.Space
 {
-    public class World : MonoBehaviour
+    public class WorldBounds : MonoBehaviour
     {
         [SerializeField] private Vector2 size;
         public Bounds bounds => new(default, size._x0y());

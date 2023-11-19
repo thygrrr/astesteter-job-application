@@ -1,9 +1,9 @@
 ﻿using System;
-using Jovian.Tiger.Debug;
+using Tiger.Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Jovian.Tiger.Events
+namespace Tiger.Events
 {
     public class DataChannel<T> : ScriptableObject
     {

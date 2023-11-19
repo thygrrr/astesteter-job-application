@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0174027957ba7884bb233a1eb0fd4cc5, type: 3}
-  m_Name: Debug (Audio Events)
+  m_Script: {fileID: 11500000, guid: f29b9a6e4ebfbf44390989cde73c9903, type: 3}
+  m_Name: PlayerVelocity
   m_EditorClassIdentifier: 
-  enabled: 1
-  level: 1
-  color: {r: 0, g: 0.45309544, b: 1, a: 1}
+  debugSettings: {fileID: 11400000, guid: 6be8cec992f965a458594deede2a9503, type: 2}

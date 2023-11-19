@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Jovian.Tiger.Debug
+namespace Tiger.Loggers
 {
     [CreateAssetMenu(menuName = "Debug/Debug Settings", fileName = "Debug Settings", order = 0)]
     public class DebugSettings : ScriptableObject
@@ -25,13 +25,13 @@ namespace Jovian.Tiger.Debug
             switch (level)
             {
                 case Level.Info:
-                    UnityEngine.Debug.Log(ApplyColor(message), context);
+                    Debug.Log(ApplyColor(message), context);
                     break;
                 case Level.Warn:
-                    UnityEngine.Debug.LogWarning(ApplyColor(message), context);
+                    Debug.LogWarning(ApplyColor(message), context);
                     break;
                 case Level.Error:
-                    UnityEngine.Debug.LogError(ApplyColor(message), context);
+                    Debug.LogError(ApplyColor(message), context);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

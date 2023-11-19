@@ -1,13 +1,16 @@
+//SPDX-License-Identifier: Unlicense
 using Tiger.Math;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Features.Space
 {
+    using Log = Loggers.Create<BodyDrivenOrbit>;
+
     public class BodyDrivenOrbit : MonoBehaviour
     {
         [Header("Body & Orbital velocities")] [SerializeField] [Tooltip("Orbit auto-advances in this direction")]    
-        private float2 intrinsicVelocity = 20;
+        private float2 intrinsicVelocity = new float2(0,5);
 
         [SerializeField] [Tooltip("scale velocity of body by this amount")]
         private float bodyVelocityScale = 5;
@@ -30,6 +33,7 @@ namespace Features.Space
 
         // The orbit tracks its own toroidal position, disregarding what other objects may use for their wrapping.
         private float2 _toroidalPosition;
+        
         private void LateUpdate()
         {
             var dt = Time.deltaTime;
@@ -37,11 +41,11 @@ namespace Features.Space
             _toroidalPosition += velocity * dt;
             _toroidalPosition = mathex.eumod(_toroidalPosition, period);
         
-            var location = math.smoothstep(0, math.SQRT2 * period, math.length(_toroidalPosition));
+            var location = math.smoothstep(0, period * math.SQRT2 * 0.5f, math.length(_toroidalPosition));
             var altitude = math.lerp(apoapsis, periapsis, location);
             var position = Vector3.down * altitude;
 
-            var orbitalDelta = velocity / math.sqrt(altitude) * dt;
+            var orbitalDelta = velocity * dt * location * 0.5f; //fudged, half-angle feels about right
             var angularDelta = Quaternion.Euler(orbitalDelta.y, 0, -orbitalDelta.x);
             var rotation= angularDelta * barycenter.localRotation;
         
@@ -60,7 +64,7 @@ namespace Features.Space
             }
             else
             {
-                Debug.LogWarning("BodyDrivenOrbit: No barycenter (backdrop object) set");
+                Log.Warn("No barycenter (backdrop object) set", this);
             }
         }
     }
