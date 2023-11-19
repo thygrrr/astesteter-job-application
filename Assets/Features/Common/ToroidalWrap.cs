@@ -1,48 +1,62 @@
+using Features.Space;
 using UnityEngine;
 using Unity.Mathematics;
 
 namespace Features.Common
 {
-    [RequireComponent(typeof(MeshRenderer))]
+    [RequireComponent(typeof(Rigidbody))]
     public class ToroidalWrap : MonoBehaviour
     {
-        [SerializeField] private Bounds _worldBounds;
-        
+        private World _world;
+        private Rigidbody _body;
         private Bounds _wrapBounds;
-        private MeshRenderer _ownRenderer;
-        
-        private float3 _lastPosition;
 
-        private void Awake()
+        #region Event Functions
+
+        private void Awake() => SetUpBounds();
+
+        private void FixedUpdate() => Wrap();
+
+        private void OnTransformChildrenChanged() => SetUpBounds();
+        
+        #endregion
+
+        #region Editor Events
+
+        private void OnValidate()
         {
-            _lastPosition = transform.position;
-            
-            _ownRenderer= GetComponent<MeshRenderer>();
-            
-            _wrapBounds = _worldBounds;
-            _wrapBounds.Expand(_ownRenderer.bounds.size);
+            _body = GetComponent<Rigidbody>();
         }
 
-        public Vector3 speed;
+        #endregion
 
-        private void LateUpdate()
+        private void Wrap()
         {
-            //TODO: Put into motion class.
-            transform.position += speed * Time.deltaTime * 3;
-
-            //Derive velocity from position delta
-            float3 position = transform.position;
-            var velocity = position - _lastPosition;
+            float3 position = _body.position;
+            float3 velocity = _body.velocity;
 
             if (MovingAway(velocity, position) && OutOfBounds(position))
             {
-                transform.position = -position;
-                _lastPosition = -position;        
+                _body.position = -position;
             }
+        }
+        
+        private void SetUpBounds()
+        {
+            _world = FindAnyObjectByType<World>();
+            
+            var renderBounds = new Bounds();
+            foreach (var r in GetComponentsInChildren<Renderer>())
+            {
+                renderBounds.Encapsulate(r.bounds);
+            }
+
+            _wrapBounds = _world.bounds;
+            _wrapBounds.Expand(renderBounds.size);
         }
 
         private bool OutOfBounds(float3 position) => !_wrapBounds.Contains(position);
-        
+
         private bool MovingAway(float3 velocity, float3 position) => math.any(velocity * position > 0);
     }
 }

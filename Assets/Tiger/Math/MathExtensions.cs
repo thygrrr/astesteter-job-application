@@ -1,4 +1,5 @@
 ﻿using Unity.Mathematics;
+using UnityEngine;
 
 // ReSharper disable file InconsistentNaming
 
@@ -22,13 +23,6 @@ namespace Tiger.Math
     
     public static partial class MathExtensions
     {
-
-        public static float3 x0z(this float3 v) => new(v.x, 0, v.z);
-        public static float3 z0x(this float3 v) => new(v.z, 0, v.x);
-        public static float3 x00(this float3 v) => new(v.x, 0, 0);
-        public static float3 y00(this float3 v) => new(v.y, 0, 0);
-        public static float3 z00(this float3 v) => new(v.z, 0, 0);
-
         /// <summary>
         /// Unity.Mathematics style variant of UnityEngine.Vector3's ProjectOnPlane.
         /// Extension method that lets us use float3 like Vector3 for this purpose

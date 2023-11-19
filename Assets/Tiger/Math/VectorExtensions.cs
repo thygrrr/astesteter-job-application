@@ -45,7 +45,7 @@ namespace Tiger.Math
             return (v.x + v.y + v.z) / 3.0f;
         }
 
-        public static float Max(this Vector3 v)
+        public static float CMax(this Vector3 v)
         {
             return Mathf.Max(v.x, v.y, v.z);
         }
