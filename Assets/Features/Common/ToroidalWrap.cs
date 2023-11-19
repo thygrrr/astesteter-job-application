@@ -37,7 +37,7 @@ namespace Features.Common
 
             if (MovingAway(velocity, position) && OutOfBounds(position))
             {
-                _body.position = -position;
+                _body.position = _wrapBounds.center - (Vector3) position;
             }
         }
         

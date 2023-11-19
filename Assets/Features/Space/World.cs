@@ -6,11 +6,16 @@ namespace Features.Space
 {
     public class World : MonoBehaviour
     {
-        public Bounds bounds => new(default, size._x0y());
-
         [SerializeField] private Vector2 size;
-
+        public Bounds bounds => new(default, size._x0y());
+        
+        private static readonly int toroidalCameraExtents = Shader.PropertyToID("_ToroidalCameraExtents");
+        
         #region Editor Events
+        private void Update()
+        {
+            Shader.SetGlobalVector(toroidalCameraExtents, bounds.extents);
+        }
 
         private void OnValidate()
         {
@@ -24,7 +29,6 @@ namespace Features.Space
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(bounds.center, bounds.size);
         }
-
         #endregion
     }
 }

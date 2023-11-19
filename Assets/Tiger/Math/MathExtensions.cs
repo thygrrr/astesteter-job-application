@@ -8,19 +8,60 @@ namespace Tiger.Math
     public static partial class mathex
     {
         /// <summary>
-        /// Euclidean Modulus, aka "remainder".
-        /// Differs from fmod in that its sign is defined by sign(b), not sign(a).
+        /// Euclidean Division Modulus, aka "remainder" with spatial wrapping.
         /// </summary>
-        /// <param name="a">dividend</param>
-        /// <param name="b">divisor</param>
-        /// <returns>euclidean remainder, e.g. eumod(-3, 2) == 1</returns>
-        public static float3 eumod(float3 a, float3 b)
+        public static float eumod(float a, float b) => wrap(a, -b, b);
+
+        /// <summary>
+        /// Euclidean Division Modulus, aka "remainder" with spatial wrapping.
+        /// </summary>
+        public static float2 eumod(float2 a, float2 b) => wrap(a, -b, b);
+
+        /// <summary>
+        /// Euclidean Division Modulus, aka "remainder" with spatial wrapping.
+        /// </summary>
+        public static float3 eumod(float3 a, float3 b) => wrap(a, -b, b);
+
+        /// <summary>
+        /// Wrap a float to a given range.
+        /// </summary>
+        public static float wrap(float a, float min, float max)
         {
-            return a - b * math.floor(a / b);
+            var mn = math.select(min, max, min >= max);
+            var mx = math.select(min, max, min < max);
+            return math.select(
+                mn + math.fmod(a - mn, mx - mn),
+                mx + math.fmod(a - mn, mx - mn),
+                a < 0);
         }
 
+        /// <summary>
+        /// Wrap a float2 to a given range.
+        /// </summary>
+        public static float2 wrap(float2 a, float2 min, float2 max)
+        {
+            var mn = math.select(min, max, min >= max);
+            var mx = math.select(min, max, min < max);
+            return math.select(
+                mn + math.fmod(a - mn, mx - mn),
+                mx + math.fmod(a - mn, mx - mn),
+                a < 0);
+        }
+
+        /// <summary>
+        /// Wrap a float3 to a given range.
+        /// </summary>
+        public static float3 wrap(float3 a, float3 min, float3 max)
+        {
+            var mn = math.select(min, max, min > max);
+            var mx = math.select(min, max, min <= max);
+            return math.select(
+                mn + math.fmod(a - mn, mx - mn),
+                mx + math.fmod(a - mn, mx - mn),
+                a < 0);
+        }
     }
-    
+
     public static partial class MathExtensions
     {
         /// <summary>
@@ -65,26 +106,22 @@ namespace Tiger.Math
             point = rayOrigin + rayDirection * distance;
             return true;
         }
-        
+
         public static float3 ClosestPointOnOrToSphere(float3 r0, float3 rd, float3 s0, float radius)
         {
-            var s0_r0 = s0-r0;
+            var s0_r0 = s0 - r0;
             var t = math.dot(s0_r0, rd);
             var p = r0 + t * rd;
 
-            var y = math.length(p-s0);
+            var y = math.length(p - s0);
 
             if (t < 0) return r0; //TODO: Do vertical projection down - this isn't on the sphere
-            
+
             if (y < radius)
             {
                 var x = math.sqrt(radius * radius - y * y);
                 var t1 = math.max(t - x, 0);
-                //float t2 = (t + x);
-                //float thickness = (t2 - t1) / 2.0f;
-                
                 return r0 + rd * t1;
-                //float3 p2 = r0 + rd * t2;
             }
             else
             {
