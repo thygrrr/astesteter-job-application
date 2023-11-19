@@ -214,6 +214,8 @@ GameObject:
   - component: {fileID: 3756204032950153180}
   - component: {fileID: 1478473837641976848}
   - component: {fileID: 8279377187295803567}
+  - component: {fileID: 3088319810450967765}
+  - component: {fileID: 1521103850300343516}
   m_Layer: 0
   m_Name: Ship (Player)
   m_TagString: Untagged
@@ -281,6 +283,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2f33eb7764190408b99501528c01ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3088319810450967765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181032893732889095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd104bc247dae4647be559327ec9bf10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1521103850300343516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181032893732889095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e9ea42eccd7fc40aba9b1fe372c17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &4379740497654920287
 PrefabInstance:
   m_ObjectHideFlags: 0

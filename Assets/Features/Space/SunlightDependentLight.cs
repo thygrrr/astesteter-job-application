@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Features.Space
 {
     [RequireComponent(typeof(Light))]
-    public class DependentSunlight : DataChannelResponder<BoolChannel, bool>
+    public class SunlightDependentLight : DataChannelResponder<BoolChannel, bool>
     {
         protected override void OnEvent(bool sunshine)
         {
