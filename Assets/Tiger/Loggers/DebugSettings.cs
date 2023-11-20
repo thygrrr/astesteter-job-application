@@ -1,8 +1,9 @@
 //SPDX-License-Identifier: Unlicense
 using System;
 using UnityEngine;
+// ReSharper disable CheckNamespace
 
-namespace Tiger.Loggers
+namespace Loggers
 {
     [CreateAssetMenu(menuName = "Debug/Debug Settings", fileName = "Debug Settings", order = 0)]
     public class DebugSettings : ScriptableObject

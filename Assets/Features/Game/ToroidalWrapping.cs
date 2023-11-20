@@ -3,13 +3,14 @@ using Features.Space;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using Tiger.Util;
 
 namespace Features.Game
 {
-    using Log = Loggers.Create<ToroidalWrap>;
+    using Log = Loggers.Create<ToroidalWrapping>;
     
     [RequireComponent(typeof(Rigidbody))]
-    public class ToroidalWrap : MonoBehaviour
+    public class ToroidalWrapping : MonoBehaviour
     {
         private WorldBounds _worldBounds;
         private Rigidbody _body;
@@ -17,7 +18,16 @@ namespace Features.Game
 
         #region Event Functions
 
-        private void Awake() => SetUpBounds();
+        private void Awake()
+        {
+            _body = GetComponent<Rigidbody>();
+            
+            //We're being spawned in by a PlayerInputManager, normally I would instantiate
+            //the prefab directly it in the "right" parent, and use GetComponentInParent<...>
+            _worldBounds = FindAnyObjectByType<WorldBounds>();
+            transform.parent = _worldBounds.transform;
+            SetUpBounds();   
+        }
 
         private void FixedUpdate() => Wrap();
 
@@ -30,8 +40,7 @@ namespace Features.Game
         private void OnValidate()
         {
             _body = GetComponent<Rigidbody>();
-            var isInstance = PrefabUtility.IsPartOfPrefabInstance(this);
-            if (isInstance && !GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
+            if (gameObject.IsNonAsset() && !GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
         }
 
         #endregion

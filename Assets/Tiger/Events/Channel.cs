@@ -1,5 +1,5 @@
 ﻿using System;
-using Tiger.Loggers;
+using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 using Object = UnityEngine.Object;

@@ -2,14 +2,15 @@
 
 using UnityEngine;
 
-namespace Features.Game
+namespace Features.Rendering
 {
+    [RequireComponent(typeof(Renderer))]
     public class RenderBounds : MonoBehaviour
     {
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            var bounds = GetComponent<MeshRenderer>().bounds;
+            var bounds = GetComponent<Renderer>().bounds;
             Gizmos.DrawWireCube(bounds.center, bounds.size);
         }
 

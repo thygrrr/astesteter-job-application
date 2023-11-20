@@ -1,4 +1,4 @@
-using Tiger.Math;
+using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 

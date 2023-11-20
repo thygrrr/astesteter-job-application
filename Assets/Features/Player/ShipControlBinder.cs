@@ -9,17 +9,18 @@ namespace Features.Player
     public class ShipControlBinder : MonoBehaviour
     {
         private GameInputActions _input;
-
+        
         #region Unity Events
 
         private void Awake()
         {
             _input = new GameInputActions();
+
             var clients = GetComponentsInChildren<GameInputActions.IPlayerActions>();
             foreach (var client in clients)
             {
                 Log.Info($"Binding action map for {client}");
-                _input.Player.SetCallbacks(client);
+                _input.Player.AddCallbacks(client);
             }
         }
 

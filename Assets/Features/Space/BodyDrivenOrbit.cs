@@ -1,5 +1,9 @@
 //SPDX-License-Identifier: Unlicense
+
+using Channels.Concrete;
+using Tiger.Events;
 using Tiger.Math;
+using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -7,7 +11,7 @@ namespace Features.Space
 {
     using Log = Loggers.Create<BodyDrivenOrbit>;
 
-    public class BodyDrivenOrbit : MonoBehaviour
+    public class BodyDrivenOrbit : DataChannelResponder<Vector3Channel, Vector3>
     {
         [Header("Body & Orbital velocities")] [SerializeField] [Tooltip("Orbit auto-advances in this direction")]    
         private float2 intrinsicVelocity = new float2(0,5);
@@ -33,11 +37,12 @@ namespace Features.Space
 
         // The orbit tracks its own toroidal position, disregarding what other objects may use for their wrapping.
         private float2 _toroidalPosition;
-        
+        private Vector3 _bodyVelocity;
+
         private void LateUpdate()
         {
             var dt = Time.deltaTime;
-            var velocity = intrinsicVelocity + body.velocity._xz() * bodyVelocityScale;
+            var velocity = intrinsicVelocity + _bodyVelocity._xz() * bodyVelocityScale;
             _toroidalPosition += velocity * dt;
             _toroidalPosition = mathex.eumod(_toroidalPosition, period);
         
@@ -52,7 +57,12 @@ namespace Features.Space
             barycenter.SetLocalPositionAndRotation(position, rotation);
         }
 
-        private void OnValidate()
+        protected override void OnEvent(Vector3 acceleration)
+        {
+            _bodyVelocity += acceleration;
+        }
+
+        protected override void OnValidate()
         {
             period = math.max(period, 1);
             apoapsis = math.abs(apoapsis);

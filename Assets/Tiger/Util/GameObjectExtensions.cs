@@ -7,6 +7,9 @@ using Object = UnityEngine.Object;
 
 namespace Tiger.Util
 {
+    using Log = Loggers.Create<GameObjectExtensionLog>;
+    public abstract class GameObjectExtensionLog{}
+    
     public static class GameObjectExtensions
     {    
         /// <summary>Instantiates a copy of this GameObject</summary>
@@ -33,8 +36,13 @@ namespace Tiger.Util
             }
             return result ;
         }
-        
-        
+
+        /// <summary>Determines whether the GameObject is not an asset part or a prefab instance</summary>
+        public static bool IsNonAsset(this GameObject go)
+        {
+            return !string.IsNullOrEmpty(go.scene.name);
+        }
+
         /// <summary>
         /// Copies a component and attaches it to this gameobject
         /// </summary>
