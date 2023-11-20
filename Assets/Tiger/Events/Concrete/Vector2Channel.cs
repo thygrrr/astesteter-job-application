@@ -1,4 +1,4 @@
-﻿using Jovian.Tiger.Events;
+﻿//SPDX-License-Identifier: Unlicense
 using UnityEngine;
 
 namespace Tiger.Events.Concrete

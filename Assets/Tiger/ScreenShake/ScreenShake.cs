@@ -1,13 +1,42 @@
-﻿using UnityEngine;
+// SPDX-License-Identifier: Unlicense
+using System;
+using UnityEngine;
+using UnityEngine.Events;
 
-namespace Tiger.Events.Concrete
+namespace Tiger.ScreenShake
 {
-    [CreateAssetMenu(menuName = "Event/Basic/(int) Channel", fileName = "New (int) Channel", order = 0)]
-    public class IntChannel : DataChannel<int>{};
+    public static class ScreenShake
+    {
+        public struct ShakeEvent
+        {
+            public Vector3 position;
+            public float amplitudeHF;
+            public float amplitudeLF;
+        }
+
+        [NonSerialized]
+        internal static readonly UnityEvent<ShakeEvent> Shakes = new();
+
+        /// <summary>
+        /// Adds a screen shake effect, invoking the Event to notify the subscribers.
+        /// </summary>
+        /// <param name="position">World space position of the event.</param>
+        /// <param name="amplitudeHF">High frequency strength of the shake.</param>
+        /// <param name="amplitudeLF">Low frequency strength of the shake.</param>
+        public static void Add(Vector3 position, float amplitudeHF, float amplitudeLF)
+        {
+            Shakes.Invoke(new ShakeEvent()
+            {
+                position = position,
+                amplitudeHF = amplitudeHF,
+                amplitudeLF = amplitudeLF
+            });
+        }
+    }
 }
 
 /*
-Written by Tiger Blue in 2021
+Written by Tiger Blue in 2017
 
 This is free and unencumbered software released into the public domain.
 

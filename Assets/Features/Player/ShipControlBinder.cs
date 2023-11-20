@@ -24,8 +24,8 @@ namespace Features.Player
             }
         }
 
-        private void OnEnable() => _input.Player.Enable();
-        private void OnDisable() => _input.Player.Disable();
+        private void OnEnable() => _input?.Player.Enable();
+        private void OnDisable() => _input?.Player.Disable();
 
         #endregion
     }

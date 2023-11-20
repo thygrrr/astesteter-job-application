@@ -2,8 +2,8 @@
 
 namespace Tiger.Events.Concrete
 {
-    [CreateAssetMenu(menuName = "Event/Basic/(int) Channel", fileName = "New (int) Channel", order = 0)]
-    public class IntChannel : DataChannel<int>{};
+    [CreateAssetMenu(menuName = "Event/Basic/(float) Channel", fileName = "New (float) Channel", order = 0)]
+    public class FloatChannel : DataChannel<float>{};
 }
 
 /*

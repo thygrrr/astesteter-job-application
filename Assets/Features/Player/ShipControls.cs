@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Tiger.Swizzles;
 using Tiger.Math;
+using Tiger.ScreenShake;
 
 namespace Features.Player
 {
-    public class ShipThrusterControls : MonoBehaviour, GameInputActions.IPlayerActions
+    public class ShipControls : MonoBehaviour, GameInputActions.IPlayerActions
     {
-        [Tooltip("Channel to send acceleration data through")]
-        [SerializeField] private Vector3Channel accelerationChannel;
+        [Tooltip("Channel to send acceleration data through")] [SerializeField]
+        private Vector3Channel accelerationChannel;
 
-        [Header("Thrust & Turning")]
-        [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
+        [Header("Thrust & Turning")] [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
         private float engineThrust = 20;
 
         [SerializeField] [Tooltip("Thrust Decay (half life)")]
@@ -22,9 +22,8 @@ namespace Features.Player
         [SerializeField] [Tooltip("Rotation SmoothTime (half life)")]
         private float rotationLambda = 0.1f;
 
-        [SerializeField] 
-        private GameObject forwardFx;
-        
+        [SerializeField] private GameObject forwardFx;
+
         private Camera _camera;
 
         private float _thrust;
@@ -43,28 +42,47 @@ namespace Features.Player
 
         private void Update()
         {
+            OrientShipFromMouse();
+            IntegrateRotation();
+        }
+
+        private void FixedUpdate() => IntegrateAcceleration();
+
+        private void IntegrateRotation()
+        {
             //We rotate in dynamic update to make it extra smooth.
             _rotation = QuatEx.SmoothDamp(_rotation, _rotationTarget, ref _rotationDerivative, rotationLambda, Time.deltaTime);
             transform.rotation = _rotation;
+
+            forwardFx.gameObject.SetActive(_thrust > 0.5f);
         }
 
-        private void FixedUpdate()
+        private void IntegrateAcceleration()
         {
             // Decay / Gain thrust
             _thrust = Mathf.SmoothDamp(_thrust, _thrustTarget, ref _thrustDerivative, engineLambda);
-            
+
             var acceleration = _thrust * -transform.forward;
             accelerationChannel.Invoke(acceleration._x0z());
-            
-            forwardFx.gameObject.SetActive(_thrust > 0.25f);
+
         }
 
         public void OnThrust(InputAction.CallbackContext context)
         {
+            if (context.action.WasPressedThisFrame()) ScreenShake.Add(transform.position, 0, 0.5f);
             _thrustTarget = context.action.IsPressed() ? engineThrust : 0;
         }
 
         public void OnLook(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnFire(InputAction.CallbackContext context)
+        {
+            ScreenShake.Add(transform.position, .2f, 0);
+        }
+
+        private void OrientShipFromMouse()
         {
             var mouse = Mouse.current.position.ReadValue();
 
@@ -73,14 +91,19 @@ namespace Features.Player
 
             if (!plane.Raycast(ray, out var distance)) return;
 
+            var forward = transform.forward;
             var point = ray.GetPoint(distance);
-            var direction = point - transform.position;
-            
-            _rotationTarget = Quaternion.LookRotation(direction.normalized, transform.up);
-        }
+            var displacement = point - transform.position;
 
-        public void OnFire(InputAction.CallbackContext context)
-        {
+            // We want to dampen the displacement as we get closer to the ship.
+            displacement = Vector3.Lerp(forward, displacement, displacement.magnitude / 4f);
+
+            var direction = Vector3.Normalize(displacement);
+
+            var bankAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+            bankAngle = Mathf.Clamp(bankAngle, -90, 90);
+            var bankRotation = Quaternion.AngleAxis(-bankAngle, Vector3.forward);
+            _rotationTarget = Quaternion.LookRotation(direction) * bankRotation;
         }
     }
 }

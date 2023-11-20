@@ -20,9 +20,9 @@ public class PlayerSpawner : MonoBehaviour
         _input.UI.Spawn.performed += SpawnPlayer;
     }
     
-    private void OnEnable() => _input.UI.Enable();
+    private void OnEnable() => _input?.UI.Enable();
     
-    private void OnDisable() => _input.UI.Disable();
+    private void OnDisable() => _input?.UI.Disable();
 
     private void SpawnPlayer(InputAction.CallbackContext ctx)
     {

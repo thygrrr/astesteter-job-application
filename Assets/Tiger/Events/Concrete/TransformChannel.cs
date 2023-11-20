@@ -1,7 +1,6 @@
-﻿using Tiger.Events;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Jovian.Tiger.Events.Concrete
+namespace Tiger.Events.Concrete
 {
     [CreateAssetMenu(menuName = "Event/Basic/(Transform) Channel", fileName = "New (Transform) Channel", order = 0)]
     public class TransformChannel : DataChannel<Transform>{};
