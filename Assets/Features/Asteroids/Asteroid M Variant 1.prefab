@@ -52,6 +52,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2030479936859480064, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
+    - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_Name

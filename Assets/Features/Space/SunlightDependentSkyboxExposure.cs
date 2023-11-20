@@ -1,7 +1,9 @@
 using Tweens;
 using Tiger.Events;
 using Tiger.Events.Concrete;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Space
 {
@@ -9,35 +11,52 @@ namespace Features.Space
 
     public class SunlightDependentSkyboxExposure : DataChannelResponder<BoolChannel, bool>
     {
+        [Header("Skybox Exposure")]
         [SerializeField] private float litExposure = 1f;
         [SerializeField] private float darkExposure = 2f;
-
-        private static Material skybox => RenderSettings.skybox;
         
-        private static readonly int exposure = Shader.PropertyToID("_Exposure");
+        [Header("Ambient Light")]
+        [SerializeField] [ColorUsage(false, true)]
+        private Color litAmbientLight;
+        [SerializeField] [ColorUsage(false, true)]
+        private Color darkAmbientLight;
 
+        private static readonly int exposure = Shader.PropertyToID("_Exposure");
+        
+        private float _value = 1;
+        
         protected override void OnEvent(bool sunshine)
         {
             gameObject.CancelTweens();
             gameObject.AddTween(new FloatTween
             {
                 duration = 1,
-                from = skybox.GetFloat(exposure),
-                to = sunshine ? litExposure : darkExposure,
-                onUpdate = (_, value) => skybox.SetFloat(exposure, value) 
+                from = _value,
+                to = sunshine ? 1 : 0,
+                onUpdate = OnTweenUpdate
             });
         }
-        
+
+        private void OnTweenUpdate(TweenInstance<Transform, float> _, float value)
+        {
+            _value = value;
+            RenderSettings.skybox.SetFloat(exposure, math.lerp(darkExposure, litExposure, value));
+            RenderSettings.ambientSkyColor = Color.Lerp(darkAmbientLight, litAmbientLight, value);
+        }
+
         private void OnDisable()
         {
             gameObject.CancelTweens();
-            skybox.SetFloat(exposure, litExposure);
         }
 
         protected override void OnValidate()
         {
             base.OnValidate();
-            if (!skybox) Log.Error("Skybox is not set\n(check lighting settings for the scene this object lives in).", this);
+            
+            if (litAmbientLight == default) litAmbientLight = RenderSettings.ambientSkyColor;
+            else RenderSettings.ambientSkyColor = litAmbientLight;
+            
+            RenderSettings.skybox.SetFloat(exposure, litExposure);
         }
     }
 }

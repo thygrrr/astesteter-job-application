@@ -13,7 +13,7 @@ namespace Tiger.Events
         [SerializeField]
         protected UnityEvent action;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             channel.subscribers.AddListener(Trigger);
         }

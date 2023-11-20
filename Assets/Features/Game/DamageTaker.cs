@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Features.Common
 {
-    [RequireComponent(typeof(Collider))]
     public class DamageTaker : MonoBehaviour
     {
         [SerializeField]

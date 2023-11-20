@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using Tiger.Util;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tiger.Events
 {
-    public abstract class DataChannelResponder<TChannel, T> : MonoBehaviour where TChannel : DataChannel<T>
+    public abstract class DataChannelResponder<TChannel, T> : SealableLifecycleBehaviour where TChannel : DataChannel<T>
     {
         [SerializeField]
         protected TChannel channel;
@@ -12,9 +13,14 @@ namespace Tiger.Events
         [SerializeField]
         protected UnityEvent<T> action;
 
-        private void Awake()
+        protected sealed override void Awake()
         {
             if (channel) channel.subscribers.AddListener(Trigger);
+        }
+
+        protected sealed override void OnDestroy()
+        {
+            if (channel) channel.subscribers.RemoveListener(Trigger);
         }
 
         protected virtual void OnEvent(T data)
@@ -31,7 +37,7 @@ namespace Tiger.Events
         }
         
 #if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
+        protected virtual void OnDrawGizmosSelected()
         {
             if (channel)
             {

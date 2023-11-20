@@ -1,10 +1,13 @@
 //SPDX-License-Identifier: Unlicense
 using Features.Space;
-using UnityEngine;
 using Unity.Mathematics;
+using UnityEditor;
+using UnityEngine;
 
-namespace Features.Common
+namespace Features.Game
 {
+    using Log = Loggers.Create<ToroidalWrap>;
+    
     [RequireComponent(typeof(Rigidbody))]
     public class ToroidalWrap : MonoBehaviour
     {
@@ -22,11 +25,13 @@ namespace Features.Common
         
         #endregion
 
-        #region Editor Events
+        #region Editor Events 
 
         private void OnValidate()
         {
             _body = GetComponent<Rigidbody>();
+            var isInstance = PrefabUtility.IsPartOfPrefabInstance(this);
+            if (isInstance && !GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
         }
 
         #endregion
@@ -44,7 +49,7 @@ namespace Features.Common
         
         private void SetUpBounds()
         {
-            _worldBounds = FindAnyObjectByType<WorldBounds>();
+            _worldBounds = GetComponentInParent<WorldBounds>();
             
             var renderBounds = new Bounds();
             foreach (var r in GetComponentsInChildren<Renderer>())
