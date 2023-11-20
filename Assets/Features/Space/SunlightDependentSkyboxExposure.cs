@@ -1,10 +1,7 @@
 using Tweens;
 using Tiger.Events;
 using Tiger.Events.Concrete;
-using Tweens.Core;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.Space
 {
