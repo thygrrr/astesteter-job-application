@@ -2,11 +2,8 @@ using Channels.Concrete;
 using Feature.Ui;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Tiger.Swizzles;
 using Tiger.Math;
-using Unity.Mathematics;
-using UnityEditor;
 
 namespace Features.Player
 {
@@ -17,13 +14,13 @@ namespace Features.Player
 
         [Header("Thrust & Turning")]
         [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
-        private float engineThrust = 10;
+        private float engineThrust = 20;
 
         [SerializeField] [Tooltip("Thrust Decay (half life)")]
         private float engineLambda = 0.1f;
 
-        [SerializeField] [Tooltip("Rotation Smoothtime (half life)")]
-        private float rotationLambda = 0.25f;
+        [SerializeField] [Tooltip("Rotation SmoothTime (half life)")]
+        private float rotationLambda = 0.1f;
 
         [SerializeField] 
         private GameObject forwardFx;
