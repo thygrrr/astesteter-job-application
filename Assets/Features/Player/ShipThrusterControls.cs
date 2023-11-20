@@ -1,68 +1,85 @@
+using Channels.Concrete;
 using Feature.Ui;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
+using UnityEngine.Serialization;
+using Tiger.Swizzles;
+using Tiger.Math;
+using Unity.Mathematics;
+using UnityEditor;
 
 namespace Features.Player
 {
     public class ShipThrusterControls : MonoBehaviour, GameInputActions.IPlayerActions
     {
-        [SerializeField] [Tooltip("Forward thrust")]
-        private float forward = 8;
-        [SerializeField] [Tooltip("Reverse thrust")]
-        private float backward = -2f; 
+        [Tooltip("Channel to send acceleration data through")]
+        [SerializeField] private Vector3Channel accelerationChannel;
 
-        [SerializeField] [Tooltip("Local X-Axis thrust (right, left)")]
-        private float strafing = 4f;
-        
+        [Header("Thrust & Turning")]
+        [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
+        private float engineThrust = 10;
+
+        [SerializeField] [Tooltip("Thrust Decay (half life)")]
+        private float engineLambda = 0.1f;
+
+        [SerializeField] [Tooltip("Rotation Smoothtime (half life)")]
+        private float rotationLambda = 0.25f;
+
         [SerializeField] 
         private GameObject forwardFx;
         
-        private float3 minThrust => new float3(-strafing, 0, backward);
-        private float3 maxThrust => new float3(strafing, 0, forward);
-        
-        private Rigidbody _body;
         private Camera _camera;
 
-        private Vector3 _thrust;
+        private float _thrust;
+        private float _thrustTarget;
+        private float _thrustDerivative;
+
+        private Quaternion _rotation;
+        private Quaternion _rotationTarget;
+        private Quaternion _rotationDerivative;
 
         public void Awake()
         {
             _camera = Camera.main;
             forwardFx.SetActive(false);
-            _body = GetComponentInParent<Rigidbody>();
-            _body.rotation = Quaternion.Euler(0, Random.Range(-360, 360), 0);
+        }
+
+        private void Update()
+        {
+            //We rotate in dynamic update to make it extra smooth.
+            _rotation = QuatEx.SmoothDamp(_rotation, _rotationTarget, ref _rotationDerivative, rotationLambda, Time.deltaTime);
+            transform.rotation = _rotation;
         }
 
         private void FixedUpdate()
         {
-            _body.AddForce(_thrust, ForceMode.Force);
-            forwardFx.gameObject.SetActive(math.dot(transform.forward, _thrust) > 0.8f);
+            // Decay / Gain thrust
+            _thrust = Mathf.SmoothDamp(_thrust, _thrustTarget, ref _thrustDerivative, engineLambda);
+            
+            var acceleration = _thrust * -transform.forward;
+            accelerationChannel.Invoke(acceleration._x0z());
+            
+            forwardFx.gameObject.SetActive(_thrust > 0.25f);
         }
 
-        public void OnMove(InputAction.CallbackContext context)
+        public void OnThrust(InputAction.CallbackContext context)
         {
-            // Clamp input
-            var input = context.action.ReadValue<Vector2>();
-            var moveInputVector = Vector3.ClampMagnitude(new Vector3(input.x, 0f, input.y), 1f);
-            moveInputVector = math.remap(-Vector3.one, Vector3.one, minThrust, maxThrust, moveInputVector);
-            var viewForward = _camera.transform.forward;
-            var viewUp = _camera.transform.up;
-
-            // Calculate camera direction and rotation on the character plane
-            var cameraPlanarDirection = Vector3.ProjectOnPlane(viewForward, Vector3.up).normalized;
-            if (cameraPlanarDirection.sqrMagnitude <= 0.01f)
-            {
-                cameraPlanarDirection = Vector3.ProjectOnPlane(viewUp, Vector3.up).normalized;
-            }
-
-            var cameraPlanarRotation = Quaternion.LookRotation(cameraPlanarDirection, Vector3.up);
-            _thrust = cameraPlanarRotation * moveInputVector;
+            _thrustTarget = context.action.IsPressed() ? engineThrust : 0;
         }
 
         public void OnLook(InputAction.CallbackContext context)
         {
+            var mouse = Mouse.current.position.ReadValue();
+
+            var ray = _camera.ScreenPointToRay(mouse);
+            var plane = new Plane(Vector3.up, Vector3.zero);
+
+            if (!plane.Raycast(ray, out var distance)) return;
+
+            var point = ray.GetPoint(distance);
+            var direction = point - transform.position;
+            
+            _rotationTarget = Quaternion.LookRotation(direction.normalized, transform.up);
         }
 
         public void OnFire(InputAction.CallbackContext context)

@@ -3,7 +3,11 @@ guid: f8b2009d25aee6140b8b81555636df82
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - accelerationChannel: {fileID: 11400000, guid: e13d13afe9e80474f99be86b1c9f709b,
+      type: 2}
+  - forwardFx: {instanceID: 0}
+  - view: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

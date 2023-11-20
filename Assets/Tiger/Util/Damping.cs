@@ -5,6 +5,7 @@ namespace Tiger.Util
 {
     public static class Damping
     {
+        #region Double Precision
         public static double3 SmoothDamp(double3 current, double3 target, ref double3 currentVelocity, double smoothTime,
             double3 maxSpeed, double deltaTime)
         {
@@ -179,6 +180,7 @@ namespace Tiger.Util
         }
 
         //--------------------------------------------------------------------
+        #endregion
     }
 }
 

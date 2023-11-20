@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 namespace Tiger.Math
 {
-	public static partial class _ 
+	public static partial class QuatEx
 	{
 		private static Quaternion AngularVelocityToDerivative(Quaternion current, Vector3 angVel) {
 			var spin = new Quaternion(angVel.x, angVel.y, angVel.z, 0f);
