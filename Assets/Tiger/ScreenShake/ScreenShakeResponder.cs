@@ -19,7 +19,7 @@ namespace Tiger.ScreenShake
         [Range(1f, 50f)] [Tooltip("Frequency of the noise used for shaking")] public float lowFrequency = 5.0f;
 
         [Header("Trauma ASDR")] 
-        [Range(0f, 1f)] public float highFrequencyAttack = 0.05f;
+        [Range(0f, 1f)] public float highFrequencyAttack = 0.0f;
         [Range(0f, 2f)] public float highFrequencySustain = 0.5f;
 
         [Range(0f, 1f)] public float lowFrequencyAttack = 0.2f;
@@ -31,14 +31,15 @@ namespace Tiger.ScreenShake
         [Range(0.1f, 4f)] [Tooltip("Shape of the curve, trauma values are from 0..1 and are raised to this power.")]
         public float traumaLFIntensityExponent = 2f;
 
+        [FormerlySerializedAs("distanceUnitLength")]
         [Header("Distance Falloff")]
         [Tooltip("If your world has a specific scale, you can use this to make the distance falloff match.")]
-        public float distanceUnitLength = 1f;
+        public float distanceUnitScale = 1f;
         
-        [Range(0.0f, 4f)] [Tooltip("Falloff with distance, ~2 approximates inverse square law")] 
+        [Range(0.0f, 4f)] [Tooltip("Falloff with distance, 0=no falloff, 2=inverse square law")] 
         public float highFrequencyDistanceExponent = 2f;
 
-        [Range(0.0f, 4f)] [Tooltip("Falloff with distance, ~2 approximates inverse square law")]
+        [Range(0.0f, 4f)] [Tooltip("Falloff with distance, 0=no falloff, 2=inverse square law")]
         public float lowFrequencyDistanceExponent = 1f;
 
         [Header("Amplitudes in units (ShakeType.Positional) or degrees (ShakeType.Rotational)")]
@@ -102,7 +103,7 @@ namespace Tiger.ScreenShake
 
         private void OnShake(ScreenShake.ShakeEvent shake)
         {
-            var distance = Mathf.Max(1, (perceiver.position - shake.position).magnitude * distanceUnitLength);
+            var distance = Mathf.Max(1, (perceiver.position - shake.position).magnitude * distanceUnitScale);
 
             _traumaHF += shake.amplitudeHF / Mathf.Pow(distance, highFrequencyDistanceExponent);
             _traumaHF = Mathf.Clamp01(_traumaHF);

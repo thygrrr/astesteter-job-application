@@ -28,7 +28,7 @@ namespace Features.Space
             {
                 if (_occlusion == value || value == State.Unknown) return;
                 _occlusion = value;
-                sunlightChannel.Invoke(value == State.Visible, this);
+                sunlightChannel.Emit(value == State.Visible, this);
             }
         }
 

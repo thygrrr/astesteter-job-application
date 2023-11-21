@@ -16,6 +16,12 @@ namespace Tiger.Events
         protected sealed override void Awake()
         {
             if (channel) channel.subscribers.AddListener(Trigger);
+            AwakeOverride();
+        }
+
+        protected virtual void AwakeOverride()
+        {
+            //Implement this if you want to have your own code happen on awake
         }
 
         protected sealed override void OnDestroy()

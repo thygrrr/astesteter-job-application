@@ -9,15 +9,12 @@ using UnityEngine;
 
 namespace Features.Space
 {
-    using Log = Loggers.Create<BodyDrivenOrbit>;
+    using Log = Loggers.Create<VelocityDrivenOrbit>;
 
-    public class BodyDrivenOrbit : DataChannelResponder<Vector3Channel, Vector3>
+    public class VelocityDrivenOrbit : DataChannelResponder<Vector3Channel, Vector3>
     {
-        [Header("Body & Orbital velocities")] [SerializeField] [Tooltip("Orbit auto-advances in this direction")]    
-        private float2 intrinsicVelocity = new float2(0,5);
-
         [SerializeField] [Tooltip("scale velocity of body by this amount")]
-        private float bodyVelocityScale = 5;
+        private float bodyVelocityScale = 1;
 
         [Header("These ain't your normal Kepler-ian Elements")][SerializeField] [Tooltip("Length of one circumnavigation in unity Units")]
         private float period = 1000;
@@ -29,9 +26,6 @@ namespace Features.Space
         private float apoapsis = 900;
 
         [Header("Driving Behaviour")]
-        [SerializeField] [Tooltip("Body to follow (e.g. Player)")]
-        private Rigidbody body;
-
         [SerializeField] [Tooltip("Object to move and rotate underneath the body.")]
         private Transform barycenter;
 
@@ -42,7 +36,7 @@ namespace Features.Space
         private void LateUpdate()
         {
             var dt = Time.deltaTime;
-            var velocity = intrinsicVelocity + _bodyVelocity._xz() * bodyVelocityScale;
+            var velocity = _bodyVelocity._xz() * bodyVelocityScale;
             _toroidalPosition += velocity * dt;
             _toroidalPosition = mathex.eumod(_toroidalPosition, period);
         
@@ -50,16 +44,16 @@ namespace Features.Space
             var altitude = math.lerp(apoapsis, periapsis, location);
             var position = Vector3.down * altitude;
 
-            var orbitalDelta = velocity * dt * location * 0.5f; //fudged, half-angle feels about right
+            var orbitalDelta = velocity * bodyVelocityScale * dt * location * 0.25f; //fudged, quarter-angle feels about right
             var angularDelta = Quaternion.Euler(orbitalDelta.y, 0, -orbitalDelta.x);
             var rotation= angularDelta * barycenter.localRotation;
         
             barycenter.SetLocalPositionAndRotation(position, rotation);
         }
 
-        protected override void OnEvent(Vector3 acceleration)
+        protected override void OnEvent(Vector3 velocity)
         {
-            _bodyVelocity += acceleration;
+            _bodyVelocity = velocity;
         }
 
         protected override void OnValidate()

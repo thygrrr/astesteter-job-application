@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using Tiger.Swizzles;
 using Tiger.Math;
 using Tiger.ScreenShake;
+using Unity.Mathematics;
+using UnityEngine.Serialization;
 
 namespace Features.Player
 {
@@ -12,10 +14,17 @@ namespace Features.Player
     
     public class ShipControls : MonoBehaviour, GameInputActions.IPlayerActions
     {
-        [Tooltip("Channel to send acceleration data through")] [SerializeField]
+        [SerializeField] [Tooltip("Channel to send acceleration data through")]
         private Vector3Channel accelerationChannel;
 
-        [Header("Thrust & Turning")] [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
+        [SerializeField] [Tooltip("Channel to send velocity data through")]
+        private Vector3Channel velocityChannel;
+
+        [SerializeField] [Tooltip("Channel to send current look/aim point data through")]
+        private Vector3Channel lookChannel;
+
+        [Header("Thrust & Turning")] 
+        [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
         private float enginePower = 20;
 
         [SerializeField] [Tooltip("Thrust Decay (half life)")]
@@ -23,6 +32,13 @@ namespace Features.Player
 
         [SerializeField] [Tooltip("Rotation SmoothTime (half life)")]
         private float rotationLambda = 0.1f;
+
+        [SerializeField] [Tooltip("Maximum Speed")]
+        private float maxVelocity = 100;
+
+        [FormerlySerializedAs("engineBrakeBoost")] [SerializeField] [Tooltip("Braking Boost (units/second²)")]
+        private float engineBrakeFactor = 3;
+
 
         [Header("Screen Shake")] 
         [SerializeField] private float engineShakeTurnOn = 0.1f;
@@ -41,6 +57,9 @@ namespace Features.Player
         private Quaternion _rotationTarget;
         private Quaternion _rotationDerivative;
 
+        private Vector3 _acceleration;
+        private Vector3 _velocity;
+
         public void Awake()
         {
             Debug.Logger.filterLogType = LogType.Warning;
@@ -54,14 +73,18 @@ namespace Features.Player
             IntegrateRotation();
         }
 
-        private void FixedUpdate() => IntegrateAcceleration();
+        private void FixedUpdate()
+        {
+            IntegrateAcceleration();
+            IntegrateVelocity();
+        }
+
 
         private void IntegrateRotation()
         {
             //We rotate in dynamic update to make it extra smooth.
             _rotation = QuatEx.SmoothDamp(_rotation, _rotationTarget, ref _rotationDerivative, rotationLambda, Time.deltaTime);
             transform.rotation = _rotation;
-
         }
 
         private void IntegrateAcceleration()
@@ -69,10 +92,22 @@ namespace Features.Player
             // Decay / Gain thrust
             _thrust = Mathf.SmoothDamp(_thrust, _thrustTarget, ref _thrustDerivative, engineLambda);
 
-            var acceleration = _thrust * -transform.forward;
-            accelerationChannel.Invoke(acceleration._x0z());
+            var braking = math.smoothstep(0, -1, Vector3.Dot(_velocity.normalized, transform.forward));
+            var boost = math.remap(0, 1, 1, engineBrakeFactor, braking); 
+            var effectiveThrust = _thrust * boost;
+            
+            _acceleration = effectiveThrust * transform.forward;
+            _acceleration = _acceleration._x0z();
+            accelerationChannel.Emit(-_acceleration);
 
             if (_thrustTarget > 0) ScreenShake.Add(transform.position, 0, engineShakeRunning * Time.deltaTime);
+        }
+
+        private void IntegrateVelocity()
+        {
+            _velocity += _acceleration * Time.deltaTime; 
+            _velocity = Vector3.ClampMagnitude(_velocity, maxVelocity);
+            velocityChannel.Emit(-_velocity);
         }
 
         public void OnThrust(InputAction.CallbackContext context)
@@ -117,22 +152,25 @@ namespace Features.Player
         private void OrientShipFromMouse()
         {
             var mouse = Mouse.current.position.ReadValue();
-
+            if (!_camera.pixelRect.Contains(mouse)) return;
+            
             var ray = _camera.ScreenPointToRay(mouse);
             var plane = new Plane(Vector3.up, Vector3.zero);
 
             if (!plane.Raycast(ray, out var distance)) return;
 
-            var forward = transform.forward;
-            var point = ray.GetPoint(distance);
-            var displacement = point - transform.position;
+            var look = ray.GetPoint(distance);
+            lookChannel.Emit(look);
+            
+            var displacement = look - transform.position;
 
             // We want to dampen the displacement as we get closer to the ship.
+            var forward = transform.forward;
             displacement = Vector3.Lerp(forward, displacement, displacement.magnitude / 4f);
 
             var direction = Vector3.Normalize(displacement);
 
-            var bankAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+            var bankAngle = Vector3.SignedAngle(forward, direction, Vector3.up);
             bankAngle = Mathf.Clamp(bankAngle, -90, 90);
             var bankRotation = Quaternion.AngleAxis(-bankAngle, Vector3.forward);
             _rotationTarget = Quaternion.LookRotation(direction) * bankRotation;

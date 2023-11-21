@@ -15,7 +15,7 @@ namespace Tiger.Events
         [NonSerialized]
         public readonly UnityEvent subscribers = new UnityEvent();
         
-        public void Invoke(Object context = null)
+        public void Emit(Object context = null)
         {
             if (debugSettings.enabled)
             {

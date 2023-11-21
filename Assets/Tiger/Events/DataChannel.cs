@@ -25,7 +25,7 @@ namespace Tiger.Events
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public void Invoke(T data, Object context = null)
+        public void Emit(T data, Object context = null)
         {
             if (debugSettings.enabled) debugSettings.Log($"<b>EVENT</b> {name} : {data}", context != null ? context : this);
 
