@@ -8,19 +8,26 @@ using Tiger.ScreenShake;
 
 namespace Features.Player
 {
+    using Debug = Loggers.Create<ShipControls>;
+    
     public class ShipControls : MonoBehaviour, GameInputActions.IPlayerActions
     {
         [Tooltip("Channel to send acceleration data through")] [SerializeField]
         private Vector3Channel accelerationChannel;
 
         [Header("Thrust & Turning")] [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
-        private float engineThrust = 20;
+        private float enginePower = 20;
 
         [SerializeField] [Tooltip("Thrust Decay (half life)")]
         private float engineLambda = 0.1f;
 
         [SerializeField] [Tooltip("Rotation SmoothTime (half life)")]
         private float rotationLambda = 0.1f;
+
+        [Header("Screen Shake")] 
+        [SerializeField] private float engineShakeTurnOn = 0.1f;
+        [SerializeField] private float engineShakeRunning = 1f;
+        [SerializeField] private float cannonShake = 0.1f;
 
         [SerializeField] private GameObject forwardFx;
 
@@ -36,6 +43,7 @@ namespace Features.Player
 
         public void Awake()
         {
+            Debug.Logger.filterLogType = LogType.Warning;
             _camera = Camera.main;
             forwardFx.SetActive(false);
         }
@@ -54,7 +62,6 @@ namespace Features.Player
             _rotation = QuatEx.SmoothDamp(_rotation, _rotationTarget, ref _rotationDerivative, rotationLambda, Time.deltaTime);
             transform.rotation = _rotation;
 
-            forwardFx.gameObject.SetActive(_thrust > 0.5f);
         }
 
         private void IntegrateAcceleration()
@@ -65,12 +72,37 @@ namespace Features.Player
             var acceleration = _thrust * -transform.forward;
             accelerationChannel.Invoke(acceleration._x0z());
 
+            if (_thrustTarget > 0) ScreenShake.Add(transform.position, 0, engineShakeRunning * Time.deltaTime);
         }
 
         public void OnThrust(InputAction.CallbackContext context)
         {
-            if (context.action.WasPressedThisFrame()) ScreenShake.Add(transform.position, 0, 0.5f);
-            _thrustTarget = context.action.IsPressed() ? engineThrust : 0;
+            switch (context.action.phase)
+            {
+                case InputActionPhase.Disabled:
+                    //TODO: Engine Spool Down sound
+                    Debug.Log("Thrust Disabled");
+                    break;
+                case InputActionPhase.Waiting:
+                    //TODO: Engine Spool Up sound
+                    Debug.Log("Thrust Waiting");
+                    break;
+                case InputActionPhase.Started:
+                    Debug.Log("Thrust ON");
+                    //TODO: Engine Afterburner ON Sound
+                    _thrustTarget = enginePower;
+                    forwardFx.gameObject.SetActive(true);
+                    ScreenShake.Add(transform.position, engineShakeTurnOn, 0);
+                    break;
+                case InputActionPhase.Performed:
+                    break;
+                case InputActionPhase.Canceled:
+                    Debug.Log("Thrust OFF");
+                    //TODO: Engine Afterburner OFF Sound
+                    forwardFx.gameObject.SetActive(false);
+                    _thrustTarget = 0;
+                    break;
+            }
         }
 
         public void OnLook(InputAction.CallbackContext context)
@@ -79,7 +111,7 @@ namespace Features.Player
 
         public void OnFire(InputAction.CallbackContext context)
         {
-            ScreenShake.Add(transform.position, .2f, 0);
+            ScreenShake.Add(transform.position, cannonShake, 0);
         }
 
         private void OrientShipFromMouse()

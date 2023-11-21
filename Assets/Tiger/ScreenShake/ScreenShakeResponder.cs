@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Unlicense
 
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Tiger.ScreenShake
@@ -13,24 +14,37 @@ namespace Tiger.ScreenShake
         [Header("Observer to perceive trauma from (e.g. Player)")]
         public Transform perceiver;
 
-        [Header("Trauma Parameters")]
+        [Header("Shake Frequency")] 
+        [Range(1f, 50f)] [Tooltip("Frequency of the noise used for shaking")] public float highFrequency = 30.0f;
+        [Range(1f, 50f)] [Tooltip("Frequency of the noise used for shaking")] public float lowFrequency = 5.0f;
+
+        [Header("Trauma ASDR")] 
         [Range(0f, 1f)] public float highFrequencyAttack = 0.05f;
         [Range(0f, 2f)] public float highFrequencySustain = 0.5f;
 
         [Range(0f, 1f)] public float lowFrequencyAttack = 0.2f;
         [Range(0f, 2f)] public float lowFrequencySustain = 0.8f;
 
-        [Range(0.1f, 5f)] [Tooltip("Shape of the curve, trauma values are from 0..1 and are raised to this power.")]
-        public float traumaHFExponent = 2f;
+        [Range(0.1f, 4f)] [Tooltip("Shape of the curve, trauma values are from 0..1 and are raised to this power.")]
+        public float traumaHFIntensityExponent = 2f;
 
-        [Range(0.1f, 5f)] [Tooltip("Shape of the curve, trauma values are from 0..1 and are raised to this power.")]
-        public float traumaLFExponent = 2f;
+        [Range(0.1f, 4f)] [Tooltip("Shape of the curve, trauma values are from 0..1 and are raised to this power.")]
+        public float traumaLFIntensityExponent = 2f;
 
-        [Range(0.1f, 5f)] public float highFrequencyDistanceFallOff = 2f;
-        [Range(0.1f, 5f)] public float lowFrequencyDistanceFallOff = 1f;
+        [Header("Distance Falloff")]
+        [Tooltip("If your world has a specific scale, you can use this to make the distance falloff match.")]
+        public float distanceUnitLength = 1f;
+        
+        [Range(0.0f, 4f)] [Tooltip("Falloff with distance, ~2 approximates inverse square law")] 
+        public float highFrequencyDistanceExponent = 2f;
 
-        [Range(1f, 50f)] public float highFrequency = 30.0f;
-        [Range(1f, 50f)] public float lowFrequency = 5.0f;
+        [Range(0.0f, 4f)] [Tooltip("Falloff with distance, ~2 approximates inverse square law")]
+        public float lowFrequencyDistanceExponent = 1f;
+
+        [Header("Amplitudes in units (ShakeType.Positional) or degrees (ShakeType.Rotational)")]
+        public Vector3 shakeAxisStrengthsHF = Vector3.one;
+        public Vector3 shakeAxisStrengthsLF = Vector3.one;
+
         
         private float _traumaHF;
         private float _traumaLF;
@@ -41,11 +55,8 @@ namespace Tiger.ScreenShake
         private float _traumaHFSustainDerivative;
         private float _traumaLFSustainDerivative;
 
-        private float _traumaHFsmooth;
-        private float _traumaLFsmooth;
-
-        public Vector3 shakeAxisStrengthsHigh = Vector3.one;
-        public Vector3 shakeAxisStrengthsLow = Vector3.one;
+        private float _traumaHFSmooth;
+        private float _traumaLFSmooth;
 
         private Vector3 _noiseIndex;
 
@@ -91,24 +102,24 @@ namespace Tiger.ScreenShake
 
         private void OnShake(ScreenShake.ShakeEvent shake)
         {
-            var distance = Mathf.Max(1, (perceiver.position - shake.position).magnitude);
+            var distance = Mathf.Max(1, (perceiver.position - shake.position).magnitude * distanceUnitLength);
 
-            _traumaHF += shake.amplitudeHF / Mathf.Pow(distance, highFrequencyDistanceFallOff);
+            _traumaHF += shake.amplitudeHF / Mathf.Pow(distance, highFrequencyDistanceExponent);
             _traumaHF = Mathf.Clamp01(_traumaHF);
 
-            _traumaLF += shake.amplitudeLF / Mathf.Pow(distance, lowFrequencyDistanceFallOff);
+            _traumaLF += shake.amplitudeLF / Mathf.Pow(distance, lowFrequencyDistanceExponent);
             _traumaLF = Mathf.Clamp01(_traumaLF);
         }
 
         private void Update()
         {
-            _traumaHFsmooth = Mathf.SmoothDamp(_traumaHFsmooth, _traumaHF, ref _traumaHFAttackDerivative, highFrequencyAttack);
-            _traumaLFsmooth = Mathf.SmoothDamp(_traumaLFsmooth, _traumaLF, ref _traumaLFAttackDerivative, lowFrequencyAttack);
+            _traumaHFSmooth = Mathf.SmoothDamp(_traumaHFSmooth, _traumaHF, ref _traumaHFAttackDerivative, highFrequencyAttack);
+            _traumaLFSmooth = Mathf.SmoothDamp(_traumaLFSmooth, _traumaLF, ref _traumaLFAttackDerivative, lowFrequencyAttack);
 
-            //Apply the actual shake.
-            var effectiveHF = CalculateOffset(Mathf.Pow(_traumaHFsmooth, traumaHFExponent), highFrequency, shakeAxisStrengthsHigh);
-            var effectiveLF = CalculateOffset(Mathf.Pow(_traumaLFsmooth, traumaLFExponent), lowFrequency, shakeAxisStrengthsLow);
-
+            //Determine the actual shake.
+            var effectiveHF = CalculateOffset(Mathf.Pow(_traumaHFSmooth, traumaHFIntensityExponent), highFrequency, shakeAxisStrengthsHF);
+            var effectiveLF = CalculateOffset(Mathf.Pow(_traumaLFSmooth, traumaLFIntensityExponent), lowFrequency, shakeAxisStrengthsLF);
+            
             switch (shakeType)
             {
                 case ShakeType.Rotational:

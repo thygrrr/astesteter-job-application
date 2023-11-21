@@ -14,6 +14,7 @@ namespace Features.Player
 
         private void Awake()
         {
+            Log.TagColor = Color.yellow;
             _input = new GameInputActions();
 
             var clients = GetComponentsInChildren<GameInputActions.IPlayerActions>();

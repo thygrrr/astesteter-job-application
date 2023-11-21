@@ -1971,18 +1971,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 330585546}
   perceiver: {fileID: 479974871}
+  highFrequency: 24
+  lowFrequency: 5
   highFrequencyAttack: 0.01
   highFrequencySustain: 0.3
-  lowFrequencyAttack: 0.5
-  lowFrequencySustain: 1
-  traumaHFExponent: 2
-  traumaLFExponent: 2
-  highFrequencyDistanceFallOff: 0.3
-  lowFrequencyDistanceFallOff: 0.1
-  highFrequency: 30
-  lowFrequency: 5
-  shakeAxisStrengthsHigh: {x: 1, y: 1, z: 0}
-  shakeAxisStrengthsLow: {x: 2, y: 2, z: 0}
+  lowFrequencyAttack: 0.1
+  lowFrequencySustain: 0.5
+  traumaHFIntensityExponent: 2
+  traumaLFIntensityExponent: 2
+  distanceUnitLength: 1
+  highFrequencyDistanceExponent: 2
+  lowFrequencyDistanceExponent: 1
+  shakeAxisStrengthsHF: {x: 1, y: 1, z: 2}
+  shakeAxisStrengthsLF: {x: 1, y: 1, z: 1}
   shakeType: 0
 --- !u!1 &1043580094
 GameObject:
@@ -2652,7 +2653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1239594266

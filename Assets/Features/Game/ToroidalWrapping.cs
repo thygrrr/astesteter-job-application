@@ -1,7 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 using Features.Space;
 using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 using Tiger.Util;
 
@@ -40,7 +39,9 @@ namespace Features.Game
         private void OnValidate()
         {
             _body = GetComponent<Rigidbody>();
-            if (gameObject.IsNonAsset() && !GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
+            
+            if (gameObject.IsAsset()) return;
+            if (!GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
         }
 
         #endregion
@@ -50,7 +51,7 @@ namespace Features.Game
             float3 position = _body.position;
             float3 velocity = _body.velocity;
 
-            if (MovingAway(velocity, position) && OutOfBounds(position))
+            if (MovingAway(velocity, position) && OutOfBounds(position)) 
             {
                 _body.position = _wrapBounds.center - (Vector3) position;
             }

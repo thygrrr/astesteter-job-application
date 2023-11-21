@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: Unlicense OR CC0-1.0+
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -8,6 +9,7 @@ using Object = UnityEngine.Object;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable once CheckNamespace
+// ReSharper disable StaticMemberInGenericType
 namespace Loggers
 {
     /// <summary>
@@ -31,6 +33,7 @@ namespace Loggers
     /// <code>using Debug = MyGame.AnotherLoggingClass;</code>
     /// </example>
     /// <typeparam name="T">class whose name will be prepended to the log messages, can be the derived class itself</typeparam>
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class Create<T>
     {
         #region Public API
@@ -118,12 +121,17 @@ namespace Loggers
             Registry.Entries[FullTag] = Logger;
         }
 
-        // We want this exact behaviour here - a new field for every specialized type
-        // ReSharper disable StaticMemberInGenericType
-        private static string Tag => ShortTag;
-        private static readonly string ShortTag = typeof(T).Name;
-        private static readonly string FullTag = typeof(T).FullName;
+        /// <summary>
+        /// Set this color to change the colour of the Tag / ShortTag (if in use)
+        /// </summary>
+        public static Color TagColor = Color.white;
 
+        // We want this exact behaviour here - a new field for every specialized type
+        private static string Tag => HyperTag;
+        private static string ShortTag => $"<color={TagColor}>{typeof(T).Name}</color>";
+
+        private static readonly string FullTag = typeof(T).FullName;
+        
         // ReSharper disable once StaticMemberInGenericType
         /// <summary>
         /// Access to the logger for this type, allows to configure the log level and enable/disable logging and more.
@@ -140,17 +148,20 @@ namespace Loggers
                 var st = new System.Diagnostics.StackTrace(true);
                 var frame = st.GetFrame(3);
                 var fileShort = Path.GetFileName(frame.GetFileName());
-                var position = frame.GetFileName() + ":" + frame.GetFileLineNumber();
-                const string PATTERN = @"(.*\\)(.*?)\\(Assets\\.*):(\d+)";
-                return Regex.Replace(position, PATTERN, m =>
+                var position = frame.GetFileName();
+                var line = frame.GetFileLineNumber();
+                const string PATTERN = @"(.*\\)(.*?)\\(Assets\\.*)";
+                return Regex.Replace(position ?? "unknown", PATTERN, m =>
                 {
                     var project = m.Groups[2].Value; // Group 2 is the project dir.
                     var filePath = m.Groups[3].Value; // Group 3 is the file asset path.
-                    var lineNumber = m.Groups[4].Value; // Group 4 is the line number.
-                    var file_and_line = $"{filePath}:{lineNumber}";
-                    var encoded_file_path = Uri.EscapeDataString(file_and_line);
+
+                    // Issue in Rider URL Protocol Handler, line numbers are off by one (or maybe they count from zero)
+                    var file_and_line_rider = $"{filePath}:{Math.Max(line - 1, 0)}";  
+                        
+                    var encoded_file_path = Uri.EscapeDataString(file_and_line_rider);
                     var url = $"jetbrains://rider/navigate/reference?project={project}&path={encoded_file_path}";
-                    return $"<a href=\"{url}\">{ShortTag}</a>";
+                    return $"<a href=\"{url}\"><b>{ShortTag}</b>:{line}</a>";
                 });
             }
         }
