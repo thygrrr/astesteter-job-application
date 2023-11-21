@@ -6,21 +6,19 @@ namespace Features.Space
 {
     public class WorldBounds : MonoBehaviour
     {
-        [SerializeField] private Vector2 size;
-        public Bounds bounds => new(default, size._x0y());
+        public Bounds bounds = new Bounds(Vector3.zero, Vector3.one * 100);
         
         private static readonly int toroidalCameraExtents = Shader.PropertyToID("_ToroidalCameraExtents");
         
-        #region Editor Events
-        private void Update()
+        private void LateUpdate()
         {
             Shader.SetGlobalVector(toroidalCameraExtents, bounds.extents);
         }
 
+        #region Editor Events
+
         private void OnValidate()
         {
-            size = math.max(size, 0);
-            if (size == default) size = new Vector2(20,  20);
             transform.position = default;
         }
 

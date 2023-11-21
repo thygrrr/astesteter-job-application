@@ -1,8 +1,5 @@
 //SPDX-License-Identifier: Unlicense
-
-using Channels.Concrete;
 using Features.Space;
-using Tiger.Events;
 using Unity.Mathematics;
 using UnityEngine;
 using Tiger.Util;
@@ -11,27 +8,22 @@ namespace Features.Game
 {
     using Log = Loggers.Create<ToroidalWrapping>;
     
-    public class ToroidalWrapping : DataChannelResponder<Vector3Channel, Vector3>
+    [RequireComponent(typeof(Rigidbody))]
+    public class ToroidalRigidBodyWrapping : MonoBehaviour
     {
         private WorldBounds _worldBounds;
+        private Rigidbody _body;
         private Bounds _wrapBounds;
-
-        private float3 _velocity;
-        private Vector3 _lastPosition;
 
         #region Event Functions
 
-        protected override void AwakeOverride()
+        private void Awake()
         {
-            SetUpBounds();
-            _lastPosition = transform.position;
+            _body = GetComponent<Rigidbody>();
+            SetUpBounds();   
         }
 
-        private void Update()
-        {
-            _velocity = transform.position - _lastPosition;
-            Wrap();   
-        }
+        private void FixedUpdate() => Wrap();
 
         private void OnTransformChildrenChanged() => SetUpBounds();
         
@@ -39,9 +31,9 @@ namespace Features.Game
 
         #region Editor Events 
 
-        protected override void OnValidate()
+        private void OnValidate()
         {
-            base.OnValidate();
+            _body = GetComponent<Rigidbody>();
             
             if (gameObject.IsAsset()) return;
             if (!GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
@@ -49,15 +41,14 @@ namespace Features.Game
 
         #endregion
 
-        protected override void OnEvent(Vector3 data) => _velocity = data;
-
         private void Wrap()
         {
-            float3 position = transform.position;
+            float3 position = _body.position;
+            float3 velocity = _body.velocity;
 
-            if (MovingAway() && OutOfBounds()) 
+            if (MovingAway(velocity, position) && OutOfBounds(position)) 
             {
-                transform.position = _wrapBounds.center - (Vector3) position;
+                _body.position = _wrapBounds.center - (Vector3) position;
             }
         }
         
@@ -75,8 +66,8 @@ namespace Features.Game
             _wrapBounds.Expand(renderBounds.size);
         }
 
-        private bool OutOfBounds() => !_wrapBounds.Contains(transform.position);
+        private bool OutOfBounds(float3 position) => !_wrapBounds.Contains(position);
 
-        private bool MovingAway() => math.any(_velocity * transform.position > 0);
+        private bool MovingAway(float3 velocity, float3 position) => math.any(velocity * position > 0);
     }
 }

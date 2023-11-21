@@ -74,14 +74,10 @@ namespace Features.Player
         {
             OrientShipFromMouse();
             IntegrateRotation();
-        }
-
-        private void FixedUpdate()
-        {
-            IntegrateAcceleration();
+            
+            IntegrateAcceleration(); // sic! physics operates in dynamic update for this project
             IntegrateVelocity();
         }
-
 
         private void IntegrateRotation()
         {
