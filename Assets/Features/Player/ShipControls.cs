@@ -23,8 +23,11 @@ namespace Features.Player
         [SerializeField] [Tooltip("Channel to send current look/aim point data through")]
         private Vector3Channel lookChannel;
 
-        [Header("Thrust & Turning")] 
-        [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
+        [Header("View")] 
+        [SerializeField] [Tooltip("Ship View to rotate and aim")]
+        private Transform body;
+
+        [Header("Thrust & Turning")]        [SerializeField] [Tooltip("Forward Acceleration (units/second²)")]
         private float enginePower = 20;
 
         [SerializeField] [Tooltip("Thrust Decay (half life)")]
@@ -39,7 +42,7 @@ namespace Features.Player
         [FormerlySerializedAs("engineBrakeBoost")] [SerializeField] [Tooltip("Braking Boost (units/second²)")]
         private float engineBrakeFactor = 3;
 
-
+        
         [Header("Screen Shake")] 
         [SerializeField] private float engineShakeTurnOn = 0.1f;
         [SerializeField] private float engineShakeRunning = 1f;
@@ -84,7 +87,7 @@ namespace Features.Player
         {
             //We rotate in dynamic update to make it extra smooth.
             _rotation = QuatEx.SmoothDamp(_rotation, _rotationTarget, ref _rotationDerivative, rotationLambda, Time.deltaTime);
-            transform.rotation = _rotation;
+            body.rotation = _rotation;
         }
 
         private void IntegrateAcceleration()
@@ -92,15 +95,15 @@ namespace Features.Player
             // Decay / Gain thrust
             _thrust = Mathf.SmoothDamp(_thrust, _thrustTarget, ref _thrustDerivative, engineLambda);
 
-            var braking = math.smoothstep(0, -1, Vector3.Dot(_velocity.normalized, transform.forward));
-            var boost = math.remap(0, 1, 1, engineBrakeFactor, braking); 
+            var braking = math.smoothstep(0, -1, Vector3.Dot(_velocity.normalized, body.forward));
+            var boost = math.remap(-0.5f, 1, 1, engineBrakeFactor, braking); 
             var effectiveThrust = _thrust * boost;
             
-            _acceleration = effectiveThrust * transform.forward;
+            _acceleration = effectiveThrust * body.forward;
             _acceleration = _acceleration._x0z();
             accelerationChannel.Emit(-_acceleration);
 
-            if (_thrustTarget > 0) ScreenShake.Add(transform.position, 0, engineShakeRunning * Time.deltaTime);
+            if (_thrustTarget > 0) ScreenShake.Add(body.position, 0, engineShakeRunning * Time.deltaTime);
         }
 
         private void IntegrateVelocity()
@@ -127,7 +130,7 @@ namespace Features.Player
                     //TODO: Engine Afterburner ON Sound
                     _thrustTarget = enginePower;
                     forwardFx.gameObject.SetActive(true);
-                    ScreenShake.Add(transform.position, engineShakeTurnOn, 0);
+                    ScreenShake.Add(body.position, engineShakeTurnOn, 0);
                     break;
                 case InputActionPhase.Performed:
                     break;
@@ -137,7 +140,7 @@ namespace Features.Player
                     forwardFx.gameObject.SetActive(false);
                     _thrustTarget = 0;
                     break;
-            }
+            } 
         }
 
         public void OnLook(InputAction.CallbackContext context)
@@ -146,7 +149,7 @@ namespace Features.Player
 
         public void OnFire(InputAction.CallbackContext context)
         {
-            ScreenShake.Add(transform.position, cannonShake, 0);
+            ScreenShake.Add(body.position, cannonShake, 0);
         }
 
         private void OrientShipFromMouse()
@@ -162,16 +165,16 @@ namespace Features.Player
             var look = ray.GetPoint(distance);
             lookChannel.Emit(look);
             
-            var displacement = look - transform.position;
+            var displacement = look - body.position;
 
             // We want to dampen the displacement as we get closer to the ship.
-            var forward = transform.forward;
+            var forward = body.forward;
             displacement = Vector3.Lerp(forward, displacement, displacement.magnitude / 4f);
 
             var direction = Vector3.Normalize(displacement);
 
             var bankAngle = Vector3.SignedAngle(forward, direction, Vector3.up);
-            bankAngle = Mathf.Clamp(bankAngle, -90, 90);
+            bankAngle = Mathf.Clamp(bankAngle, -120, 120);
             var bankRotation = Quaternion.AngleAxis(-bankAngle, Vector3.forward);
             _rotationTarget = Quaternion.LookRotation(direction) * bankRotation;
         }

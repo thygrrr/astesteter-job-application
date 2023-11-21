@@ -27,9 +27,8 @@ namespace Features.Player
 
         private void SpawnPlayer(InputAction.CallbackContext ctx)
         {
-            if (_player != null) return;
+            if (_player) return;
             _player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity, transform.parent);
-            channel.Emit(GameState.Spawning, this);
         }
     }
 }

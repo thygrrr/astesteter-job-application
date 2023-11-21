@@ -26,7 +26,7 @@ namespace Features.Space
             var tween = new LightIntensityTween
             {
                 easeType = EaseType.Linear,
-                duration = 3f,
+                duration = 1.5f,
                 from = _light.intensity,
                 to = sunshine ? _litIntensity : 0f,
             };

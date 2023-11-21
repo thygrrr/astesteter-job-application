@@ -1,5 +1,4 @@
-﻿using Tiger.Util;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,7 +41,6 @@ namespace Tiger.Events
             action.Invoke(data);
         }
         
-#if UNITY_EDITOR
         protected virtual void OnDrawGizmosSelected()
         {
             if (channel)
@@ -59,7 +57,6 @@ namespace Tiger.Events
         {
             if (!channel) Debug.Log("DataChannelResponder: Channel is not set.", this);
         }
-#endif
     }
 }
 
