@@ -45,6 +45,13 @@ namespace Features.Ui
             };
         }
 
+        private void Update()
+        {
+            //Mouse capture
+            var mouseHeld = Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed;
+            Cursor.lockState = mouseHeld ? CursorLockMode.Confined : CursorLockMode.None;
+        }
+
         protected override void OnEvent(int data)
         {
             for (var i = 0; i < cartridges.Length; i++)
@@ -58,7 +65,9 @@ namespace Features.Ui
 
         private void LateUpdate()
         {
-            _transform.localPosition = Mouse.current.position.ReadValue() - new Vector2(Screen.width/2f, Screen.height/2f);  
+            //CAVEAT: This only works if the parent UI element is anchored TOP-RIGHT (can be zero size)
+            //Imagine that: The U in UGUI stands for "upside-down".
+            _transform.anchoredPosition = Mouse.current.position.ReadValue();
         }
     }
 }
