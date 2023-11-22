@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Asteroid_Rock_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1902721522172972, guid: 04510a9b75554b4499ab7aa4628e2c4c, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 4805849824941938, guid: 04510a9b75554b4499ab7aa4628e2c4c, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -76,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 64946518047812334, guid: 04510a9b75554b4499ab7aa4628e2c4c,
         type: 3}
       propertyPath: m_Convex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

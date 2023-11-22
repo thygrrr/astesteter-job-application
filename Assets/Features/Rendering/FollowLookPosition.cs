@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Features.Rendering
 {
-    public class FollowLookPosition : DataChannelResponder<Vector3Channel, Vector3>
+    public class FollowLookPosition : DataChannelResponder<Vector3Channel, Vector3>, IHierarchicalUpdate
     {
         [SerializeField] 
         private Transform targetChild;
@@ -21,18 +21,17 @@ namespace Features.Rendering
         private Vector3 _positionGoal;
         private Vector3 _positionDerivative;
 
-
-        private void Update()
-        {
-            _position = Vector3.SmoothDamp(_position, _positionGoal, ref _positionDerivative, smoothLambda);
-            targetChild.localPosition = (_position._xyz() * positionFactors._xyz());
-        
-            targetChild.LookAt(_position * lookFactor, Vector3.up + Vector3.forward);
-        }
-
         protected override void OnEvent(Vector3 velocity)
         {
             _positionGoal = Vector3.ClampMagnitude(velocity, maxRadius);   
-        }   
+        }
+
+        void IHierarchicalUpdate.HierarchicUpdate(float deltaTime)
+        {
+            _position = Vector3.SmoothDamp(_position, _positionGoal, ref _positionDerivative, smoothLambda);
+            targetChild.localPosition = (_position._xyz() * positionFactors._xyz());
+
+            targetChild.LookAt(_position * lookFactor, Vector3.up + Vector3.forward);
+        }
     }
 }

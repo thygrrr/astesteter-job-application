@@ -14,11 +14,15 @@ namespace Features.Ui
             ShowChildExclusive(state);
         }
 
+        /// <remarks>
+        /// This is a new pattern for me; I originally had a selector using PlayerInput.currentControlScheme
+        /// It's definitely a cute experiment, but I like how it can decouple the UI from the game state 
+        /// </remarks>
         private void ShowChildExclusive(GameState state)
         {
             foreach (var child in transform.Children())
             {
-                child.gameObject.SetActive(child.name == state.ToString());
+                child.gameObject.SetActive(child.name.Contains(state.ToString()));
             }
         }
     }

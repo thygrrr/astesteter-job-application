@@ -1,48 +1,31 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tiger.Events
 {
-    public abstract class ChannelResponder : SealableEnableDisableBehaviour
+    public sealed class ChannelAction : MonoBehaviour
     {
         [SerializeField]
         private Channel channel;
-        
-        /// <summary>
-        /// Called when events are emitted to the channel.
-        /// </summary>
-        protected abstract void OnEvent();
-        
-        protected sealed override void OnEnable()
+
+        [SerializeField] 
+        private UnityEvent action;
+
+        private void Awake()
         {
             channel.subscribers.AddListener(Trigger);
-            OnEnableOverride();
         }
 
-        protected sealed override void OnDisable()
+        private void OnDestroy()
         {
-            OnDisableOverride();
-            if (channel) channel.subscribers.RemoveListener(Trigger);
+            if(channel) channel.subscribers.RemoveListener(Trigger);
         }
 
-        /// <summary>
-        /// Override this if you want to have your own code happen on enable
-        /// </summary>
-        protected virtual void OnEnableOverride()
-        {
-        }
-
-        /// <summary>
-        /// Override this if you want to have your own code happen on disable.
-        /// </summary>
-        protected virtual void OnDisableOverride()
-        {
-        }
-        
         // Triggered when the event(s) happen.
         private void Trigger()
         {
-            OnEvent();
+            action.Invoke();
         }
 
 #if UNITY_EDITOR
@@ -59,9 +42,9 @@ namespace Tiger.Events
             }
         }
 
-        protected virtual void OnValidate()
+        private void OnValidate()
         {
-            if (!channel) Debug.LogWarning($"ChannelResponder: Channel is not set on {this}", this);
+            if (!channel) Debug.LogWarning($"ChannelAction: Channel is not set on {this}", this);
         }
 #endif
     }

@@ -1,67 +1,35 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Tiger.Events
 {
-    public abstract class DataChannelResponder<TChannel, T> : SealableLifecycleBehaviour where TChannel : DataChannel<T>
+    public abstract class DataChannelEmitter<TChannel, T> : MonoBehaviour where TChannel : DataChannel<T>
     {
         [SerializeField]
-        private TChannel channel;
+        protected TChannel channel;
 
-        [SerializeField]
-        protected UnityEvent<T> action;
-
-        protected sealed override void Awake()
-        {
-            if (channel) channel.subscribers.AddListener(Trigger);
-            AwakeOverride();
-        }
-
-        protected virtual void AwakeOverride()
-        {
-            //Implement this if you want to have your own code happen on awake
-        }
-
-        protected sealed override void OnDestroy()
-        {
-            if (channel) channel.subscribers.RemoveListener(Trigger);
-        }
-
-        protected virtual void OnEvent(T data)
-        {
-            //Implement this if you want to have your own code happen.
-            //TODO: Maybe make a separate extensible abstract class.
-        }
-        
-        // Triggered when the event(s) happen.
-        private void Trigger(T data)
-        {
-            OnEvent(data);
-            action.Invoke(data);
-        }
-        
+        protected void Emit(T data) => channel.Emit(data);
         protected virtual void OnDrawGizmosSelected()
         {
             if (channel)
             {
-                Handles.Label(Handles.matrix * transform.position, $"→{channel.name}");
+                Handles.Label(Handles.matrix * transform.position, $"\u2192{channel.name}");
             }
             else
             {
-                Handles.Label(transform.position, "not subscribed");
+                Handles.Label(transform.position, "no channel");
             }
         }
 
         protected virtual void OnValidate()
         {
-            if (!channel) Debug.LogWarning($"DataChannelResponder: Channel is not set on {this}", this);
+            if (!channel) Debug.LogWarning($"DataChannelEmitter: Channel is not set on {this}", this);
         }
     }
 }
 
 /*
-Written by Tiger Blue in 2021
+Written by Tiger Blue in 2023
 
 This is free and unencumbered software released into the public domain.
 

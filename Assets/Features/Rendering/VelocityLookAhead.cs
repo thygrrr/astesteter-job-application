@@ -1,13 +1,10 @@
 using Channels.Concrete;
 using Tiger.Events;
-using Tiger.Swizzles;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.Rendering
 {
-    public class VelocityLookAhead : DataChannelResponder<Vector3Channel, Vector3>
+    public class VelocityLookAhead : DataChannelResponder<Vector3Channel, Vector3>, IHierarchicalUpdate
     {
         [SerializeField] private Transform targetChild;
 
@@ -20,18 +17,18 @@ namespace Features.Rendering
         private Vector3 _positionGoal;
         private Vector3 _positionDerivative;
         
-        private void Update()
-        {
-            _position = Vector3.SmoothDamp(_position, _positionGoal, ref _positionDerivative, smoothLambda);
-            targetChild.localPosition = _position;
-        }
-
         protected override void OnEvent(Vector3 velocity)
         {
             var proportional = Vector3.ClampMagnitude(velocity,  speedScale) / speedScale;
             var magnitude = Mathf.Pow(proportional.magnitude, curveExponent);
             _positionGoal = proportional * magnitude;
             _positionGoal.Scale(positionFactors);
+        }
+
+        void IHierarchicalUpdate.HierarchicUpdate(float deltaTime)
+        {
+            _position = Vector3.SmoothDamp(_position, _positionGoal, ref _positionDerivative, smoothLambda);
+            targetChild.localPosition = _position;
         }
     }
 }

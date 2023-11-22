@@ -3,48 +3,14 @@ using UnityEngine;
 
 namespace Tiger.Events
 {
-    public abstract class ChannelResponder : SealableEnableDisableBehaviour
+    // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+    public class ChannelEmitter : MonoBehaviour
     {
         [SerializeField]
         private Channel channel;
+
+        protected void Emit() => channel.Emit();
         
-        /// <summary>
-        /// Called when events are emitted to the channel.
-        /// </summary>
-        protected abstract void OnEvent();
-        
-        protected sealed override void OnEnable()
-        {
-            channel.subscribers.AddListener(Trigger);
-            OnEnableOverride();
-        }
-
-        protected sealed override void OnDisable()
-        {
-            OnDisableOverride();
-            if (channel) channel.subscribers.RemoveListener(Trigger);
-        }
-
-        /// <summary>
-        /// Override this if you want to have your own code happen on enable
-        /// </summary>
-        protected virtual void OnEnableOverride()
-        {
-        }
-
-        /// <summary>
-        /// Override this if you want to have your own code happen on disable.
-        /// </summary>
-        protected virtual void OnDisableOverride()
-        {
-        }
-        
-        // Triggered when the event(s) happen.
-        private void Trigger()
-        {
-            OnEvent();
-        }
-
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
@@ -68,7 +34,7 @@ namespace Tiger.Events
 }
 
 /*
-Written by Tiger Blue in 2021, 2023
+Written by Tiger Blue in 2021
 
 This is free and unencumbered software released into the public domain.
 
