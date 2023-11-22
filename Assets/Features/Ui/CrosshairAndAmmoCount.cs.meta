@@ -4,8 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - lookPosition: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
-  - ammoCount: {fileID: 11400000, guid: 6b3b80b22de4b784c927361349bab64d, type: 2}
+  - channel: {fileID: 11400000, guid: 6b3b80b22de4b784c927361349bab64d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

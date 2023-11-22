@@ -10,6 +10,7 @@ namespace Features.Ui
     [RequireComponent(typeof(RectTransform))]
     public class CrosshairAndAmmoCount : DataChannelResponder<IntChannel, int>
     {
+        private RectTransform _parent;
         private RectTransform _transform;
         [SerializeField] private Image[] cartridges;
 
@@ -18,6 +19,7 @@ namespace Features.Ui
         
         private void Awake()
         {
+            _parent = transform.parent.GetComponent<RectTransform>();
             _transform = GetComponent<RectTransform>();
             foreach (var cartridge in cartridges) cartridge.gameObject.SetActive(false);
 
@@ -45,13 +47,6 @@ namespace Features.Ui
             };
         }
 
-        private void Update()
-        {
-            //Mouse capture
-            var mouseHeld = Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed;
-            Cursor.lockState = mouseHeld ? CursorLockMode.Confined : CursorLockMode.None;
-        }
-
         protected override void OnEvent(int data)
         {
             for (var i = 0; i < cartridges.Length; i++)
@@ -63,11 +58,10 @@ namespace Features.Ui
             }
         }
 
-        private void LateUpdate()
+        private void Update()
         {
-            //CAVEAT: This only works if the parent UI element is anchored TOP-RIGHT (can be zero size)
-            //Imagine that: The U in UGUI stands for "upside-down".
-            _transform.anchoredPosition = Mouse.current.position.ReadValue();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_parent, Mouse.current.position.ReadValue(), Camera.main, out var localPoint);
+            transform.localPosition = localPoint;
         }
     }
 }
