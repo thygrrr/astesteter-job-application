@@ -1,19 +1,18 @@
 //SPDX-License-Identifier: Unlicense
+
 using UnityEngine;
 
-namespace Features.Common
+namespace Features.Game
 {
-    public class DamageTaker : MonoBehaviour
+    public class DamageTaker : Killable
     {
         [SerializeField]
         private int hitPoints = 1;
-        
-        private void OnCollisionEnter(Collision c)
+
+        public void ApplyDamage(int damage)
         {
-            if (c.gameObject.GetComponent<DamageDealer>() is not { } damageDealer) return;
-            
-            damageDealer.DealDamage(ref hitPoints);
-            if (hitPoints <= 0) Destroy(gameObject);
+            hitPoints -= damage;
+            if (hitPoints <= 0) Die();
         }
     }
 }

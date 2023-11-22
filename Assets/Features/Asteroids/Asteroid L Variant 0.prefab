@@ -23,6 +23,11 @@ PrefabInstance:
       propertyPath: minSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: hitPoints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxOwnVelocity
@@ -38,6 +43,29 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3301825394724319113, guid: 14ef85eeda01d6043832469a27c86b86,
+        type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3301825394724319113, guid: 615265b997a68e3428f9eb73cd6ee4d6,
+        type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 3301825394724319113, guid: 36970c77eed66e441b9ecb862e6278c1,
+        type: 3}
     - target: {fileID: 7586494976009043411, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_Layer

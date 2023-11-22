@@ -1,7 +1,7 @@
-using Channels.Concrete;
+//SPDX-License-Identifier: Unlicense
+
 using Tiger.Events;
 using Tiger.Events.Concrete;
-using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;

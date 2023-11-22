@@ -1,16 +1,22 @@
 //SPDX-License-Identifier: Unlicense
+
 using UnityEngine;
 
-namespace Features.Common
+namespace Features.Game
 {
     public class DamageDealer : MonoBehaviour
     {
         [SerializeField]
         private int damagePoints = 1;
-        
-        public void DealDamage(ref int hitPoints)
+
+        private void OnCollisionEnter(Collision other)
         {
-            hitPoints = Mathf.Max(hitPoints - damagePoints, 0);
+            print("Damage");
+            
+            if (other.gameObject.GetComponentInParent<DamageTaker>() is not { } taker) return;
+            
+            print("found taker");
+            taker.ApplyDamage(damagePoints);
         }
     }
 }

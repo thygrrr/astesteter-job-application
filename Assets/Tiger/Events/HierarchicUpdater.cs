@@ -38,6 +38,7 @@ namespace Tiger.Events
 
         private void Awake() => SetUpChildren();
 
+        //FIXME: This doesn't work if this message is sent to a child instead.
         private void OnTransformChildrenChanged() => SetUpChildren(); 
 
         private void Update()

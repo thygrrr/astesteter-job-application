@@ -132,6 +132,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2348142721143267122, guid: 87b04363ce2e0ea4cb3a4a31aba56e1b,
         type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantsToSpawn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_Drag

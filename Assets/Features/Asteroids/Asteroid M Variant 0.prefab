@@ -82,6 +82,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2030479936859480064, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 7127387237083081100, guid: 81616bf183cdc654fa2586d17a851ad7,
+        type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7127387237083081100, guid: 80397d1a665ad6d4884cfe28ba9e2080,
+        type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7127387237083081100, guid: e9629a8565f56564792ba848f1d71bcc,
+        type: 3}
     - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_Drag
