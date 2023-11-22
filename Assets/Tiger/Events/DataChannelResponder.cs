@@ -1,9 +1,12 @@
-﻿using UnityEditor;
+﻿//SPDX-License-Identifier: Unlicense
+
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tiger.Events
 {
+    [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
     public abstract class DataChannelResponder<TChannel, T> : SealableLifecycleBehaviour where TChannel : DataChannel<T>
     {
         [SerializeField]

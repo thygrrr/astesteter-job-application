@@ -1,9 +1,12 @@
+//SPDX-License-Identifier: Unlicense
+
 using System.Collections.Generic;
 using Tiger.Util;
 using UnityEngine;
 
 namespace Tiger.Events
 {
+    [Icon("Assets/Tiger/Events/Editor/Icons/syringe.png")]
     public sealed class HierarchicUpdater : MonoBehaviour
     {
         private enum UpdateMode

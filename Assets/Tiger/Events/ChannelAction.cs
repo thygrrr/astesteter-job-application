@@ -1,9 +1,12 @@
-﻿using UnityEditor;
+﻿//SPDX-License-Identifier: Unlicense
+
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tiger.Events
 {
+    [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
     public sealed class ChannelAction : MonoBehaviour
     {
         [SerializeField]

@@ -1,4 +1,6 @@
-﻿using System;
+﻿//SPDX-License-Identifier: Unlicense
+
+using System;
 using Loggers;
 using UnityEngine;
 using UnityEngine.Events;

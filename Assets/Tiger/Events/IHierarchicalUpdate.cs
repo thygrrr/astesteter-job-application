@@ -1,3 +1,5 @@
+//SPDX-License-Identifier: Unlicense
+
 namespace Tiger.Events
 {
     public interface IHierarchicalUpdate

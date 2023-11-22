@@ -2,6 +2,7 @@
 
 using Channels.Concrete;
 using Tiger.Events;
+using Tiger.Events.Concrete;
 using Tiger.Math;
 using Tiger.Swizzles;
 using Unity.Mathematics;

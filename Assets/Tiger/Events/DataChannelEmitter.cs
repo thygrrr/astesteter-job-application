@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿//SPDX-License-Identifier: Unlicense
+
+using UnityEditor;
 using UnityEngine;
 
 namespace Tiger.Events

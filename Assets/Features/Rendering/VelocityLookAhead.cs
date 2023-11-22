@@ -1,5 +1,6 @@
 using Channels.Concrete;
 using Tiger.Events;
+using Tiger.Events.Concrete;
 using UnityEngine;
 
 namespace Features.Rendering

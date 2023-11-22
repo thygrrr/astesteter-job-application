@@ -1,8 +1,8 @@
 //SPDX-License-Identifier: Unlicense
-using Tiger.Events;
+
 using UnityEngine;
 
-namespace Channels.Concrete
+namespace Tiger.Events.Concrete
 {
     [CreateAssetMenu(fileName="New Vector Channel", menuName="Event/Vector Channel", order=0)]
     public class Vector3Channel : DataChannel<Vector3>

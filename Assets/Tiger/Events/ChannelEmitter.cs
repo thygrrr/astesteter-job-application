@@ -1,9 +1,13 @@
-﻿using UnityEditor;
+﻿//SPDX-License-Identifier: Unlicense
+
+using UnityEditor;
 using UnityEngine;
 
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+// ReSharper disable once UnusedMember.Global
 namespace Tiger.Events
 {
-    // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+    [Icon("Assets/Tiger/Events/Editor/Icons/sender.png")]
     public class ChannelEmitter : MonoBehaviour
     {
         [SerializeField]
