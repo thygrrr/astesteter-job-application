@@ -156,6 +156,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1482171667925965941}
     m_Modifications:
+    - target: {fileID: 1209615476248102, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1809022330002312, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
       propertyPath: m_Name
       value: FX_Fire_Explosion_01
@@ -228,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 198192500169632356, guid: ed511b7776af6174e9b1255c7a81e59c,
         type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: 0.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
         type: 3}
@@ -271,7 +275,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1209615476248102, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}

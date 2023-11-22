@@ -56,6 +56,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198096439952623344, guid: 65932b7368590234d8163da03c2055d8,
+        type: 3}
+      propertyPath: cullingMode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 198202731371243394, guid: 65932b7368590234d8163da03c2055d8,
         type: 3}
       propertyPath: stopAction
@@ -121,3 +126,4 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   minOwnVelocity: 0
   maxOwnVelocity: 0
+  lookPosition: {fileID: 0}

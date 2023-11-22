@@ -1,4 +1,5 @@
 using Feature.Ui;
+using Features.Space;
 using Tiger.ScreenShake;
 using Tiger.Util;
 using UnityEngine;
@@ -26,7 +27,14 @@ namespace Features.Player
         private float _reloadTimer;
         private float _cycleTimer;
         
+        private WorldBounds _world;
+
         private bool canShoot => _cycleTimer <= 0 && _bullets > 0;
+
+        private void Awake()
+        {
+            _world = GetComponentInParent<WorldBounds>() ?? FindAnyObjectByType<WorldBounds>();
+        }
 
         private void Update()
         {
@@ -51,7 +59,7 @@ namespace Features.Player
             _cycleTimer = cycleTime;
             _reloadTimer = reloadTime;
 
-            var bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            var bullet = Instantiate(bulletPrefab, transform.position, transform.rotation, _world.transform);
             bullet.velocity = transform.forward * muzzleVelocity;
 
             var fx = cannonFX.Shift();
