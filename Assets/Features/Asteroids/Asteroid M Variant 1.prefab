@@ -56,6 +56,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7127387237083081100, guid: e9629a8565f56564792ba848f1d71bcc,
         type: 3}
+    - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: maxOwnVelocity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minOwnVelocity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4250552742727909141, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantsToSpawn
@@ -76,6 +86,26 @@ PrefabInstance:
         type: 3}
       propertyPath: remnantsToSpawn
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: maxDisplacement.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: maxDisplacement.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minDisplacement.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minDisplacement.z
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -114,11 +144,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid M Variant 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: m_Layer
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -203,6 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remnantsToSpawn: 1
   randomizeRotation: 0
+  minDisplacement: 0
+  maxDisplacement: 0
   remnantPrefabs:
   - {fileID: 355534049539748941, guid: 552be43d7b95dfa439b65e62e3f2970d, type: 3}
 --- !u!4 &4163016422619812506 stripped
@@ -241,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e76b489f2c0dcee468a4643e8277a236, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e76b489f2c0dcee468a4643e8277a236, type: 3}
       propertyPath: m_LocalPosition.y

@@ -1,4 +1,6 @@
-﻿using System;
+﻿//SPDX-License-Identifier: Unlicense
+
+using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
@@ -189,7 +191,7 @@ namespace Tiger.Util
 }
 
 /*
-Written by Tiger Blue in 2023
+Written by Tiger Blue in 2017, 2018, 2021, 2023
 
 This is free and unencumbered software released into the public domain.
 

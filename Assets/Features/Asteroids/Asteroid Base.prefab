@@ -88,6 +88,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remnantsToSpawn: 0
+  randomizeRotation: 1
+  minDisplacement: 0
+  maxDisplacement: 0
   remnantPrefabs: []
 --- !u!114 &3377324117870318584
 MonoBehaviour:
@@ -102,9 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
-  action:
-    m_PersistentCalls:
-      m_Calls: []
   minOwnVelocity: 0
   maxOwnVelocity: 0
 --- !u!114 &-3637421490598022614

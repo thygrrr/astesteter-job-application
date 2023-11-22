@@ -47,6 +47,7 @@ namespace Tiger.Util
             var result = string.IsNullOrEmpty(go.scene.name);
 #if UNITY_EDITOR
             result |= UnityEditor.PrefabUtility.IsPartOfPrefabAsset(go);
+            result |= UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(go) != null;
 #endif
             return result;
         }

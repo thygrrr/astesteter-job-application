@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7634380173890113765}
   - component: {fileID: -1556500202868959697}
   - component: {fileID: 6251486954639235439}
+  - component: {fileID: -8410473259715173258}
   m_Layer: 24
   m_Name: Bullet (Player)
   m_TagString: Untagged
@@ -129,6 +130,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: e13d13afe9e80474f99be86b1c9f709b, type: 2}
+--- !u!114 &-8410473259715173258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868303231184607814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remnantsToSpawn: 1
+  randomizeRotation: 1
+  minDisplacement: 0
+  maxDisplacement: 0
+  remnantPrefabs:
+  - {fileID: 5899387571807922107, guid: f63be3586b187d34a84b74581057ddaa, type: 3}
 --- !u!1 &5379195586534242163
 GameObject:
   m_ObjectHideFlags: 0

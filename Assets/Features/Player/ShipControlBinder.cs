@@ -1,16 +1,17 @@
 //SPDX-License-Identifier: Unlicense
+
+using System;
 using Feature.Ui;
+using Features.Game;
 using UnityEngine;
 
 namespace Features.Player
 {
     using Log = Loggers.Create<ShipControlBinder>;
 
-    public class ShipControlBinder : MonoBehaviour
+    public class ShipControlBinder : GameStateResponder
     {
         private GameInputActions _input;
-        
-        #region Unity Events
 
         private void Awake()
         {
@@ -33,9 +34,21 @@ namespace Features.Player
             }
         }
 
-        private void OnEnable() => _input?.Enable();
-        private void OnDisable() => _input?.Disable();
-
-        #endregion
+        protected override void OnEvent(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.Alive:
+                    _input.Enable();
+                    break;
+                
+                case GameState.Dead:
+                case GameState.Spawning:
+                case GameState.Menu:
+                default:
+                    _input.Disable();
+                    break;
+            }
+        }
     }
 }
