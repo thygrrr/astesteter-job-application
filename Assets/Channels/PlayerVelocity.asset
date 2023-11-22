@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerVelocity
   m_EditorClassIdentifier: 
   debugSettings: {fileID: 11400000, guid: 6be8cec992f965a458594deede2a9503, type: 2}
+  onValueReadBeforeFirstWrite: 3

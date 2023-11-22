@@ -3,6 +3,7 @@ using Features.Space;
 using Tiger.Events.Concrete;
 using Tiger.ScreenShake;
 using Tiger.Util;
+using Tweens;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Features.Player
@@ -31,11 +32,15 @@ namespace Features.Player
         
         private WorldBounds _world;
 
+        private Vector3Tween _recoil;
+
+
         private bool canShoot => _cycleTimer <= 0 && _bullets > 0;
 
         private void Awake()
         {
             _world = GetComponentInParent<WorldBounds>() ?? FindAnyObjectByType<WorldBounds>();
+            
         }
 
         private void OnEnable()
@@ -46,9 +51,8 @@ namespace Features.Player
 
         private void Update()
         {
+            //Simple autoloader / bullet cycling.
             _cycleTimer -= Time.deltaTime;
-
-            //Autoloader
             _reloadTimer -= Time.deltaTime;
             if (_reloadTimer <= 0 && _bullets < clipSize)
             {
@@ -74,13 +78,29 @@ namespace Features.Player
 
             var bullet = Instantiate(bulletPrefab, transform.position, transform.rotation, _world.transform);
             bullet.velocity = transform.forward * muzzleVelocity;
+            
+            AddRecoilEffects();
+        }
 
+        void AddRecoilEffects()
+        {
             var fx = cannonFX.Shift();
             fx.gameObject.SetActive(true);
             fx.Play();
             ScreenShake.Add(transform.position, cannonShake, 0);
-        }
 
+            transform.parent.gameObject.CancelTweens();
+            _recoil = new Vector3Tween
+            {
+                from = -transform.forward * 0.5f,
+                to = Vector3.zero,
+                easeType = EaseType.SineInOut,
+                duration = 0.8f,
+                //gun rocks the entire ship ;) I know this is a feature envy smell but it's a fun effect.
+                onUpdate = (_, value) => transform.parent.position = value,
+            };
+            transform.parent.gameObject.AddTween(_recoil);
+        }
         private void OnValidate()
         {
             if (gameObject.IsAsset()) return;

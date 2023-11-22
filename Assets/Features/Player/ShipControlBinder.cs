@@ -17,10 +17,7 @@ namespace Features.Player
         {
             Log.TagColor = Color.yellow;
             _input = new GameInputActions();
-        }
 
-        private void Start()
-        {
             foreach (var client in GetComponentsInChildren<GameInputActions.IFlightActions>())
             {
                 Log.Info($"Binding FLIGHT ActionMap for {client}");
@@ -31,6 +28,21 @@ namespace Features.Player
             {
                 Log.Info($"Binding WEAPON ActionMap for {client}");
                 _input.Weapon.AddCallbacks(client);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var client in GetComponentsInChildren<GameInputActions.IFlightActions>())
+            {
+                Log.Info($"Unbinding FLIGHT ActionMap for {client}");
+                _input.Flight.RemoveCallbacks(client);
+            }
+
+            foreach (var client in GetComponentsInChildren<GameInputActions.IWeaponActions>())
+            {
+                Log.Info($"Unbinding WEAPON ActionMap for {client}");
+                _input.Weapon.RemoveCallbacks(client);
             }
         }
 

@@ -31,6 +31,8 @@ namespace Features.Game
         
         private void Start()
         {
+            _worldVelocity = channel.value;
+            
             if (maxOwnVelocity == 0 && minOwnVelocity == 0) return;
             
             //TODO: This can go into a spawner component instead.

@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Features.Game
 {
+    using Log = Loggers.Create<DamageTaker>;
+    
     public class DamageTaker : Killable
     {
         [SerializeField] private float hitPoints = 1;
@@ -26,7 +28,7 @@ namespace Features.Game
             _renderer = GetComponentInChildren<MeshRenderer>();
             _tween = new ColorTween
             {
-                from = Color.red,
+                from = Color.red * 1.25f,
                 to = Color.black,
                 duration = 0.2f,
                 onUpdate = (_, value) => _renderer.material.SetColor(emission, value)

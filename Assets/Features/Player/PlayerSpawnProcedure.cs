@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace Features.Player
 {
-    public class PlayerSpawnProcedure : MonoBehaviour
+    public class PlayerSpawnProcedure : GameStateEmitter
     {
-        [SerializeField] private GameStateChannel gameState;
-
         [SerializeField] private float delay = 1f;
         [SerializeField] private float duration = 0.5f;
         
@@ -31,13 +29,12 @@ namespace Features.Player
 
         private void OnAdd(TweenInstance<Transform, Vector3> instance)
         {
-            gameState.Emit(GameState.Spawning);
+            Emit(GameState.Spawning);
         }
 
         private void OnEnd(TweenInstance<Transform, Vector3> instance)
         {
-            gameState.Emit(GameState.Alive);
+            Emit(GameState.Alive);
         }
-
     }
 }

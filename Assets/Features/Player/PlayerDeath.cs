@@ -4,11 +4,12 @@ using Features.Game;
 
 namespace Features.Player
 {
-    public class DeathStateEmitter : GameStateEmitter
+    public class PlayerDeath : GameStateEmitter, IOnDeath
     {
-        private void OnDestroy()
+        public void OnDeath()
         {
-            Emit(GameState.Dead);
+            Emit(GameState.Dead);            
         }
     }
 }
+
