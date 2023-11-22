@@ -11,18 +11,24 @@ namespace Tiger.Events
         protected TChannel channel;
 
         protected void Emit(T data) => channel.Emit(data, this);
+
+#if UNITY_EDITOR
+#if TIGER_ALWAYS_SHOW_GIZMOS
+        protected virtual void OnDrawGizmos()
+#else
         protected virtual void OnDrawGizmosSelected()
+#endif
         {
             if (channel)
             {
-                Handles.Label(Handles.matrix * transform.position, $"\u2192{channel.name}");
+                Handles.Label(Handles.matrix * transform.position, $"{channel.name}\u2192");
             }
             else
             {
                 Handles.Label(transform.position, "no channel");
             }
         }
-
+#endif
         protected virtual void OnValidate()
         {
             if (!channel) Debug.LogWarning($"DataChannelEmitter: Channel is not set on {this}", this);
