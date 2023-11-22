@@ -8,69 +8,40 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: hitPoints
-      value: 3
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantsToSpawn
-      value: 2
+      propertyPath: maxSpeed
+      value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.size
-      value: 3
+      propertyPath: minSpeed
+      value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    - target: {fileID: 4261387778409964213, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 3301825394724319113, guid: 14ef85eeda01d6043832469a27c86b86,
-        type: 3}
-    - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: remnantPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 3301825394724319113, guid: 615265b997a68e3428f9eb73cd6ee4d6,
-        type: 3}
-    - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: remnantPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 3301825394724319113, guid: 36970c77eed66e441b9ecb862e6278c1,
-        type: 3}
-    - target: {fileID: 4250552742727909141, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: remnantsToSpawn
-      value: 1
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 4250552742727909141, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    - target: {fileID: 7586494976009043411, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4250552742727909141, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 2813972485413098525, guid: 7785600cae77a5246a7dd560bf17a7ce,
-        type: 3}
-    - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_Name
       value: Asteroid L Variant 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}

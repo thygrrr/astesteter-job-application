@@ -8,6 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minSpeed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: hitPoints

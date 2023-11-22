@@ -30,9 +30,9 @@ namespace Features.Rendering
             targetChild.LookAt(_position * lookFactor, Vector3.up + Vector3.forward);
         }
 
-        protected override void OnEvent(Vector3 data)
+        protected override void OnEvent(Vector3 velocity)
         {
-            _positionGoal = Vector3.ClampMagnitude(data, maxRadius);   
+            _positionGoal = Vector3.ClampMagnitude(velocity, maxRadius);   
         }   
     }
 }

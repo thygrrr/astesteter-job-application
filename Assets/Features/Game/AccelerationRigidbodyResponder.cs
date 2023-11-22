@@ -9,7 +9,7 @@ namespace Features.Game
     public class AccelerationRigidbodyResponder : DataChannelResponder<Vector3Channel, Vector3>
     {
         private Rigidbody _body;
-        private void Start()
+        protected override void AwakeOverride()
         {
             _body = GetComponent<Rigidbody>();
         }

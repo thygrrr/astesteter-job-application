@@ -2,7 +2,6 @@
 using Features.Space;
 using Unity.Mathematics;
 using UnityEngine;
-using Tiger.Util;
 
 namespace Features.Game
 {
@@ -11,11 +10,13 @@ namespace Features.Game
     [RequireComponent(typeof(Rigidbody))]
     public class ToroidalRigidBodyWrapping : MonoBehaviour
     {
+        [Header("Virtual sizing for small objects")]
+        [Tooltip("This is used so small objects like bullets don't wrap too early, and so they can hit large, currently wrapping objects.")]
+        [SerializeField] private float wrapPadding = 10f;
+        
         private WorldBounds _worldBounds;
         private Rigidbody _body;
         private Bounds _wrapBounds;
-
-        #region Event Functions
 
         private void Awake()
         {
@@ -23,23 +24,7 @@ namespace Features.Game
             SetUpBounds();   
         }
 
-        private void FixedUpdate() => Wrap();
-
-        private void OnTransformChildrenChanged() => SetUpBounds();
-        
-        #endregion
-
-        #region Editor Events 
-
-        private void OnValidate()
-        {
-            _body = GetComponent<Rigidbody>();
-            
-            if (gameObject.IsAsset()) return;
-            if (!GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
-        }
-
-        #endregion
+        private void FixedUpdate() => Wrap(); //sic! We're using physics with dynamic update
 
         private void Wrap()
         {
@@ -54,16 +39,10 @@ namespace Features.Game
         
         private void SetUpBounds()
         {
-            _worldBounds = GetComponentInParent<WorldBounds>();
-            
-            var renderBounds = new Bounds();
-            foreach (var r in GetComponentsInChildren<Renderer>())
-            {
-                renderBounds.Encapsulate(r.bounds);
-            }
-
-            _wrapBounds = _worldBounds.bounds;
-            _wrapBounds.Expand(renderBounds.size);
+            _worldBounds = FindAnyObjectByType<WorldBounds>();
+            _wrapBounds = _worldBounds.bounds; 
+            //We're not using the render bounds because this component is for small, rigidbody objects.
+            _wrapBounds.Expand(wrapPadding);
         }
 
         private bool OutOfBounds(float3 position) => !_wrapBounds.Contains(position);

@@ -55,7 +55,7 @@ namespace Tiger.Events
 
         protected virtual void OnValidate()
         {
-            if (!channel) Debug.Log("DataChannelResponder: Channel is not set.", this);
+            if (!channel) Debug.LogWarning($"DataChannelResponder: Channel is not set on {this}", this);
         }
     }
 }

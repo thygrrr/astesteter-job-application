@@ -16,17 +16,25 @@ namespace Features.Player
         {
             Log.TagColor = Color.yellow;
             _input = new GameInputActions();
+        }
 
-            var clients = GetComponentsInChildren<GameInputActions.IPlayerActions>();
-            foreach (var client in clients)
+        private void Start()
+        {
+            foreach (var client in GetComponentsInChildren<GameInputActions.IFlightActions>())
             {
-                Log.Info($"Binding action map for {client}");
-                _input.Player.AddCallbacks(client);
+                Log.Info($"Binding FLIGHT ActionMap for {client}");
+                _input.Flight.AddCallbacks(client);
+            }
+
+            foreach (var client in GetComponentsInChildren<GameInputActions.IWeaponActions>())
+            {
+                Log.Info($"Binding WEAPON ActionMap for {client}");
+                _input.Weapon.AddCallbacks(client);
             }
         }
 
-        private void OnEnable() => _input?.Player.Enable();
-        private void OnDisable() => _input?.Player.Disable();
+        private void OnEnable() => _input?.Enable();
+        private void OnDisable() => _input?.Disable();
 
         #endregion
     }

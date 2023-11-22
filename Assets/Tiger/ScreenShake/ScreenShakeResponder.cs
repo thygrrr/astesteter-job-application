@@ -72,7 +72,7 @@ namespace Tiger.ScreenShake
         private void OnEnable()
         {
             if (!perceiver) perceiver = target;
-            _noiseIndex = Random.onUnitSphere * 10f;
+            _noiseIndex = Random.insideUnitSphere * 10f;
             ScreenShake.Shakes.AddListener(OnShake);
         }
 
@@ -112,7 +112,7 @@ namespace Tiger.ScreenShake
             _traumaLF = Mathf.Clamp01(_traumaLF);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             _traumaHFSmooth = Mathf.SmoothDamp(_traumaHFSmooth, _traumaHF, ref _traumaHFAttackDerivative, highFrequencyAttack);
             _traumaLFSmooth = Mathf.SmoothDamp(_traumaLFSmooth, _traumaLF, ref _traumaLFAttackDerivative, lowFrequencyAttack);

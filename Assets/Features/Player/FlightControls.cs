@@ -10,9 +10,9 @@ using UnityEngine.Serialization;
 
 namespace Features.Player
 {
-    using Debug = Loggers.Create<ShipControls>;
+    using Debug = Loggers.Create<FlightControls>;
     
-    public class ShipControls : MonoBehaviour, GameInputActions.IPlayerActions
+    public class FlightControls : MonoBehaviour, GameInputActions.IFlightActions
     {
         [SerializeField] [Tooltip("Channel to send acceleration data through")]
         private Vector3Channel accelerationChannel;
@@ -46,7 +46,6 @@ namespace Features.Player
         [Header("Screen Shake")] 
         [SerializeField] private float engineShakeTurnOn = 0.1f;
         [SerializeField] private float engineShakeRunning = 1f;
-        [SerializeField] private float cannonShake = 0.1f;
 
         [SerializeField] private GameObject forwardFx;
 
@@ -62,6 +61,7 @@ namespace Features.Player
 
         private Vector3 _acceleration;
         private Vector3 _velocity;
+        private Vector3 _steeringDirection;
 
         public void Awake()
         {
@@ -91,11 +91,12 @@ namespace Features.Player
             // Decay / Gain thrust
             _thrust = Mathf.SmoothDamp(_thrust, _thrustTarget, ref _thrustDerivative, engineLambda);
 
-            var braking = math.smoothstep(0, -1, Vector3.Dot(_velocity.normalized, body.forward));
-            var boost = math.remap(-0.5f, 1, 1, engineBrakeFactor, braking); 
+            // We use _steeringDirection instead of body.forward because we want user input to feel much snappier.
+            var braking = math.smoothstep(0, -1, Vector3.Dot(_velocity.normalized, _steeringDirection));
+            var boost = math.remap(-0.5f * math.SQRT2, 1, 1, engineBrakeFactor, braking); 
             var effectiveThrust = _thrust * boost;
             
-            _acceleration = effectiveThrust * body.forward;
+            _acceleration = effectiveThrust * _steeringDirection;
             _acceleration = _acceleration._x0z();
             accelerationChannel.Emit(-_acceleration);
 
@@ -126,7 +127,7 @@ namespace Features.Player
                     //TODO: Engine Afterburner ON Sound
                     _thrustTarget = enginePower;
                     forwardFx.gameObject.SetActive(true);
-                    ScreenShake.Add(body.position, engineShakeTurnOn, 0);
+                    ScreenShake.Add(body.position, 0, engineShakeTurnOn);
                     break;
                 case InputActionPhase.Performed:
                     break;
@@ -141,11 +142,6 @@ namespace Features.Player
 
         public void OnLook(InputAction.CallbackContext context)
         {
-        }
-
-        public void OnFire(InputAction.CallbackContext context)
-        {
-            ScreenShake.Add(body.position, cannonShake, 0);
         }
 
         private void OrientShipFromMouse()
@@ -165,14 +161,14 @@ namespace Features.Player
 
             // We want to dampen the displacement as we get closer to the ship.
             var forward = body.forward;
-            displacement = Vector3.Lerp(forward, displacement, displacement.magnitude / 4f);
+            displacement = Vector3.Lerp(forward, displacement, displacement.magnitude / 3f);
+            
+            _steeringDirection = Vector3.Normalize(displacement);
 
-            var direction = Vector3.Normalize(displacement);
-
-            var bankAngle = Vector3.SignedAngle(forward, direction, Vector3.up);
-            bankAngle = Mathf.Clamp(bankAngle, -120, 120);
+            var bankAngle = Vector3.SignedAngle(forward, _steeringDirection, Vector3.up);
+            bankAngle = Mathf.Clamp(bankAngle, -100, 100);
             var bankRotation = Quaternion.AngleAxis(-bankAngle, Vector3.forward);
-            _rotationTarget = Quaternion.LookRotation(direction) * bankRotation;
+            _rotationTarget = Quaternion.LookRotation(_steeringDirection) * bankRotation;
         }
     }
 }

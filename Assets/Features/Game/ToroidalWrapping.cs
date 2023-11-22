@@ -1,8 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 
-using Channels.Concrete;
 using Features.Space;
-using Tiger.Events;
 using Unity.Mathematics;
 using UnityEngine;
 using Tiger.Util;
@@ -10,26 +8,25 @@ using Tiger.Util;
 namespace Features.Game
 {
     using Log = Loggers.Create<ToroidalWrapping>;
-    
-    public class ToroidalWrapping : DataChannelResponder<Vector3Channel, Vector3>
+
+    [RequireComponent(typeof(VelocityTransformIntegrator))]
+    public class ToroidalWrapping : MonoBehaviour
     {
         private WorldBounds _worldBounds;
         private Bounds _wrapBounds;
 
-        private float3 _velocity;
-        private Vector3 _lastPosition;
-
+        private VelocityTransformIntegrator _integrator;
+        
         #region Event Functions
-
-        protected override void AwakeOverride()
+        
+        protected void Awake()
         {
+            _integrator = GetComponent<VelocityTransformIntegrator>();
             SetUpBounds();
-            _lastPosition = transform.position;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            _velocity = transform.position - _lastPosition;
             Wrap();   
         }
 
@@ -39,18 +36,14 @@ namespace Features.Game
 
         #region Editor Events 
 
-        protected override void OnValidate()
+        protected void OnValidate()
         {
-            base.OnValidate();
-            
             if (gameObject.IsAsset()) return;
             if (!GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
         }
 
         #endregion
-
-        protected override void OnEvent(Vector3 data) => _velocity = data;
-
+        
         private void Wrap()
         {
             float3 position = transform.position;
@@ -77,6 +70,6 @@ namespace Features.Game
 
         private bool OutOfBounds() => !_wrapBounds.Contains(transform.position);
 
-        private bool MovingAway() => math.any(_velocity * transform.position > 0);
+        private bool MovingAway() => math.any(_integrator.velocity * transform.position > 0);
     }
 }

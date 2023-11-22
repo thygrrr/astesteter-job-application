@@ -1,7 +1,8 @@
 //SPDX-License-Identifier: Unlicense
+
 using UnityEngine;
 
-namespace Features.Common
+namespace Features.Game
 {
     public class TimeToLive : MonoBehaviour
     {

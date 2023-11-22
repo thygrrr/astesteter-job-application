@@ -26,7 +26,7 @@ namespace Feature.Ui
     ""name"": ""Game Input Actions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Flight"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
@@ -37,15 +37,6 @@ namespace Feature.Ui
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Thrust"",
@@ -71,23 +62,40 @@ namespace Feature.Ui
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""1a8b81aa-4db9-429e-a1e6-5f0de76dfb2d"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Weapon"",
+            ""id"": ""0a85ce42-50a4-4643-af04-673610f3cae2"",
+            ""actions"": [
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8557b71-ba8b-4638-8400-d6ec49ebc41c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""42203a61-d97e-4e59-9692-a5aae34f3795"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -715,11 +723,13 @@ namespace Feature.Ui
         }
     ]
 }");
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-            m_Player_Thrust = m_Player.FindAction("Thrust", throwIfNotFound: true);
+            // Flight
+            m_Flight = asset.FindActionMap("Flight", throwIfNotFound: true);
+            m_Flight_Look = m_Flight.FindAction("Look", throwIfNotFound: true);
+            m_Flight_Thrust = m_Flight.FindAction("Thrust", throwIfNotFound: true);
+            // Weapon
+            m_Weapon = asset.FindActionMap("Weapon", throwIfNotFound: true);
+            m_Weapon_Fire = m_Weapon.FindAction("Fire", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -791,67 +801,105 @@ namespace Feature.Ui
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Player
-        private readonly InputActionMap m_Player;
-        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-        private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Fire;
-        private readonly InputAction m_Player_Thrust;
-        public struct PlayerActions
+        // Flight
+        private readonly InputActionMap m_Flight;
+        private List<IFlightActions> m_FlightActionsCallbackInterfaces = new List<IFlightActions>();
+        private readonly InputAction m_Flight_Look;
+        private readonly InputAction m_Flight_Thrust;
+        public struct FlightActions
         {
             private @GameInputActions m_Wrapper;
-            public PlayerActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
-            public InputAction @Thrust => m_Wrapper.m_Player_Thrust;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public FlightActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Look => m_Wrapper.m_Flight_Look;
+            public InputAction @Thrust => m_Wrapper.m_Flight_Thrust;
+            public InputActionMap Get() { return m_Wrapper.m_Flight; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void AddCallbacks(IPlayerActions instance)
+            public static implicit operator InputActionMap(FlightActions set) { return set.Get(); }
+            public void AddCallbacks(IFlightActions instance)
             {
-                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_FlightActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_FlightActionsCallbackInterfaces.Add(instance);
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
                 @Thrust.started += instance.OnThrust;
                 @Thrust.performed += instance.OnThrust;
                 @Thrust.canceled += instance.OnThrust;
             }
 
-            private void UnregisterCallbacks(IPlayerActions instance)
+            private void UnregisterCallbacks(IFlightActions instance)
             {
                 @Look.started -= instance.OnLook;
                 @Look.performed -= instance.OnLook;
                 @Look.canceled -= instance.OnLook;
-                @Fire.started -= instance.OnFire;
-                @Fire.performed -= instance.OnFire;
-                @Fire.canceled -= instance.OnFire;
                 @Thrust.started -= instance.OnThrust;
                 @Thrust.performed -= instance.OnThrust;
                 @Thrust.canceled -= instance.OnThrust;
             }
 
-            public void RemoveCallbacks(IPlayerActions instance)
+            public void RemoveCallbacks(IFlightActions instance)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_FlightActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IPlayerActions instance)
+            public void SetCallbacks(IFlightActions instance)
             {
-                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_FlightActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_FlightActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
+        public FlightActions @Flight => new FlightActions(this);
+
+        // Weapon
+        private readonly InputActionMap m_Weapon;
+        private List<IWeaponActions> m_WeaponActionsCallbackInterfaces = new List<IWeaponActions>();
+        private readonly InputAction m_Weapon_Fire;
+        public struct WeaponActions
+        {
+            private @GameInputActions m_Wrapper;
+            public WeaponActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Fire => m_Wrapper.m_Weapon_Fire;
+            public InputActionMap Get() { return m_Wrapper.m_Weapon; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(WeaponActions set) { return set.Get(); }
+            public void AddCallbacks(IWeaponActions instance)
+            {
+                if (instance == null || m_Wrapper.m_WeaponActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_WeaponActionsCallbackInterfaces.Add(instance);
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
+            }
+
+            private void UnregisterCallbacks(IWeaponActions instance)
+            {
+                @Fire.started -= instance.OnFire;
+                @Fire.performed -= instance.OnFire;
+                @Fire.canceled -= instance.OnFire;
+            }
+
+            public void RemoveCallbacks(IWeaponActions instance)
+            {
+                if (m_Wrapper.m_WeaponActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IWeaponActions instance)
+            {
+                foreach (var item in m_Wrapper.m_WeaponActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_WeaponActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public WeaponActions @Weapon => new WeaponActions(this);
 
         // UI
         private readonly InputActionMap m_UI;
@@ -1023,11 +1071,14 @@ namespace Feature.Ui
                 return asset.controlSchemes[m_XRSchemeIndex];
             }
         }
-        public interface IPlayerActions
+        public interface IFlightActions
         {
             void OnLook(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
             void OnThrust(InputAction.CallbackContext context);
+        }
+        public interface IWeaponActions
+        {
+            void OnFire(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
