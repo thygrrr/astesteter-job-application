@@ -428,10 +428,10 @@ MonoBehaviour:
   velocityChannel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   lookChannel: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
   body: {fileID: 673533523549355864}
-  enginePower: 50
+  enginePower: 40
   engineLambda: 0.05
   rotationLambda: 0.15
-  maxVelocity: 100
+  maxVelocity: 80
   engineBrakeFactor: 7
   engineShakeTurnOn: 0.2
   engineShakeRunning: 1
@@ -1090,6 +1090,10 @@ PrefabInstance:
     - target: {fileID: 1048394385358214, guid: 4aee0d2dc836414499493a1cc6872c3d, type: 3}
       propertyPath: m_Layer
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048394385358214, guid: 4aee0d2dc836414499493a1cc6872c3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1352915096013946, guid: 4aee0d2dc836414499493a1cc6872c3d, type: 3}
       propertyPath: m_Layer

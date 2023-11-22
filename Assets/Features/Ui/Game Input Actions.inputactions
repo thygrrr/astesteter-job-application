@@ -46,6 +46,28 @@
                     "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f90c6184-8fba-4f6c-b12a-2b66bdecac7e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a12cad01-51b7-4e9f-b94c-e5658b04cc1e",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

@@ -58,7 +58,7 @@ MonoBehaviour:
     type: 3}
   muzzleVelocity: 200
   clipSize: 4
-  reloadTime: 0.5
+  reloadTime: 0.6
   cycleTime: 0.1
 --- !u!1001 &2341804772363735145
 PrefabInstance:
