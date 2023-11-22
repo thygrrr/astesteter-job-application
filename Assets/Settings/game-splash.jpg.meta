@@ -1,5 +1,8 @@
 fileFormatVersion: 2
 guid: 465d35151c177a0428de11847b9408f2
+labels:
+- AiGenerated
+- Midjourney
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

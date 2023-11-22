@@ -43,6 +43,7 @@ public class AsteroidSpawner : GameStateResponder
             var spawnCenter = _world.bounds.center;
             Vector3 spawnXZ = Random.insideUnitCircle.normalized._x0y() * 2 * spawnRange;
 
+            //BUG: The bounds need to be expanded by the prefab's bounds, rarely you can see them popping in.
             var position = _world.bounds.ClosestPoint(spawnCenter + spawnXZ);
             var rotation = Random.rotationUniform;
             Instantiate(asteroidPrefabs.Pick(), position, rotation, transform.parent);

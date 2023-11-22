@@ -31,12 +31,12 @@ PrefabInstance:
     - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxOwnVelocity
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minOwnVelocity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4261387778409964213, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}

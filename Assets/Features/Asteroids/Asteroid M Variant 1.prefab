@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: hitPoints
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -59,12 +59,12 @@ PrefabInstance:
     - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxOwnVelocity
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3377324117870318584, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minOwnVelocity
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4250552742727909141, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}

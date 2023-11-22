@@ -29,7 +29,7 @@ namespace Features.Game
         [SerializeField]
         private List<GameObject> remnantPrefabs;
         
-        public void OnDeath()
+        public void OnDeath() 
         {
             for (var i = 0; i < remnantsToSpawn; i++)
             {

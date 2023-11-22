@@ -1,5 +1,6 @@
 using Feature.Ui;
 using Features.Space;
+using Tiger.Events.Concrete;
 using Tiger.ScreenShake;
 using Tiger.Util;
 using UnityEngine;
@@ -10,10 +11,11 @@ namespace Features.Player
 
     public class WeaponControls : MonoBehaviour, GameInputActions.IWeaponActions
     {
-        [Header("Effects")]
-        [SerializeField] private float cannonShake = 0.5f;
+        [Header("Effects")]        [SerializeField] private float cannonShake = 0.5f;
         [SerializeField] private ParticleSystem[] cannonFX;
 
+        [SerializeField] [Header("Channels")]
+        private IntChannel ammoCountChannel;
 
         [Header("Guns, Guns, Guns")] 
         [SerializeField] private Rigidbody bulletPrefab;
@@ -36,13 +38,23 @@ namespace Features.Player
             _world = GetComponentInParent<WorldBounds>() ?? FindAnyObjectByType<WorldBounds>();
         }
 
+        private void OnEnable()
+        {
+            _bullets = 0;
+            _reloadTimer = reloadTime; 
+        }
+
         private void Update()
         {
             _cycleTimer -= Time.deltaTime;
 
             //Autoloader
             _reloadTimer -= Time.deltaTime;
-            if (_reloadTimer <= 0) _bullets = clipSize;
+            if (_reloadTimer <= 0 && _bullets < clipSize)
+            {
+                _bullets = clipSize;
+                ammoCountChannel.Emit(_bullets);
+            }
         }
 
         public void OnFire(InputAction.CallbackContext context)
@@ -56,6 +68,7 @@ namespace Features.Player
         private void Shoot()
         {
             _bullets--;
+            ammoCountChannel.Emit(_bullets);
             _cycleTimer = cycleTime;
             _reloadTimer = reloadTime;
 

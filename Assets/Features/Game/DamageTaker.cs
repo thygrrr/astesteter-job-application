@@ -7,9 +7,9 @@ namespace Features.Game
 {
     public class DamageTaker : Killable
     {
-        [SerializeField] private int hitPoints = 1;
+        [SerializeField] private float hitPoints = 1;
 
-        public void ApplyDamage(int damage)
+        public void ApplyDamage(float damage)
         {
             hitPoints -= damage;
             if (hitPoints <= 0) Die(); else HitFeedback();

@@ -7,9 +7,12 @@ namespace Features.Game
     public class DamageDealer : MonoBehaviour
     {
         [SerializeField]
-        private int damagePoints = 1;
+        private float damagePoints = 1;
 
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter(Collision other) => DealDamage(other);
+        private void OnCollisionStay(Collision other) => DealDamage(other);
+
+        private void DealDamage(Collision other)
         {
             if (other.gameObject.GetComponentInParent<DamageTaker>() is { } taker)
             {
