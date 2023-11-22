@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: Unlicense
 using Tweens;
 using Tiger.Events;
 using Tiger.Events.Concrete;
@@ -11,20 +12,21 @@ namespace Features.Space
 
     public class SunlightDependentSkyboxExposure : DataChannelResponder<BoolChannel, bool>
     {
-        [Header("Skybox Exposure")]
-        [SerializeField] private float litExposure = 1f;
+        [Header("Skybox Exposure")] [SerializeField]
+        private float litExposure = 1f;
+
         [SerializeField] private float darkExposure = 2f;
-        
-        [Header("Ambient Light")]
-        [SerializeField] [ColorUsage(false, true)]
+
+        [Header("Ambient Light")] [SerializeField] [ColorUsage(false, true)]
         private Color litAmbientLight;
+
         [SerializeField] [ColorUsage(false, true)]
         private Color darkAmbientLight;
 
         private static readonly int exposure = Shader.PropertyToID("_Exposure");
-        
+
         private float _value = 1;
-        
+
         protected override void OnEvent(bool sunshine)
         {
             gameObject.CancelTweens();
@@ -40,22 +42,29 @@ namespace Features.Space
         private void OnTweenUpdate(TweenInstance<Transform, float> _, float value)
         {
             _value = value;
-            RenderSettings.skybox.SetFloat(exposure, math.lerp(darkExposure, litExposure, value));
-            RenderSettings.ambientSkyColor = Color.Lerp(darkAmbientLight, litAmbientLight, value);
+            SetExposureAndAmbient();
         }
 
-        private void OnDisable()
+        private void SetExposureAndAmbient()
+        {
+            RenderSettings.skybox.SetFloat(exposure, math.lerp(darkExposure, litExposure, _value));
+            RenderSettings.ambientSkyColor = Color.Lerp(darkAmbientLight, litAmbientLight, _value);
+        }
+
+        protected override void OnDisableOverride()
         {
             gameObject.CancelTweens();
+            _value = 1;
+            SetExposureAndAmbient();
         }
 
         protected override void OnValidate()
         {
             base.OnValidate();
-            
+
             if (litAmbientLight == default) litAmbientLight = RenderSettings.ambientSkyColor;
             else RenderSettings.ambientSkyColor = litAmbientLight;
-            
+
             RenderSettings.skybox.SetFloat(exposure, litExposure);
         }
     }

@@ -34,7 +34,7 @@ namespace Features.Space
             _light.gameObject.AddTween(tween);
         }
 
-        private void OnDisable()
+        protected override void OnDisableOverride()
         {
             _light.gameObject.CancelTweens();
             _light.intensity = _litIntensity;

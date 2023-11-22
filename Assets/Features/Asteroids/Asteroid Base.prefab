@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remnantsToSpawn: 2
+  remnantsToSpawn: 0
   remnantPrefabs: []
 --- !u!114 &3377324117870318584
 MonoBehaviour:

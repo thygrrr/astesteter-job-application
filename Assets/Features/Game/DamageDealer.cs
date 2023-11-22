@@ -11,12 +11,10 @@ namespace Features.Game
 
         private void OnCollisionEnter(Collision other)
         {
-            print("Damage");
-            
-            if (other.gameObject.GetComponentInParent<DamageTaker>() is not { } taker) return;
-            
-            print("found taker");
-            taker.ApplyDamage(damagePoints);
+            if (other.gameObject.GetComponentInParent<DamageTaker>() is { } taker)
+            {
+                taker.ApplyDamage(damagePoints);
+            }
         }
     }
 }

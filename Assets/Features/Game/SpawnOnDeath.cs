@@ -10,19 +10,19 @@ namespace Features.Game
     
     public class SpawnOnDeath : MonoBehaviour, IOnDeath
     {
-        [Header("On Death")] [SerializeField]
-        private int remnantsToSpawn = 2;
+        [Header("On Death")] 
+        [SerializeField] private int remnantsToSpawn = 2;
+        [SerializeField] private bool randomizeRotation = true;
 
         [SerializeField]
         private List<GameObject> remnantPrefabs;
         
         public void OnDeath()
         {
-            //FIXME: Not allowed to do this :D
-            if (!Application.isPlaying) return;
             for (var i = 0; i < remnantsToSpawn; i++)
             {
-                Instantiate(remnantPrefabs.Pick(), transform.position, Random.rotationUniform, transform.parent);
+                var rotation = randomizeRotation ? Random.rotationUniform : Quaternion.identity;
+                Instantiate(remnantPrefabs.Pick(), transform.position, rotation, transform.parent);
             }
         }
 

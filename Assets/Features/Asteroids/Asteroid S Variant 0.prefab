@@ -132,11 +132,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2348142721143267122, guid: 87b04363ce2e0ea4cb3a4a31aba56e1b,
         type: 3}
-    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: remnantsToSpawn
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_Drag
@@ -210,8 +205,34 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 525513934719945938}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -405418723236133572}
   m_SourcePrefab: {fileID: 100100000, guid: 0fcbf8d68c3b8f9498f8835f60f17721, type: 3}
+--- !u!1 &7127387237083081100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    type: 3}
+  m_PrefabInstance: {fileID: 670448627062729471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-405418723236133572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127387237083081100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remnantsToSpawn: 1
+  randomizeRotation: 1
+  remnantPrefabs:
+  - {fileID: 1478560222944472915, guid: 87b04363ce2e0ea4cb3a4a31aba56e1b, type: 3}
 --- !u!4 &8574256926824223903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,

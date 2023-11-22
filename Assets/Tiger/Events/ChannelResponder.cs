@@ -8,25 +8,12 @@ namespace Tiger.Events
     [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
     public abstract class ChannelResponder : SealableEnableDisableBehaviour
     {
-        [SerializeField]
-        private Channel channel;
-        
+        [SerializeField] private Channel channel;
+
         /// <summary>
         /// Called when events are emitted to the channel.
         /// </summary>
         protected abstract void OnEvent();
-        
-        protected sealed override void OnEnable()
-        {
-            channel.subscribers.AddListener(Trigger);
-            OnEnableOverride();
-        }
-
-        protected sealed override void OnDisable()
-        {
-            OnDisableOverride();
-            if (channel) channel.subscribers.RemoveListener(Trigger);
-        }
 
         /// <summary>
         /// Override this if you want to have your own code happen on enable
@@ -41,14 +28,27 @@ namespace Tiger.Events
         protected virtual void OnDisableOverride()
         {
         }
-        
+
         // Triggered when the event(s) happen.
         private void Trigger()
         {
             OnEvent();
         }
 
-#if UNITY_EDITOR
+        #region Unity Events
+
+        protected sealed override void OnEnable()
+        {
+            channel.subscribers.AddListener(Trigger);
+            OnEnableOverride();
+        }
+
+        protected sealed override void OnDisable()
+        {
+            OnDisableOverride();
+            if (channel) channel.subscribers.RemoveListener(Trigger);
+        }
+
         private void OnDrawGizmosSelected()
         {
             if (channel)
@@ -66,7 +66,8 @@ namespace Tiger.Events
         {
             if (!channel) Debug.LogWarning($"ChannelResponder: Channel is not set on {this}", this);
         }
-#endif
+
+        #endregion
     }
 }
 

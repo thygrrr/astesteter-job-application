@@ -5,7 +5,7 @@ using Tiger.Events;
 
 namespace Features.Game
 {
-    public abstract class GameStateResponder : DataChannelResponder<GameStateChannel, GameState>
+    public abstract class GameStateEmitter : DataChannelEmitter<GameStateChannel, GameState>
     {
     }
 }

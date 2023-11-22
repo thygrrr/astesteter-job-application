@@ -10,7 +10,7 @@ namespace Tiger.Events
         [SerializeField]
         protected TChannel channel;
 
-        protected void Emit(T data) => channel.Emit(data);
+        protected void Emit(T data) => channel.Emit(data, this);
         protected virtual void OnDrawGizmosSelected()
         {
             if (channel)

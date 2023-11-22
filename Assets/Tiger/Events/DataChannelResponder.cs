@@ -2,48 +2,54 @@
 
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
+// ReSharper disable VirtualMemberNeverOverridden.Global
 
 namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
-    public abstract class DataChannelResponder<TChannel, T> : SealableLifecycleBehaviour where TChannel : DataChannel<T>
+    public abstract class DataChannelResponder<TChannel, T> : SealableEnableDisableBehaviour where TChannel : DataChannel<T>
     {
-        [SerializeField]
-        private TChannel channel;
+        [SerializeField] private TChannel channel;
 
-        [SerializeField]
-        protected UnityEvent<T> action;
+        /// <summary>
+        /// Called when events are emitted to the channel.
+        /// </summary>
+        protected abstract void OnEvent(T data);
 
-        protected sealed override void Awake()
+        /// <summary>
+        /// Override this if you want to have your own code happen on enable
+        /// </summary>
+        protected virtual void OnEnableOverride()
         {
-            if (channel) channel.subscribers.AddListener(Trigger);
-            AwakeOverride();
         }
 
-        protected virtual void AwakeOverride()
+        /// <summary>
+        /// Override this if you want to have your own code happen on disable.
+        /// </summary>
+        protected virtual void OnDisableOverride()
         {
-            //Implement this if you want to have your own code happen on awake
         }
 
-        protected sealed override void OnDestroy()
-        {
-            if (channel) channel.subscribers.RemoveListener(Trigger);
-        }
+        #region Unity Events
 
-        protected virtual void OnEvent(T data)
-        {
-            //Implement this if you want to have your own code happen.
-            //TODO: Maybe make a separate extensible abstract class.
-        }
-        
         // Triggered when the event(s) happen.
         private void Trigger(T data)
         {
             OnEvent(data);
-            action.Invoke(data);
         }
-        
+
+        protected sealed override void OnEnable()
+        {
+            channel.subscribers.AddListener(Trigger);
+            OnEnableOverride();
+        }
+
+        protected sealed override void OnDisable()
+        {
+            OnDisableOverride();
+            if (channel) channel.subscribers.RemoveListener(Trigger);
+        }
+
         protected virtual void OnDrawGizmosSelected()
         {
             if (channel)
@@ -60,11 +66,13 @@ namespace Tiger.Events
         {
             if (!channel) Debug.LogWarning($"DataChannelResponder: Channel is not set on {this}", this);
         }
+
+        #endregion
     }
 }
 
 /*
-Written by Tiger Blue in 2021
+Written by Tiger Blue in 2021, 2023
 
 This is free and unencumbered software released into the public domain.
 
