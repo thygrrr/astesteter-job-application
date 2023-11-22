@@ -9,7 +9,7 @@ namespace Tiger.Events
     [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
     public abstract class DataChannelResponder<TChannel, T> : SealableEnableDisableBehaviour where TChannel : DataChannel<T>
     {
-        [SerializeField] private TChannel channel;
+        [SerializeField] protected TChannel channel;
 
         /// <summary>
         /// Called when events are emitted to the channel.
@@ -40,14 +40,14 @@ namespace Tiger.Events
 
         protected sealed override void OnEnable()
         {
-            channel.subscribers.AddListener(Trigger);
+            channel.Subscribe(Trigger);
             OnEnableOverride();
         }
 
         protected sealed override void OnDisable()
         {
             OnDisableOverride();
-            if (channel) channel.subscribers.RemoveListener(Trigger);
+            if (channel) channel.Unsubscribe(Trigger);
         }
 
         protected virtual void OnDrawGizmosSelected()

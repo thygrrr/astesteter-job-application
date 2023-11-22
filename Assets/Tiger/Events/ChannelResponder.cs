@@ -39,14 +39,14 @@ namespace Tiger.Events
 
         protected sealed override void OnEnable()
         {
-            channel.subscribers.AddListener(Trigger);
+            channel.Subscribe(Trigger);
             OnEnableOverride();
         }
 
         protected sealed override void OnDisable()
         {
             OnDisableOverride();
-            if (channel) channel.subscribers.RemoveListener(Trigger);
+            if (channel) channel.Unsubscribe(Trigger);
         }
 
         private void OnDrawGizmosSelected()

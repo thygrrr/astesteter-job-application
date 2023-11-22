@@ -9,21 +9,46 @@ using Object = UnityEngine.Object;
 namespace Tiger.Events
 {
     [CreateAssetMenu(fileName="New (void) Channel", menuName="Event/(void) Channel", order=0)]
+    [Icon("Assets/Tiger/Events/Editor/Icons/channel.png")]
     public class Channel : ScriptableObject
     {
         [SerializeField]
         private DebugSettings debugSettings;
         
         [NonSerialized]
-        public readonly UnityEvent subscribers = new UnityEvent();
-        
+        private readonly UnityEvent _subscriptions = new();
+
+        /// <summary>
+        /// Subscribe to this channel.
+        /// </summary>
+        /// <param name="action">callback that will be invoked on Emit</param>
+        public void Subscribe(UnityAction action)
+        {
+            _subscriptions.AddListener(action);
+        }
+
+        /// <summary>
+        /// Unsubscribe from this channel.
+        /// </summary>
+        /// <param name="action">the callback to remove</param>
+        public void Unsubscribe(UnityAction action)
+        {
+            _subscriptions.RemoveListener(action);
+        }
+
+
+        // ReSharper disable Unity.PerformanceAnalysis
+        /// <summary>
+        /// Emit a value on this channel. All subscriber actions will be invoked with the value.
+        /// </summary>
+        /// <param name="context">UnityEngine.Object that become the potential Debut console highlight cuplrit.</param>
         public void Emit(Object context = null)
         {
             if (debugSettings.enabled)
             {
                 debugSettings.Log($"<b>EVENT</b> {name}", context != null ? context : this);
             }
-            subscribers.Invoke();
+            _subscriptions.Invoke();
         }
     }
 }

@@ -3,7 +3,6 @@
 using Features.Space;
 using Unity.Mathematics;
 using UnityEngine;
-using Tiger.Util;
 
 namespace Features.Game
 {
@@ -33,16 +32,6 @@ namespace Features.Game
         private void OnTransformChildrenChanged() => SetUpBounds();
         
         #endregion
-
-        #region Editor Events 
-
-        protected void OnValidate()
-        {
-            if (gameObject.IsAsset()) return;
-            if (!GetComponentInParent<WorldBounds>()) Log.Error("No WorldBounds found in parent hierarchy!", this);
-        }
-
-        #endregion
         
         private void Wrap()
         {
@@ -56,7 +45,7 @@ namespace Features.Game
         
         private void SetUpBounds()
         {
-            _worldBounds = GetComponentInParent<WorldBounds>();
+            _worldBounds = GetComponentInParent<WorldBounds>();            
             
             var renderBounds = new Bounds();
             foreach (var r in GetComponentsInChildren<Renderer>())

@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: hitPoints
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -82,6 +82,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2030479936859480064, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: maxDisplacement
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minDisplacement
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantsToSpawn

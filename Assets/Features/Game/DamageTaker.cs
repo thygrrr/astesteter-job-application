@@ -26,7 +26,7 @@ namespace Features.Game
             _renderer = GetComponentInChildren<MeshRenderer>();
             _tween = new ColorTween
             {
-                from = Color.white,
+                from = Color.red,
                 to = Color.black,
                 duration = 0.2f,
                 onUpdate = (_, value) => _renderer.material.SetColor(emission, value)

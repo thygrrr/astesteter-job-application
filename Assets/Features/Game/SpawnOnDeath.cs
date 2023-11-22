@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 
 using System.Collections.Generic;
+using Tiger.Events;
 using Tiger.Util;
 using Unity.Mathematics;
 using UnityEngine;
@@ -19,6 +20,12 @@ namespace Features.Game
         [SerializeField] private float minDisplacement = 0;
         [SerializeField] private float maxDisplacement = 0;
 
+        // NB, with the new coordinate system, this is always at origin.
+        // otherwise, we can read the player position from the appropriate channel
+        // (using DataChannel<T>.value, not a subscription).
+        private Vector3 playerPosition => Vector3.zero; 
+        
+        [Header("Remnants")]
         [SerializeField]
         private List<GameObject> remnantPrefabs;
         
@@ -26,12 +33,16 @@ namespace Features.Game
         {
             for (var i = 0; i < remnantsToSpawn; i++)
             {
-                //FIXME: Add planar random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
-                var length = math.remap(0, 1, minDisplacement, maxDisplacement, Random.value);
-                var direction = math.remap(0, 1, -1, 1, new float3(Random.value, 0, Random.value));
-                var displacement = math.normalize(direction) * length;
+                //TODO: Add planar & mapped random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
 
-                var position = transform.position + (Vector3) displacement ;
+                //Split perpendicular to player direction. Nobody wants an Asteroid to the face if they can help it.
+                var length = maxDisplacement * Random.value + minDisplacement;
+
+                var direction = Vector3.Normalize(transform.position - playerPosition);
+                var ccw = i % 2 == 0 ? Vector3.up : Vector3.down;
+                var displacement = Vector3.Cross(direction, ccw) * length; 
+                
+                var position = transform.position + displacement ;
                 var rotation = randomizeRotation ? Random.rotationUniform : Quaternion.identity;
                 
                 Instantiate(remnantPrefabs.Pick(), position, rotation, transform.parent);

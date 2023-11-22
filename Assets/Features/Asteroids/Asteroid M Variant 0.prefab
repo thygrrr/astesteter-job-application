@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: hitPoints
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -94,6 +94,16 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
+      propertyPath: maxDisplacement
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minDisplacement
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
       propertyPath: remnantsToSpawn
       value: 2
       objectReference: {fileID: 0}
@@ -154,21 +164,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid M Variant 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -281,15 +276,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4821198073135640, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4821198073135640, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4821198073135640, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4821198073135640, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
       propertyPath: m_LocalPosition.x

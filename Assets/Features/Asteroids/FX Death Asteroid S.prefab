@@ -141,6 +141,7 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   minOwnVelocity: 0
   maxOwnVelocity: 0
+  lookPosition: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
 --- !u!4 &1482171667925965941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4777118128875248, guid: fb2dbd343895b6c47888986bf91da33c,
@@ -159,17 +160,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Fire_Explosion_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1809022330002312, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4150649967365504, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4150649967365504, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4150649967365504, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4150649967365504, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -215,10 +220,40 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198192500169632356, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198192500169632356, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
         type: 3}
       propertyPath: moveWithTransform
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198212443826252400, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 199019332059290098, guid: ed511b7776af6174e9b1255c7a81e59c,
         type: 3}

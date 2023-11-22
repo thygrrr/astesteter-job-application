@@ -17,12 +17,12 @@ namespace Tiger.Events
 
         private void Awake()
         {
-            channel.subscribers.AddListener(Trigger);
+            channel.Subscribe(Trigger);
         }
 
-        private void OnDestroy()
+        private void Unsubscribe()
         {
-            if(channel) channel.subscribers.RemoveListener(Trigger);
+            if(channel) channel.Unsubscribe(Trigger);
         }
 
         // Triggered when the event(s) happen.
