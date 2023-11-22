@@ -1,6 +1,5 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
-using UnityEditor;
 using UnityEngine;
 
 namespace Tiger.Events
@@ -49,19 +48,24 @@ namespace Tiger.Events
             if (channel) channel.Unsubscribe(Trigger);
         }
 
+#if UNITY_EDITOR
+#if TIGER_ALWAYS_SHOW_GIZMOS
+        private void OnDrawGizmos()
+#else
         private void OnDrawGizmosSelected()
+#endif
         {
             if (channel)
             {
                 //Handles.matrix = SceneView.currentDrawingSceneView.camera.worldToCameraMatrix;
-                Handles.Label(Handles.matrix * transform.position, $"→{channel.name}");
+                UnityEditor.Handles.Label(UnityEditor.Handles.matrix * transform.position, $"→{channel.name}");
             }
             else
             {
-                Handles.Label(transform.position, "not subscribed");
+                UnityEditor.Handles.Label(transform.position, "not subscribed");
             }
         }
-
+#endif
         protected virtual void OnValidate()
         {
             if (!channel) Debug.LogWarning($"ChannelResponder: Channel is not set on {this}", this);

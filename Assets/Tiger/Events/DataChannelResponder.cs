@@ -1,6 +1,5 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
-using UnityEditor;
 using UnityEngine;
 // ReSharper disable VirtualMemberNeverOverridden.Global
 
@@ -50,17 +49,23 @@ namespace Tiger.Events
             if (channel) channel.Unsubscribe(Trigger);
         }
 
+#if UNITY_EDITOR
+#if TIGER_ALWAYS_SHOW_GIZMOS
+        protected virtual void OnDrawGizmos()
+#else
         protected virtual void OnDrawGizmosSelected()
+#endif
         {
             if (channel)
             {
-                Handles.Label(Handles.matrix * transform.position, $"→{channel.name}");
+                UnityEditor.Handles.Label(UnityEditor.Handles.matrix * transform.position, $"→{channel.name}");
             }
             else
             {
-                Handles.Label(transform.position, "not subscribed");
+                UnityEditor.Handles.Label(transform.position, "not subscribed");
             }
         }
+#endif
 
         protected virtual void OnValidate()
         {

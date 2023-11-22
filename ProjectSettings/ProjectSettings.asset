@@ -812,7 +812,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: 
+    Standalone: TIGER_ALWAYS_SHOW_GIZMOS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
