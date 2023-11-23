@@ -1,11 +1,15 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Tiger.Events.Concrete
 {
     [CreateAssetMenu(menuName = "Event/Basic/(Transform) Channel", fileName = "New (Transform) Channel", order = 0)]
-    public class TransformChannel : DataChannel<Transform>{};
+    [Preserve]
+    public sealed class TransformChannel : DataChannel<Transform>
+    {
+    }
 }
 
 /*

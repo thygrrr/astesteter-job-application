@@ -2,9 +2,11 @@
 
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Tiger.Events
 {
+    [Preserve]
     public abstract class DataChannelEmitter<TChannel, T> : MonoBehaviour where TChannel : DataChannel<T>
     {
         [SerializeField]

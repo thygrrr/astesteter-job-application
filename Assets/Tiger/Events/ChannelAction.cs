@@ -3,10 +3,12 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Scripting;
 
 namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
+    [Preserve]
     public sealed class ChannelAction : MonoBehaviour
     {
         [SerializeField]

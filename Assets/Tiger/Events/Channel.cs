@@ -4,12 +4,14 @@ using System;
 using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
 {
     [CreateAssetMenu(fileName="New (void) Channel", menuName="Event/(void) Channel", order=0)]
     [Icon("Assets/Tiger/Events/Editor/Icons/channel.png")]
+    [Preserve]
     public class Channel : ScriptableObject
     {
         [SerializeField]

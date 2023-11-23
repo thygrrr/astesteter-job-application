@@ -127,7 +127,12 @@ namespace Loggers
         public static Color TagColor = Color.white;
 
         // We want this exact behaviour here - a new field for every specialized type
+#if UNITY_EDITOR 
         private static string Tag => HyperTag;
+#else
+        private static string Tag => ShortTag;
+#endif
+        
         private static string ShortTag => $"<color={TagColor}>{typeof(T).Name}</color>";
 
         private static readonly string FullTag = typeof(T).FullName;

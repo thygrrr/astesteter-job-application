@@ -2,12 +2,15 @@
 
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
 // ReSharper disable once UnusedMember.Global
+
 namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/sender.png")]
+    [Preserve]
     public class ChannelEmitter : MonoBehaviour
     {
         [SerializeField]

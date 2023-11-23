@@ -1,11 +1,15 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Tiger.Events.Concrete
 {
     [CreateAssetMenu(menuName = "Event/Basic/(float) Channel", fileName = "New (float) Channel", order = 0)]
-    public class FloatChannel : DataChannel<float>{};
+    [Preserve]
+    public sealed class FloatChannel : DataChannel<float>
+    {
+    }
 }
 
 /*

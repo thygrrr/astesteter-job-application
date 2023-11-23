@@ -1,11 +1,14 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
 using UnityEngine;
+using UnityEngine.Scripting;
+
 // ReSharper disable VirtualMemberNeverOverridden.Global
 
 namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
+    [Preserve]
     public abstract class DataChannelResponder<TChannel, T> : SealableEnableDisableBehaviour where TChannel : DataChannel<T>
     {
         [SerializeField] protected TChannel channel;

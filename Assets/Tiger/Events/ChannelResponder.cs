@@ -1,10 +1,12 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/responder.png")]
+    [Preserve]
     public abstract class ChannelResponder : SealableEnableDisableBehaviour
     {
         [SerializeField] private Channel channel;

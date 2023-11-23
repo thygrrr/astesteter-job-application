@@ -6,11 +6,13 @@ using System.IO;
 using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/channel.png")]
+    [Preserve]
     public class DataChannel<T> : ScriptableObject
     {
         [SerializeField] private DebugSettings debugSettings;
