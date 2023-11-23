@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 7739022710094453239, guid: 3eba0e3c0be7f2448a4566978ff3e634,
         type: 3}
       propertyPath: m_Name
-      value: Parallax Objects Variant
+      value: Parallax Objects Variant 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -130,6 +130,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23286015943937414, guid: 4dc1eed87ce43e2419c218dea9ba7998,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07b518e4a3109b243b9a1838a848f1e5, type: 2}
     m_RemovedComponents:
     - {fileID: 64478384509546232, guid: 4dc1eed87ce43e2419c218dea9ba7998, type: 3}
     m_RemovedGameObjects: []
