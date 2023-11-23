@@ -35,7 +35,7 @@ Material:
     - _Metallic: 0.2
     - _QueueControl: 0
     - _Smoothness: 0.2
-    - _TransitionWidth: 5
+    - _TransitionWidth: 3
     m_Colors:
     - _Albedo_Tint: {r: 2, g: 2, b: 2, a: 1}
   m_BuildTextureStacks: []
