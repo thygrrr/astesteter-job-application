@@ -7,33 +7,36 @@ using UnityEngine;
 
 namespace Features.Motion
 {
-    using Log = Loggers.Create<IntegratePositionAndRotation>;
+    using Log = Loggers.Create<IntegrateRigidBodyPositionAndRotation>;
 
-    public class IntegratePositionAndRotation : ProvideIntegration
+    [RequireComponent(typeof(Rigidbody))]
+    public class IntegrateRigidBodyPositionAndRotation : ProvideIntegration
     {
         [Header("World-Relative Motion")] [SerializeField]
         private float velocityScale = 1;
 
         [SerializeField] private float spawnInheritVelocityFactor = 1;
         
+        private Rigidbody _body;
+        
         protected override void OnEvent(Vector3 data) => _worldVelocity = data;
         
-        #region Unity Events
-
         private void Awake()
         {
+            _body = GetComponent<Rigidbody>();
             _worldVelocity = channel.value * spawnInheritVelocityFactor;
         }
 
-        private void LateUpdate()
+        private void FixedUpdate() //sic - we're using physics with dynamic update (see Project Settings -> Physics)
         {
-            transform.GetPositionAndRotation(out var position, out var rotation);
+            var position = _body.position;
+            var rotation = _body.rotation;
+
             position = (float3) position + (_worldVelocity + _velocity) * velocityScale * Time.deltaTime;
             rotation *= math.slerp(quaternion.identity, _angular, Time.deltaTime);
 
-            transform.SetPositionAndRotation(position, rotation);
+            _body.MovePosition(position);
+            _body.MoveRotation(rotation);
         }
-
-        #endregion
     }
 }

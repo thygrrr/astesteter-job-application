@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 namespace Features.Enemies
 {
     [RequireComponent(typeof(IntegratePositionAndRotation))]
-    public class RandomZigZagCourse : ProvideLinearVelocity
+    public class RandomZigZagCourse : ProvideVelocityLinear
     {
         [SerializeField] [Tooltip("The velocity range of the Object.")]
         private float2 minMaxSpeed = new(30, 50);

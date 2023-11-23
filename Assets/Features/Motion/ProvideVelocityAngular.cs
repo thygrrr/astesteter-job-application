@@ -4,7 +4,7 @@ namespace Features.Motion
 {
     [RequireComponent(typeof(IntegratePositionAndRotation))]
     [DisallowMultipleComponent]
-    public abstract class ProvideAngularVelocity : MonoBehaviour
+    public abstract class ProvideVelocityAngular : MonoBehaviour
     {
         [field: SerializeField]
         protected IntegratePositionAndRotation integrator { get; private set; }

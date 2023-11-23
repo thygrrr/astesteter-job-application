@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 6440213632360126628}
   - component: {fileID: -1732286145749265111}
   - component: {fileID: -7634380173890113765}
-  - component: {fileID: 492115438494958186}
   - component: {fileID: -1556500202868959697}
-  - component: {fileID: 4533686007507119777}
+  - component: {fileID: 2720455174774360890}
   - component: {fileID: -8410473259715173258}
   m_Layer: 25
   m_Name: Laser (Enemy)
@@ -101,25 +100,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 1
---- !u!114 &492115438494958186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2868303231184607814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad3b0b5f2582e545918b3e8ac1c5597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
-  velocityScale: 1
-  spawnInheritVelocityFactor: 1
 --- !u!114 &-1556500202868959697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wrapPadding: 0
---- !u!114 &4533686007507119777
+--- !u!114 &2720455174774360890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,14 +126,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2868303231184607814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5c0e180caf4b148a54eaffde824329, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cb1bfc537e9eac4da4dc7bb729d6a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <integrator>k__BackingField: {fileID: 492115438494958186}
   initialVelocity:
     x: 0
     y: 0
-    z: 70
+    z: 75
 --- !u!114 &-8410473259715173258
 MonoBehaviour:
   m_ObjectHideFlags: 0

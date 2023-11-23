@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace Features.Motion
 {
     [RequireComponent(typeof(IntegratePositionAndRotation))]
-    public class RandomInitialLinearVelocityPerpendicularToPlayer : ProvideLinearVelocity
+    public class RandomInitialVelocityLinearPerpendicularToPlayer : ProvideVelocityLinear
     {
         [SerializeField] [Tooltip("The velocity range of the Object.")]
         private float2 minMaxSpeed = new(0, 0);

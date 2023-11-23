@@ -4,15 +4,14 @@ using Random = UnityEngine.Random;
 
 namespace Features.Motion
 {
-    [RequireComponent(typeof(Rigidbody))]
-    public class SpecificRigidBodyInitialLinearVelocity : ProvideLinearVelocity
+    public class SpecificInitialVelocityLinear : ProvideVelocityLinear
     {
         [SerializeField] [Tooltip("The velocity the Object (local space).")]
         private float3 initialVelocity;
 
         private void Start()
         {
-            GetComponent<Rigidbody>().velocity = transform.TransformDirection(initialVelocity);
+            integrator.velocity = transform.TransformDirection(initialVelocity);
         }
     }
 }

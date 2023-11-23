@@ -2,19 +2,19 @@ using UnityEngine;
 
 namespace Features.Motion
 {
-    [RequireComponent(typeof(IntegratePositionAndRotation))]
+    [RequireComponent(typeof(ProvideIntegration))]
     [DisallowMultipleComponent]
-    public abstract class ProvideLinearVelocity : MonoBehaviour
+    public abstract class ProvideVelocityLinear : MonoBehaviour
     {
         [field: SerializeField]
-        protected IntegratePositionAndRotation integrator { get; private set; }
+        protected ProvideIntegration integrator { get; private set; }
 
         /// <summary>
         /// Trying this pattern now, to avoid having to use the sealable pattern which is very restrictive.
         /// </summary>
         private void OnValidate()
         {
-            integrator = GetComponent<IntegratePositionAndRotation>();            
+            integrator = GetComponent<ProvideIntegration>();            
         }
     }
 }

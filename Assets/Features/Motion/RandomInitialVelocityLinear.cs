@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Features.Motion
 {
-    public class RandomInitialLinearVelocity : ProvideLinearVelocity
+    public class RandomInitialVelocityLinear : ProvideVelocityLinear
     {
         [SerializeField] [Tooltip("The velocity range of the Object.")]
         private float2 minMaxSpeed = new(30, 50);
