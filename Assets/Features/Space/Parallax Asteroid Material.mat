@@ -47,6 +47,7 @@ Material:
     m_Floats:
     - _Metallic: 0.3
     - _QueueControl: 0
+    - _TransitionWidth: 20
     m_Colors:
     - _Albedo_Tint: {r: 0.3255162, g: 0.51616013, b: 0.7264151, a: 0}
     - _Glow_Color: {r: 0, g: 3.4258614, b: 0.35800028, a: 0}

@@ -5064,7 +5064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9d74a7f98ce974db4b636520f704a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 300, y: 50, z: 300}
+  size: {x: 300, y: 70, z: 300}
   globalExtentsParameter: _ParallaxWorldExtents
   globalOriginParameter: _ParallaxWorldOrigin
   gizmoColor: {r: 0, g: 0.3888532, b: 0.4811321, a: 1}
