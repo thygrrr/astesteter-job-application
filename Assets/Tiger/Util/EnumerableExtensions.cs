@@ -1,26 +1,28 @@
-﻿using System.Collections.Generic;
+﻿//SPDX-License-Identifier: Unlicense
+
+using System.Collections.Generic;
 
 namespace Tiger.Util
 {
 	public static class EnumerableExtensions
 	{
-		
-	/// <summary>
-	/// Wraps any object into an IEnumerable containing only itself.
-	/// Use only where you can't use a getter with yield return directly.
-	/// Example: The single item may be null and is to be returned as an IEnumerable in a property.
-	/// But the IEnumerable mustn't contain null values, and should be empty instead.
-	/// </summary>
-	/// <typeparam name="T"> Desired type of the object (must be assignableTo) </typeparam>
-	/// <param name="item"> The instance that will be wrapped. </param>
-	/// <returns> An IEnumerable&lt;T&gt; consisting of just the one item.</returns>
-	public static IEnumerable<T> YieldNotNull<T>(this T item)
-	{
-		if (item != null)
+
+		/// <summary>
+		/// Wraps any object into an IEnumerable containing only itself.
+		/// Use only where you can't use a getter with yield return directly.
+		/// Example: The single item may be null and is to be returned as an IEnumerable in a property.
+		/// But the IEnumerable mustn't contain null values, and should be empty instead.
+		/// </summary>
+		/// <typeparam name="T"> Desired type of the object (must be assignableTo) </typeparam>
+		/// <param name="item"> The instance that will be wrapped. </param>
+		/// <returns> An IEnumerable&lt;T&gt; consisting of just the one item.</returns>
+		public static IEnumerable<T> YieldNotNull<T>(this T item)
 		{
-			yield return item;			
+			if (item != null)
+			{
+				yield return item;
+			}
 		}
-	}
 	}
 }
 

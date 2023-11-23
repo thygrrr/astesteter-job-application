@@ -54,7 +54,7 @@ namespace Tiger.Util
             return a;
         }
 
-        /// <summary>Creates a fully random permutation.</summary>
+        /// <summary>Creates a fully random permutation. (Fisher-Yates Shuffle)</summary>
         public static void Shuffle<T>(this IList<T> list)
         {
             //Fisher-Yates Algorithm
@@ -66,10 +66,9 @@ namespace Tiger.Util
             }
         }
 
-        /// <summary>Creates a derangement, i.e. a permutation with each element in a new position</summary>
+        /// <summary>Creates a derangement, i.e. a permutation with each element in a new position. (Sattolo's Algorithm)</summary>
         public static void Derange<T>(this IList<T> list)
         {
-            //Sattolo's Algorithm
             var n = list.Count;
             for (var i = 0; i < n - 1; i++)
             {

@@ -6,6 +6,7 @@ using Tiger.Events.Concrete;
 using Tiger.Swizzles;
 using Tiger.Util;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Features.Enemies
@@ -17,6 +18,9 @@ namespace Features.Enemies
         [SerializeField]
         private GameObject[] ufoPrefabs;
 
+        [SerializeField]
+        private float graceTimer = 3f;
+        
         private WorldBounds _world;
         private GameObject _ufo;
 
@@ -31,7 +35,8 @@ namespace Features.Enemies
             {
                 //Wait until ufo has de-spawned (been destroyed)
                 yield return new WaitUntil(() => !_ufo);
-                
+                yield return new WaitForSeconds(graceTimer);
+                    
                 var spawnRange = _world.bounds.size._x0z();
                 var spawnCenter = _world.bounds.center;
                 Vector3 spawnXZ = Random.insideUnitCircle.normalized._x0y() * 2 * spawnRange;
