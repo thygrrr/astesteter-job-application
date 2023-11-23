@@ -719,10 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9d74a7f98ce974db4b636520f704a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 100, y: 40, z: 100}
   driveGlobalShader: 1
+  size: {x: 200, y: 50, z: 200}
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &533207221
 GameObject:
@@ -3735,11 +3733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9d74a7f98ce974db4b636520f704a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 50, y: 50, z: 50}
   driveGlobalShader: 0
-  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  size: {x: 100, y: 100, z: 100}
+  gizmoColor: {r: 0, g: 0.18867922, b: 0.1737679, a: 1}
 --- !u!1001 &8901315001506614874
 PrefabInstance:
   m_ObjectHideFlags: 0

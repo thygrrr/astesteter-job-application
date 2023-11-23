@@ -39,8 +39,7 @@ namespace Features.Player
 
         private void Awake()
         {
-            _world = GetComponentInParent<WorldBounds>() ?? FindAnyObjectByType<WorldBounds>();
-            
+            _world = GetComponentInParent<WorldBounds>();
         }
 
         private void OnEnable()
