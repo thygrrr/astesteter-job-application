@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameState
   m_EditorClassIdentifier: 
   debugSettings: {fileID: 11400000, guid: 74e2965c2e24e734cb4611ed3fed150a, type: 2}
+  onValueReadBeforeFirstWrite: 3

@@ -17,8 +17,7 @@ namespace Tiger.Events
 
         [SerializeField] private DefaultValueBehaviour onValueReadBeforeFirstWrite;
 
-        [NonSerialized]
-        private readonly UnityEvent<T> _subscriptions = new();
+        [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
 
         private T _value;
 
@@ -63,32 +62,53 @@ namespace Tiger.Events
         }
 
 
-    private T HandleUninitializedRead()
-    {
-        switch (onValueReadBeforeFirstWrite)
+        private T HandleUninitializedRead()
         {
-            case DefaultValueBehaviour.ThrowException:
-                throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} accessed before first Emit()");
+            switch (onValueReadBeforeFirstWrite)
+            {
+                case DefaultValueBehaviour.ThrowException:
+                    throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} accessed before first Emit()");
 
-            case DefaultValueBehaviour.LogError:
-                Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
-                return default;
+                case DefaultValueBehaviour.LogError:
+                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
+                    return default;
 
-            case DefaultValueBehaviour.LogWarning:
-                Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
-                return default;
+                case DefaultValueBehaviour.LogWarning:
+                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
+                    return default;
 
-            case DefaultValueBehaviour.ReturnDefaultValueForType:
-                return default;
+                case DefaultValueBehaviour.ReturnDefaultValueForType:
+                    return default;
 
-            default:
-                throw new ArgumentOutOfRangeException();
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+
+        private void OnEnable()
+        {
+            Debug.Log($"DataChannel<{typeof(T).Name}> {name} initializing", this);
+            _subscriptions.RemoveAllListeners();
+            _value = default;
+        }
+
+        /// <summary>
+        /// For better compatibility with enter edit mode options and other things that keep objects alive across plays.
+        /// </summary>
+        [RuntimeInitializeOnLoadMethod]
+        private static void RuntimeInitializer()
+        {
+            Debug.Log("RuntimeInitializeOnLoadMethod");
+            var channels = FindObjectsByType<DataChannel<T>>(FindObjectsSortMode.None);
+            foreach (var channel in channels)
+            {
+                channel._subscriptions.RemoveAllListeners();
+                
+            }
         }
     }
 
-
-    }
-    
     internal enum DefaultValueBehaviour
     {
         ThrowException = default,

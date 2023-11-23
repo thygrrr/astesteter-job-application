@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1639891835088740, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
       propertyPath: m_Name
-      value: Player Death FX
+      value: Ship Death FX
       objectReference: {fileID: 0}
     - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
       propertyPath: m_LocalPosition.x

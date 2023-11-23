@@ -1,5 +1,6 @@
 using Channels.Concrete;
 using Feature.Ui;
+using Tiger.Events;
 using Tiger.Events.Concrete;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,6 +70,10 @@ namespace Features.Player
             Debug.Logger.filterLogType = LogType.Warning;
             _camera = Camera.main;
             forwardFx.SetActive(false);
+            
+            //This channel is special and must be readable before first emit (see channel object)
+            //This allows us to resume with whatever velocity the system had before we spawned.
+            _velocity = -velocityChannel.value;
         }
 
         private void Update()

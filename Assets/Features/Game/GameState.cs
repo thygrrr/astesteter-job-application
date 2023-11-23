@@ -3,10 +3,10 @@
 namespace Features.Game
 {
     public enum GameState
-    { 
-        Menu,
+    {
+        Ready = default,
         Spawning,
         Alive,
-        Dead,
+        Epitaph,
     }
 }

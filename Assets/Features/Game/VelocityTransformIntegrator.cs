@@ -13,9 +13,13 @@ namespace Features.Game
     {
         [SerializeField] 
         private float minOwnVelocity;
-        
-        [SerializeField] 
+
+        [SerializeField]        
         private float maxOwnVelocity;
+
+
+        [SerializeField]        
+        private float spawnInheritVelocityFactor = 1;
 
         private float3 _ownVelocity;
         private float3 _worldVelocity;
@@ -31,7 +35,7 @@ namespace Features.Game
         
         private void Start()
         {
-            _worldVelocity = channel.value;
+            _worldVelocity = channel.value * spawnInheritVelocityFactor;
             
             if (maxOwnVelocity == 0 && minOwnVelocity == 0) return;
             

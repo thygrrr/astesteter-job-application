@@ -1,13 +1,12 @@
-using Channels.Concrete;
 using Feature.Ui;
 using Features.Game;
-using Tiger.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Features.Player
 {
-    public class PlayerSpawner : DataChannelEmitter<GameStateChannel, GameState>
+    using Log = Loggers.Create<PlayerSpawner>;
+    public class PlayerSpawner : GameStateEmitter
     {
         [SerializeField]
         private GameObject playerPrefab;
@@ -20,15 +19,29 @@ namespace Features.Player
         {
             _input = new GameInputActions();
             _input.UI.Spawn.performed += SpawnPlayer;
+            _input.UI.Enable();
+            
+            channel.Subscribe(OnExternalStateChange);
         }
 
-        protected void OnEnable() => _input?.UI.Enable();
+        private void OnExternalStateChange(GameState state)
+        {
+            if (state == GameState.Ready) _input.UI.Enable();
+            else _input.UI.Disable();
+        }
 
-        protected void OnDisable() => _input?.UI.Disable();
 
+        protected void OnDestroy()
+        {
+            _input.UI.Disable();
+        }
+
+        
         private void SpawnPlayer(InputAction.CallbackContext ctx)
         {
             if (_player) return;
+            Log.Info($"Spawn requested in state {channel.value}");
+            
             _player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity, transform.parent);
             _player.name = _player.name.Split("(Clone)")[0];
             Emit(GameState.Spawning);

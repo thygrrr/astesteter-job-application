@@ -54,9 +54,6 @@ namespace Features.Player
                     _input.Enable();
                     break;
                 
-                case GameState.Dead:
-                case GameState.Spawning:
-                case GameState.Menu:
                 default:
                     _input.Disable();
                     break;

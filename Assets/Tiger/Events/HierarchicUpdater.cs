@@ -63,7 +63,6 @@ namespace Tiger.Events
 
         private void SetUpChildren()
         {
-            print("Setup Children" + Time.time);
             GetComponentsInChildren(_children);
             if (updateMode == UpdateMode.BottomUp) _children.Reverse();
         }
