@@ -31,7 +31,7 @@ namespace Features.Game
             } 
         }
 
-        private void Start()
+        private void Awake()
         {
             _worldVelocity = channel.value * spawnInheritVelocityFactor;
         }

@@ -24,10 +24,10 @@ namespace Features.Asteroids
             var direction = math.normalizesafe(lookDirection.value);
             
             //"Best" effort to make motion of newly spawned object perpendicular to player direction.
-            var ccwUpDown = Vector3.Cross(planar, direction);
-            var perpendicular = Vector3.Cross(direction, ccwUpDown);
-
-            var magnitude = math.remap(0, 1, minMaxSpeed.x, minMaxSpeed.y, Random.value);
+            var ccwUpDown = Vector3.Cross(planar, direction).normalized;
+            var perpendicular = Vector3.Cross(direction, ccwUpDown).normalized;
+            
+            var magnitude = math.lerp(minMaxSpeed.x, minMaxSpeed.y, Random.value);
             var velocity = perpendicular * magnitude;
 
             integrator.ownVelocity = velocity;
