@@ -23,8 +23,7 @@ namespace Features.Enemies
                 var towardsPlayer = Vector3.zero-(position + (Vector3) Random.onUnitSphere._x0z() * accuracy).normalized;
                 var rotation = Quaternion.LookRotation(towardsPlayer, Vector3.up);
                 
-                var laser = Instantiate(laserPrefab, position, rotation, transform.parent);
-                laser.velocity = laser.transform.forward * muzzleVelocity;
+                Instantiate(laserPrefab, position, rotation, transform.parent);
             }
         }
     }

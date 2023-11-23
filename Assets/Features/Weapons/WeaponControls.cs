@@ -23,7 +23,6 @@ namespace Features.Player
         [Header("Guns, Guns, Guns")] [SerializeField]
         private Rigidbody bulletPrefab;
 
-        [SerializeField] private float muzzleVelocity = 100;
         [SerializeField] private int clipSize = 4; // Our 1979 ancestor had 4 shots
         [SerializeField] private float reloadTime = 1;
         [SerializeField] private float cycleTime = 0.05f;
@@ -94,8 +93,11 @@ namespace Features.Player
             _cycleTimer = cycleTime;
             _reloadTimer = reloadTime;
 
-            var bullet = Instantiate(bulletPrefab, transform.position, transform.rotation, _world.transform);
-            bullet.velocity = transform.forward * muzzleVelocity;
+            //Our ship may actually be facing outside the plane (because the body is so nimble)
+            //Let's ensure the player still shoots perfectly straight.
+            var planar = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+            var rotation = Quaternion.LookRotation(planar, Vector3.up);
+            Instantiate(bulletPrefab, transform.position, rotation, _world.transform);
 
             AddRecoilEffects();
             
