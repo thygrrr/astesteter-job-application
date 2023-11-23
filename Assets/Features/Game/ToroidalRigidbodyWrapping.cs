@@ -14,7 +14,7 @@ namespace Features.Game
         [Tooltip("This is used so small objects like bullets don't wrap too early, and so they can hit large, currently wrapping objects.")]
         [SerializeField] private float wrapPadding = 10f;
         
-        private WorldBounds _worldBounds;
+        private WorldBounds _world;
         private Rigidbody _body;
         private Bounds _wrapBounds;
 
@@ -39,8 +39,10 @@ namespace Features.Game
         
         private void SetUpBounds()
         {
-            _worldBounds = FindAnyObjectByType<WorldBounds>();
-            _wrapBounds = _worldBounds.bounds; 
+            _world = GetComponentInParent<WorldBounds>();
+            if (!_world) Log.Error("No world bounds found in parent!", this);
+            
+            _wrapBounds = _world.bounds; 
             //We're not using the render bounds because this component is for small, rigidbody objects.
             _wrapBounds.Expand(wrapPadding);
         }

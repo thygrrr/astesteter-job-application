@@ -15,11 +15,15 @@ namespace Features.Enemies
             while (Application.isPlaying)
             {
                 yield return new WaitForSeconds(Random.Range(2f, 4f));
-            
+
+                var position = transform.localPosition;
+
                 //Player is always at origin, but we could read the player position channel if needed.
-                var towardsPlayer = Vector3.zero-(transform.position + (Vector3) Random.onUnitSphere._x0z() * accuracy).normalized;
+                //That would require us to consider that a planar position, though. (e.g. swizzling _x0z, or otherwise)
+                var towardsPlayer = Vector3.zero-(position + (Vector3) Random.onUnitSphere._x0z() * accuracy).normalized;
                 var rotation = Quaternion.LookRotation(towardsPlayer, Vector3.up);
-                var laser = Instantiate(laserPrefab, transform.position, rotation, transform.parent);
+                
+                var laser = Instantiate(laserPrefab, position, rotation, transform.parent);
                 laser.velocity = laser.transform.forward * muzzleVelocity;
             }
         }

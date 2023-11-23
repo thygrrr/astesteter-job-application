@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.Space
 {
@@ -26,7 +25,7 @@ namespace Features.Space
 
         private void OnValidate()
         {
-            transform.position = default;
+            if (driveGlobalShader) transform.position = default;
         }
 
         private void OnDrawGizmos()

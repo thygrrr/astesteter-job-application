@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 
 using Features.Space;
+using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,8 +12,8 @@ namespace Features.Game
     [RequireComponent(typeof(VelocityTransformIntegrator))]
     public class ToroidalWrapping : MonoBehaviour
     {
-        private WorldBounds _worldBounds;
-        private Bounds _wrapBounds;
+        private WorldBounds _world;
+        private Vector3 _ownSize;
 
         private VelocityTransformIntegrator _integrator;
         
@@ -21,7 +22,7 @@ namespace Features.Game
         protected void Awake()
         {
             _integrator = GetComponent<VelocityTransformIntegrator>();
-            SetUpBounds();
+            DetermineOwnSize();
         }
 
         private void LateUpdate()
@@ -29,23 +30,31 @@ namespace Features.Game
             Wrap();   
         }
 
-        private void OnTransformChildrenChanged() => SetUpBounds();
+        private void OnTransformChildrenChanged() => DetermineOwnSize();
         
         #endregion
         
         private void Wrap()
         {
-            float3 position = transform.position;
+            var planar = transform.localPosition._x0z();
+            var origin = _world.bounds.center._x0z();
+            var wrapBounds = _world.bounds;
+            wrapBounds.Expand(_ownSize);
+            
+            var outOfBounds = !wrapBounds.Contains(planar);
+            var movingAway = math.any(_integrator.velocity * (planar-origin) > 0);
 
-            if (MovingAway() && OutOfBounds()) 
+            if (outOfBounds && movingAway)
             {
-                transform.position = _wrapBounds.center - (Vector3) position;
+                var wrapped = origin - planar;
+                wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
+                transform.localPosition = wrapped;
             }
         }
         
-        private void SetUpBounds()
+        private void DetermineOwnSize()
         {
-            _worldBounds = GetComponentInParent<WorldBounds>();            
+            _world = GetComponentInParent<WorldBounds>();            
             
             var renderBounds = new Bounds();
             foreach (var r in GetComponentsInChildren<Renderer>())
@@ -53,12 +62,7 @@ namespace Features.Game
                 renderBounds.Encapsulate(r.bounds);
             }
 
-            _wrapBounds = _worldBounds.bounds;
-            _wrapBounds.Expand(renderBounds.size);
+            _ownSize = new float3(math.cmax(renderBounds.size));
         }
-
-        private bool OutOfBounds() => !_wrapBounds.Contains(transform.position);
-
-        private bool MovingAway() => math.any(_integrator.velocity * transform.position > 0);
     }
 }

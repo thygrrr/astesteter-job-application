@@ -39,7 +39,10 @@ namespace Features.Player
 
         private void Awake()
         {
+            Log.TagColor = Color.red;
+            
             _world = GetComponentInParent<WorldBounds>();
+            if (!_world) Log.Error("No world bounds found in parent!", this);
         }
 
         private void OnEnable()
