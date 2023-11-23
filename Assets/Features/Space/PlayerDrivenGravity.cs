@@ -8,7 +8,9 @@ namespace Features.Space
     {
         protected override void OnEvent(Vector3 data)
         {
-         //Physics.gravity = data;   
+            #if !UNITY_2023_1_OR_NEWER
+            Physics.gravity = data; //Doesn't work with particles in Unity 2023. IKR?  
+            #endif
         }
     }
 }
