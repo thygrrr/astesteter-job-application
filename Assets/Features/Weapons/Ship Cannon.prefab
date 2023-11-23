@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a39f272c4777f43912a54f8d7beb7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonShake: 1
+  cannonShake: 0.5
   cannonFX:
   - {fileID: 635022945121764706}
   - {fileID: 8133299191690424836}
@@ -324,7 +324,6 @@ MonoBehaviour:
   ammoCountChannel: {fileID: 11400000, guid: 6b3b80b22de4b784c927361349bab64d, type: 2}
   bulletPrefab: {fileID: -7634380173890113765, guid: f2cdafe0a7b6b9b4fac0b7ea577ffe15,
     type: 3}
-  muzzleVelocity: 200
   clipSize: 5
   reloadTime: 0.7
   cycleTime: 0.1

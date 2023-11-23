@@ -130,7 +130,7 @@ namespace Features.Player
 
         private readonly FloatTween _recoil = new()
         {
-            from = 1,
+            from = 0.5f,
             to = 0,
             easeType = EaseType.SineInOut,
             duration = 0.8f,
