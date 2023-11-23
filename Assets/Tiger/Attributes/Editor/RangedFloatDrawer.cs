@@ -3,9 +3,9 @@ using Tiger.Audio;
 using UnityEditor;
 using UnityEngine;
 
-namespace Tiger.Util.Editor
+namespace Tiger.Attributes.Editor
 {
-    [CustomPropertyDrawer(typeof(RangedFloat), true)]
+    [CustomPropertyDrawer(typeof(Util.RangedFloat), true)]
     public class RangedFloatDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -26,9 +26,9 @@ namespace Tiger.Util.Editor
             var ranges = (MinMaxRangeAttribute[])fieldInfo.GetCustomAttributes(typeof (MinMaxRangeAttribute), true);
             if (ranges.Length > 0)
             {
-                rangeMin = ranges[0].Min;
-                rangeMax = ranges[0].Max;
-                step = ranges[0].Integer;
+                rangeMin = ranges[0].min;
+                rangeMax = ranges[0].max;
+                step = ranges[0].integer;
             }
 
             const float range_bounds_label_width = 40f;

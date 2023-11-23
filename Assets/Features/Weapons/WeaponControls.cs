@@ -13,7 +13,8 @@ namespace Features.Player
 
     public class WeaponControls : MonoBehaviour, GameInputActions.IWeaponActions
     {
-        [Header("Effects")] [SerializeField] private float cannonShake = 0.5f;
+        [Header("Effects")] 
+        [SerializeField] private float cannonShake = 0.5f;
         [SerializeField] private ParticleSystem[] cannonFX;
 
         [SerializeField] [Header("Channels")] private IntChannel ammoCountChannel;
@@ -25,6 +26,12 @@ namespace Features.Player
         [SerializeField] private int clipSize = 4; // Our 1979 ancestor had 4 shots
         [SerializeField] private float reloadTime = 1;
         [SerializeField] private float cycleTime = 0.05f;
+
+        [SerializeField] private AudioSource reloadAudio;
+        [SerializeField] private AudioSource servoAudio;
+        [SerializeField] private AudioSource[] mechAudios;
+        [SerializeField] private AudioSource[] shotAudios;
+        
         
         private int _bullets;
         private float _reloadTimer;
@@ -57,6 +64,8 @@ namespace Features.Player
             {
                 _bullets = clipSize;
                 ammoCountChannel.Emit(_bullets);
+                reloadAudio.Play();
+                servoAudio.Stop();
             }
         }
 
@@ -88,6 +97,16 @@ namespace Features.Player
             bullet.velocity = transform.forward * muzzleVelocity;
 
             AddRecoilEffects();
+            
+            if (!servoAudio.isPlaying) servoAudio.Play();
+            
+            var mech = mechAudios.Shift();
+            mech.pitch = Random.Range(0.95f, 1.05f);
+            mech.Play();
+            
+            var shot = shotAudios.Shift();
+            shot.pitch = Random.Range(0.95f, 1.05f);
+            shot.Play();
         }
 
         private void AddRecoilEffects()
@@ -108,7 +127,7 @@ namespace Features.Player
 
         private readonly FloatTween _recoil = new()
         {
-            from = 0.5f,
+            from = 1,
             to = 0,
             easeType = EaseType.SineInOut,
             duration = 0.8f,

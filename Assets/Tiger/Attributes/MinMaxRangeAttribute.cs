@@ -1,17 +1,18 @@
 ﻿using System;
 
-namespace Tiger.Audio
+namespace Tiger.Attributes
 {
     public class MinMaxRangeAttribute : Attribute
     {
         public MinMaxRangeAttribute(float min, float max, bool integer = false)
         {
-            Min = min;
-            Max = max;
-            Integer = integer;
+            this.min = min;
+            this.max = max;
+            this.integer = integer;
         }
-        public float Min { get; private set; }
-        public float Max { get; private set; }
-        public bool Integer { get; private set; }
+
+        public float min { get; private set; }
+        public float max { get; private set; }
+        public bool integer { get; private set; }
     }
 }

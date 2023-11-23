@@ -1,13 +1,14 @@
 using System.Collections;
 using Features.Game;
+using Features.Motion;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Features.Enemies
 {
-    [RequireComponent(typeof(VelocityTransformIntegrator))]
-    public class RandomZigZagCourse : VelocityProvider
+    [RequireComponent(typeof(IntegratePositionAndRotation))]
+    public class RandomZigZagCourse : ProvideLinearVelocity
     {
         [SerializeField] [Tooltip("The velocity range of the Object.")]
         private float2 minMaxSpeed = new(30, 50);
@@ -28,7 +29,7 @@ namespace Features.Enemies
 
         private void Update()
         {
-            integrator.ownVelocity = Vector3.SmoothDamp(integrator.ownVelocity, _velocityGoal, ref _velocityDerivative, zigZagLambda);
+            integrator.velocity = Vector3.SmoothDamp(integrator.velocity, _velocityGoal, ref _velocityDerivative, zigZagLambda);
         }
 
         private void SetRandomVelocityGoal()

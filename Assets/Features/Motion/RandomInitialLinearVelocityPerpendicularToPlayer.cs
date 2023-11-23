@@ -1,16 +1,13 @@
-using Features.Game;
 using Tiger.Events;
 using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Features.Asteroids
+namespace Features.Motion
 {
-    using Log = Loggers.Create<RandomInitialVelocitySplitAlongLookDirection>;
-
-    [RequireComponent(typeof(VelocityTransformIntegrator))]
-    public class RandomInitialVelocitySplitAlongLookDirection : VelocityProvider
+    [RequireComponent(typeof(IntegratePositionAndRotation))]
+    public class RandomInitialLinearVelocityPerpendicularToPlayer : ProvideLinearVelocity
     {
         [SerializeField] [Tooltip("The velocity range of the Object.")]
         private float2 minMaxSpeed = new(0, 0);
@@ -30,7 +27,7 @@ namespace Features.Asteroids
             var magnitude = math.lerp(minMaxSpeed.x, minMaxSpeed.y, Random.value);
             var velocity = perpendicular * magnitude;
 
-            integrator.ownVelocity = velocity;
+            integrator.velocity = velocity;
         }
     }
 }

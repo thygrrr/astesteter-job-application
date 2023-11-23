@@ -1,9 +1,10 @@
 //SPDX-License-Identifier: Unlicense
+
 using Features.Space;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Features.Game
+namespace Features.Motion
 {
     using Log = Loggers.Create<ToroidalWrapping>;
     

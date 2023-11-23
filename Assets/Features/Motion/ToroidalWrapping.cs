@@ -5,23 +5,21 @@ using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Features.Game
+namespace Features.Motion
 {
-    using Log = Loggers.Create<ToroidalWrapping>;
-
-    [RequireComponent(typeof(VelocityTransformIntegrator))]
+    [RequireComponent(typeof(IntegratePositionAndRotation))]
     public class ToroidalWrapping : MonoBehaviour
     {
         private WorldBounds _world;
         private Vector3 _ownSize;
 
-        private VelocityTransformIntegrator _integrator;
+        private IntegratePositionAndRotation _integrator;
         
         #region Event Functions
         
         protected void Awake()
         {
-            _integrator = GetComponent<VelocityTransformIntegrator>();
+            _integrator = GetComponent<IntegratePositionAndRotation>();
             DetermineOwnSize();
         }
 
@@ -42,7 +40,7 @@ namespace Features.Game
             wrapBounds.Expand(_ownSize);
             
             var outOfBounds = !wrapBounds.Contains(planar);
-            var movingAway = math.any(_integrator.velocity * (planar-origin) > 0);
+            var movingAway = math.any(_integrator.finalVelocity * (planar-origin) > 0);
 
             if (outOfBounds && movingAway)
             {
