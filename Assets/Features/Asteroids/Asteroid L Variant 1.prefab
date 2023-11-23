@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -4869385575592489912, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minMaxSpeed.y
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
