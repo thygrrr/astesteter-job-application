@@ -113,8 +113,9 @@ namespace Features.Player
             easeType = EaseType.SineInOut,
             duration = 0.8f,
             //gun rocks the entire ship ;) I know this is a feature envy smell but it's a fun effect.
-            //TODO: occasionally conflicts with other tweens, for example the SpawnProcedure.
+            //TODO: theoretically conflicts with other tweens, for example the SpawnProcedure.
             //(but these are exclusive to each other thanks to the game state, so no real life impact atm.)
+            //also, SpawnProcedure scales, and OnRecoilUpdate translates.
             onUpdate = OnRecoilUpdate,
         };
         

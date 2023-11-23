@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 673533523549355864}
   - component: {fileID: 1125441939815681602}
+  - component: {fileID: 7477117187613619619}
   m_Layer: 16
   m_Name: View & Collision
   m_TagString: Untagged
@@ -52,6 +53,19 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
   delay: 0.3
   duration: 1
+--- !u!114 &7477117187613619619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894595600606776992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61754a37547064245a54b66a42e33f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: {fileID: 11400000, guid: a048d1f43772fb44dba7341dfff5250d, type: 2}
 --- !u!1 &1205053143684739244
 GameObject:
   m_ObjectHideFlags: 0

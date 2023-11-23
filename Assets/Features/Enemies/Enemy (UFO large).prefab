@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 6800797124392699812}
   - component: {fileID: -6006301946353903810}
   - component: {fileID: -1679610644336912236}
+  - component: {fileID: -752938194630801106}
   m_Layer: 17
   m_Name: Enemy (UFO large)
   m_TagString: Untagged
@@ -118,6 +119,7 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   minOwnVelocity: 50
   maxOwnVelocity: 70
+  velocityScale: 1
   spawnInheritVelocityFactor: 1
   lookPosition: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
 --- !u!114 &6800797124392699812
@@ -167,6 +169,18 @@ MonoBehaviour:
   accuracy: 20
   laserPrefab: {fileID: -7634380173890113765, guid: de499a6bdacc5284a9854d4ad43b3007,
     type: 3}
+--- !u!114 &-752938194630801106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884740017198028425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d03d8d015715d4cbedd9604055ed44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5253528684113852031
 PrefabInstance:
   m_ObjectHideFlags: 0

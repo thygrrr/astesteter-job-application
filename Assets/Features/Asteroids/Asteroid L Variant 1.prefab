@@ -245,8 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remnantsToSpawn: 1
   randomizeRotation: 0
-  minDisplacement: 0
-  maxDisplacement: 0
+  minDisplacement: 10
+  maxDisplacement: 30
   remnantPrefabs:
   - {fileID: 8553846712806990112, guid: 7785600cae77a5246a7dd560bf17a7ce, type: 3}
 --- !u!1001 &2582342122149330713

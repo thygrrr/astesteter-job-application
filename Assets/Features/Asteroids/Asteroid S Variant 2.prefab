@@ -89,6 +89,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid S Variant 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_LocalPosition.x
