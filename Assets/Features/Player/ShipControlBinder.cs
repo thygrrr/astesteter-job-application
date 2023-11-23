@@ -50,6 +50,7 @@ namespace Features.Player
         {
             switch (state)
             {
+                case GameState.Spawning:
                 case GameState.Alive:
                     _input.Enable();
                     break;

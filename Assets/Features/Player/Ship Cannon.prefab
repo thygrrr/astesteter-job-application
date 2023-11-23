@@ -58,7 +58,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: -7634380173890113765, guid: f2cdafe0a7b6b9b4fac0b7ea577ffe15,
     type: 3}
   muzzleVelocity: 200
-  clipSize: 4
+  clipSize: 5
   reloadTime: 0.7
   cycleTime: 0.1
 --- !u!1001 &2341804772363735145
