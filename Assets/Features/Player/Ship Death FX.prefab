@@ -12,6 +12,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship Death FX
       objectReference: {fileID: 0}
+    - target: {fileID: 4032997962739020, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134864800526758, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147902080343762, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332486883202348, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -51,6 +79,53 @@ PrefabInstance:
     - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709739182390066, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833396739936386, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936717961521892, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198079425621425526, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198079425621425526, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423475508485240, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198423475508485240, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879530899962486, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879530899962486, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198951072478653594, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
