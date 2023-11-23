@@ -49,7 +49,7 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   minOwnVelocity: 5
   maxOwnVelocity: 5
-  velocityScale: 0.3
+  velocityScale: 0.5
   spawnInheritVelocityFactor: 1
   lookPosition: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
 --- !u!114 &7750148072198903434

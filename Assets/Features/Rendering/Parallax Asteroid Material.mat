@@ -48,5 +48,6 @@ Material:
     - _Metallic: 0.3
     - _QueueControl: 0
     m_Colors:
+    - _Albedo_Tint: {r: 0.3255162, g: 0.51616013, b: 0.7264151, a: 0}
     - _Glow_Color: {r: 0, g: 1.1702653, b: 1.5806491, a: 0}
   m_BuildTextureStacks: []
