@@ -7,6 +7,7 @@ using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
@@ -15,11 +16,18 @@ namespace Tiger.Events
     [Preserve]
     public class DataChannel<T> : ScriptableObject
     {
-        [SerializeField] private DebugSettings debugSettings;
-
-        [SerializeField] private DefaultValueBehaviour onValueReadBeforeFirstWrite;
-
         [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
+        
+        [Header("Initialization")] 
+        [SerializeField] [Tooltip("What to do when no data was written yet.")]
+        private DefaultReadbackBehaviour onValueReadBeforeFirstWrite;
+
+        [SerializeField] public T initializeWithValue;
+
+        [Header("Logs & Error Handling")] 
+        [SerializeField] [Tooltip("Debug Settings Asset")]
+        private DebugSettings debugSettings;
+
 
         private T _value;
 
@@ -68,19 +76,22 @@ namespace Tiger.Events
         {
             switch (onValueReadBeforeFirstWrite)
             {
-                case DefaultValueBehaviour.ThrowException:
+                case DefaultReadbackBehaviour.ThrowException:
                     throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} accessed before first Emit()");
 
-                case DefaultValueBehaviour.LogError:
+                case DefaultReadbackBehaviour.LogError:
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
                     return default;
 
-                case DefaultValueBehaviour.LogWarning:
+                case DefaultReadbackBehaviour.LogWarning:
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
                     return default;
 
-                case DefaultValueBehaviour.ReturnDefaultValueForType:
+                case DefaultReadbackBehaviour.ReturnDefault:
                     return default;
+                
+                case DefaultReadbackBehaviour.ReturnInitialValue:
+                    return initializeWithValue;
 
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -110,12 +121,13 @@ namespace Tiger.Events
         }
     }
 
-    internal enum DefaultValueBehaviour
+    internal enum DefaultReadbackBehaviour
     {
         ThrowException = default,
         LogError,
         LogWarning,
-        ReturnDefaultValueForType,
+        ReturnDefault,
+        ReturnInitialValue
     }
 }
 

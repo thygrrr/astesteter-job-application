@@ -14,7 +14,8 @@ namespace Tiger.Events
     [Preserve]
     public class Channel : ScriptableObject
     {
-        [SerializeField]
+        [Header("Logs & Error Handling")]        
+        [SerializeField] [Tooltip("Debug Settings Asset")]
         private DebugSettings debugSettings;
         
         [NonSerialized]

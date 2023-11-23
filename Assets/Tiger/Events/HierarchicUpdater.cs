@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Tiger.Events
 {
-    [Icon("Assets/Tiger/Events/Editor/Icons/syringe.png")]
+    [Icon("Assets/Tiger/Events/Editor/Icons/crown.png")]
     public sealed class HierarchicUpdater : MonoBehaviour
     {
         private enum UpdateMode

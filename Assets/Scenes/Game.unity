@@ -3956,6 +3956,7 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 01ddb001a65812d4a99c9eee3f9b3222, type: 2}
   ufoPrefabs:
   - {fileID: 6884740017198028425, guid: 9f22deb3e16d9f84db08b2d21e493928, type: 3}
+  graceTimer: 3
 --- !u!1001 &1446445655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5362,7 +5363,7 @@ Transform:
   m_GameObject: {fileID: 1961595150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
