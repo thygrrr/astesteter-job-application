@@ -89,5 +89,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <integrator>k__BackingField: {fileID: 9143820969549466995}
   minMaxSpeed:
-    x: 8
-    y: 16
+    x: 2
+    y: 6

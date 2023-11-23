@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxSpeed
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -155,6 +155,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.y
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}

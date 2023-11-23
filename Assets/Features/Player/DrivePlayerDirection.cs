@@ -1,8 +1,13 @@
 using Tiger.Events;
 using Tiger.Events.Concrete;
+using Tiger.Swizzles;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class DrivePlayerDirection : DataChannelEmitter<Vector3Channel, Vector3>
+namespace Features.Player
 {
-    void Update() => Emit(transform.forward);
+    public class DrivePlayerDirection : DataChannelEmitter<Vector3Channel, Vector3>
+    {
+        private void Update() => Emit(math.normalizesafe(transform.forward._x0z()));
+    }
 }

@@ -2,10 +2,8 @@
 
 using Tiger.Events;
 using Tiger.Events.Concrete;
-using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Features.Game
 {
@@ -45,5 +43,6 @@ namespace Features.Game
         }
 
         protected override void OnEvent(Vector3 data) => _worldVelocity = data;
+
     }
 }

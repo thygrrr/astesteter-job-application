@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -3637421490598022614, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minSpeed
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -3045249594538662202, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -154,6 +154,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid M Variant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.y
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}

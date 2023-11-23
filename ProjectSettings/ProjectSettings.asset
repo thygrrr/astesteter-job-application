@@ -814,6 +814,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Standalone: TIGER_ALWAYS_SHOW_GIZMOS
+    WebGL: TIGER_ALWAYS_SHOW_GIZMOS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
