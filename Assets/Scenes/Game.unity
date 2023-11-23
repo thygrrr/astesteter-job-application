@@ -2291,19 +2291,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1416694586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196c34e2b4ff9214593c59ae5b17c4fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f9d898f9d3ac494c9f9c7648beb15cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
-  asteroidPrefabs:
-  - {fileID: 8558332983021548899, guid: 71b7b4a8fc0356c4a95b886fa3a9b441, type: 3}
-  - {fileID: 8558332983021548899, guid: d51e621c11fd19f409d2f92c22409ed7, type: 3}
-  - {fileID: 3301825394724319113, guid: 14ef85eeda01d6043832469a27c86b86, type: 3}
-  - {fileID: 3301825394724319113, guid: 615265b997a68e3428f9eb73cd6ee4d6, type: 3}
-  - {fileID: 3301825394724319113, guid: 36970c77eed66e441b9ecb862e6278c1, type: 3}
-  preGameTime: 10
-  initialWaveTime: 10
-  minSpawnTime: 5
+  channel: {fileID: 11400000, guid: 01ddb001a65812d4a99c9eee3f9b3222, type: 2}
+  ufoPrefabs:
+  - {fileID: 6884740017198028425, guid: 9f22deb3e16d9f84db08b2d21e493928, type: 3}
 --- !u!1001 &1446445655
 PrefabInstance:
   m_ObjectHideFlags: 0
