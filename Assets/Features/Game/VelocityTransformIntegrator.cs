@@ -16,14 +16,21 @@ namespace Features.Game
 
         [SerializeField]        
         private float maxOwnVelocity;
-
-
-        [SerializeField]        
-        private float spawnInheritVelocityFactor = 1;
+        
+        [SerializeField] private float velocityScale = 1;
+        [SerializeField] private float spawnInheritVelocityFactor = 1;
 
         private float3 _ownVelocity;
         private float3 _worldVelocity;
+        
         public float3 velocity => _ownVelocity + _worldVelocity;
+
+        //TODO: Refactor into its own component. 
+        public float3 ownVelocity
+        {
+            get => _ownVelocity;
+            set => _ownVelocity = value;
+        }
 
         [SerializeField] private DataChannel<Vector3> lookPosition;
 
@@ -31,7 +38,6 @@ namespace Features.Game
         // otherwise, we can read the player position from the appropriate channel
         // (using DataChannel<T>.value, not a subscription).
         private Vector3 playerPosition => Vector3.zero;
-
         
         private void Start()
         {
@@ -50,7 +56,7 @@ namespace Features.Game
 
         private void LateUpdate()
         {
-            transform.Translate((_worldVelocity + _ownVelocity) * Time.deltaTime, UnityEngine.Space.World);
+            transform.Translate((_worldVelocity + _ownVelocity) * velocityScale* Time.deltaTime, UnityEngine.Space.World);
         }
 
         protected override void OnEvent(Vector3 data) => _worldVelocity = data;

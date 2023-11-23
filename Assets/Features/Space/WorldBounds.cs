@@ -1,17 +1,25 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Space
 {
     [ExecuteAlways]
     public class WorldBounds : MonoBehaviour
     {
-        public Bounds bounds = new Bounds(Vector3.zero, Vector3.one * 100);
+        [Header("Game")] 
+        [SerializeField] private bool driveGlobalShader = true;
+        [SerializeField] private Vector3 size = Vector3.one * 100;
+
+        [Header("Editor")] 
+        [SerializeField] private Color gizmoColor = Color.yellow;
+        
+        public Bounds bounds => new(transform.position, size);
         
         private static readonly int toroidalCameraExtents = Shader.PropertyToID("_ToroidalCameraExtents");
         
         private void Update()
         {
-            Shader.SetGlobalVector(toroidalCameraExtents, bounds.extents);
+            if (driveGlobalShader) Shader.SetGlobalVector(toroidalCameraExtents, bounds.extents);
         }
 
         #region Editor Events
@@ -23,7 +31,7 @@ namespace Features.Space
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = gizmoColor;
             Gizmos.DrawWireCube(bounds.center, bounds.size);
         }
         #endregion
