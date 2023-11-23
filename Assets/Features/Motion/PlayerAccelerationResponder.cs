@@ -4,11 +4,10 @@ using Tiger.Events;
 using Tiger.Events.Concrete;
 using UnityEngine;
 
-namespace Features.Game
+namespace Features.Motion
 {
-    using Log = Loggers.Create<AccelerationRigidbodyResponder>;
     [RequireComponent(typeof(Rigidbody))]
-    public class AccelerationRigidbodyResponder : DataChannelResponder<Vector3Channel, Vector3>
+    public class PlayerAccelerationResponder : DataChannelResponder<Vector3Channel, Vector3>
     {
         private Rigidbody _body;
         protected void Awake()

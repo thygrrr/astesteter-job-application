@@ -1,3 +1,4 @@
+using Tiger.Events;
 using Tiger.Events.Concrete;
 using UnityEngine;
 
@@ -6,10 +7,8 @@ namespace Features.Space
     using Log = Loggers.Create<SunOcclusion>;
 
     [RequireComponent(typeof(Light))]
-    public class SunOcclusion : MonoBehaviour
+    public class SunOcclusion : DataChannelEmitter<BoolChannel, bool>
     {
-        [SerializeField] private BoolChannel sunlightChannel;
-
         [SerializeField] private LayerMask occlusionLayers;
     
         private Camera _camera;
@@ -28,7 +27,7 @@ namespace Features.Space
             {
                 if (_occlusion == value || value == State.Unknown) return;
                 _occlusion = value;
-                sunlightChannel.Emit(value == State.Visible, this);
+                Emit(value == State.Visible);
             }
         }
 
@@ -51,9 +50,10 @@ namespace Features.Space
             occlusionState = Physics.Raycast(ray, distance, occlusionLayers) ? State.Occluded : State.Visible;
         }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
-            if (!sunlightChannel) Log.Error("Channel is not set.", this);
+            base.OnValidate();
+            
             if (occlusionLayers == default) occlusionLayers = LayerMask.GetMask("Backdrop");
             var type = GetComponent<Light>().type;
             if (type != LightType.Directional && type != LightType.Point) Log.Error("Only LightType.Directional or LightType.Point are supported.", this);
