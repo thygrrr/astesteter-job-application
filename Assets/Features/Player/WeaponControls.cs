@@ -89,7 +89,6 @@ namespace Features.Player
             fx.Play();
             ScreenShake.Add(transform.position, cannonShake, 0);
 
-            transform.parent.gameObject.CancelTweens();
             _recoil = new Vector3Tween
             {
                 from = -transform.forward * 0.5f,

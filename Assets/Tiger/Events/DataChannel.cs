@@ -86,25 +86,24 @@ namespace Tiger.Events
         }
 
 
-        private void OnEnable()
+        private void Awake()
         {
-            Debug.Log($"DataChannel<{typeof(T).Name}> {name} initializing", this);
-            _subscriptions.RemoveAllListeners();
             _value = default;
+            _subscriptions.RemoveAllListeners();
         }
 
         /// <summary>
         /// For better compatibility with enter edit mode options and other things that keep objects alive across plays.
         /// </summary>
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void RuntimeInitializer()
         {
-            Debug.Log("RuntimeInitializeOnLoadMethod");
+            Debug.Log($"DataChannel<{typeof(T).Name}> RuntimeInitializeOnLoadMethod");
             var channels = FindObjectsByType<DataChannel<T>>(FindObjectsSortMode.None);
             foreach (var channel in channels)
             {
                 channel._subscriptions.RemoveAllListeners();
-                
+                channel._value = default;
             }
         }
     }

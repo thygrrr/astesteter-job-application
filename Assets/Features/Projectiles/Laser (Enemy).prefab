@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: -1556500202868959697}
   - component: {fileID: 6251486954639235439}
   - component: {fileID: -8410473259715173258}
-  m_Layer: 24
-  m_Name: Bullet (Player)
+  m_Layer: 25
+  m_Name: Laser (Enemy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3987c19389d4640a368387a76249fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsUntilDestruction: 0.9
+  secondsUntilDestruction: 3
 --- !u!114 &6440213632360126628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 2750325357007566478}
   - component: {fileID: 7011694623712914087}
   - component: {fileID: 2975717906279188234}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 2, z: 0.4}
+  m_LocalScale: {x: 0.4, y: 7, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1905445360410149792}
@@ -210,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 48075354c9a56d74b9b066acc68a4049, type: 2}
+  - {fileID: 2100000, guid: c4b4c9824f87f3d4e8e55f2c99dc7a77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -251,7 +251,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: -0.3, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
