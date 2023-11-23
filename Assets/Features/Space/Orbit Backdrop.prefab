@@ -320,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 3216020534816184051}
   serializedVersion: 2
   m_LocalRotation: {x: 0.84461, y: -0.16256355, z: -0.49726227, w: -0.11374232}
-  m_LocalPosition: {x: 0, y: -500, z: 0}
+  m_LocalPosition: {x: 0, y: -640, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -628,8 +628,8 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   bodyVelocityScale: 1
   period: 2500
-  periapsis: 300
-  apoapsis: 500
+  periapsis: 320
+  apoapsis: 640
   barycenter: {fileID: 1650659735765592737}
 --- !u!114 &8276482844744404513
 MonoBehaviour:

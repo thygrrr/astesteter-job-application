@@ -61,7 +61,7 @@ namespace Features.Space
         {
             period = math.max(period, 1);
             apoapsis = math.abs(apoapsis);
-            periapsis = math.clamp(periapsis, 0, apoapsis);
+            periapsis = math.abs(periapsis);
 
             if (barycenter)
             {

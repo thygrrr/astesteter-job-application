@@ -21,27 +21,32 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Parallax Asteroid Material
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
+  m_Shader: {fileID: -6465566751694194690, guid: 9b9f0520b03f56c4bb9f5e86a88411c4,
+    type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: 9b9f0520b03f56c4bb9f5e86a88411c4,
+    type: 3}
   m_ModifiedSerializedProperties: 2
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _EMISSION
-  m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: cd2c2e1100e6a9948a6ebcfd34e2ce95, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Metallic: 0.303
+    - _Metallic: 0.3
+    - _QueueControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.69855815, g: 0.77969366, b: 0.8867924, a: 1}
-    - _Color: {r: 0.69855815, g: 0.77969366, b: 0.8867924, a: 1}
+    - _Glow_Color: {r: 0, g: 1.1702653, b: 1.5806491, a: 0}
   m_BuildTextureStacks: []
