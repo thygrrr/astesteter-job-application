@@ -60,7 +60,7 @@ namespace Features.Motion
         {
             transform.GetPositionAndRotation(out var position, out var rotation);
             position = (float3) position + (_worldVelocity + _velocity) * velocityScale * Time.deltaTime;
-            rotation *= math.slerp(_angular, quaternion.identity, Time.deltaTime);
+            rotation *= math.slerp(quaternion.identity, _angular, Time.deltaTime);
 
             transform.SetPositionAndRotation(position, rotation);
         }

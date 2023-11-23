@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7062729138601155574}
   - component: {fileID: 3377324117870318584}
   - component: {fileID: 8762438314016114898}
-  - component: {fileID: -3637421490598022614}
+  - component: {fileID: -4869385575592489912}
   m_Layer: 18
   m_Name: Asteroid Base
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MonoBehaviour:
     x: 0
     y: 0
   lookDirection: {fileID: 11400000, guid: a048d1f43772fb44dba7341dfff5250d, type: 2}
---- !u!114 &-3637421490598022614
+--- !u!114 &-4869385575592489912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,8 +120,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7756458137397592947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462a5a66eef49e94094e44aebf018a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ff0fa9137013a04ca372f11d45588c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 10
-  maxSpeed: 20
+  <integrator>k__BackingField: {fileID: 3377324117870318584}
+  minMaxSpeed:
+    x: 10
+    y: 20
