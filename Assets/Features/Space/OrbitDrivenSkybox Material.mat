@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrbitDrivenSkybox Variant
+  m_Name: OrbitDrivenSkybox Material
   m_Shader: {fileID: -6465566751694194690, guid: 11b3a1299499afa4880149f4e36ac2d6,
     type: 3}
   m_Parent: {fileID: -876546973899608171, guid: 11b3a1299499afa4880149f4e36ac2d6,
