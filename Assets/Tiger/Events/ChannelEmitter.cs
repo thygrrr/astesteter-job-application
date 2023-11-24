@@ -3,6 +3,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Scripting;
+using UnityEngine.Search;
 
 // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
 // ReSharper disable once UnusedMember.Global
@@ -13,7 +14,7 @@ namespace Tiger.Events
     [Preserve]
     public class ChannelEmitter : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField] [SearchContext("t: Channel")]
         private Channel channel;
 
         protected void Emit() => channel.Emit();

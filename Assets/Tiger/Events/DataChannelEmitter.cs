@@ -3,13 +3,16 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Scripting;
+using UnityEngine.Search;
 
 namespace Tiger.Events
 {
     [Preserve]
-    public abstract class DataChannelEmitter<TChannel, T> : MonoBehaviour where TChannel : DataChannel<T>
+    [Icon("Assets/Tiger/Events/Editor/Icons/sender.png")]
+
+public abstract class DataChannelEmitter<TChannel, T> : MonoBehaviour where TChannel : DataChannel<T>
     {
-        [SerializeField]
+        [SerializeField] [SearchContext("p:")]
         protected TChannel channel;
 
         protected void Emit(T data) => channel.Emit(data, this);

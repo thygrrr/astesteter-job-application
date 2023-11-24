@@ -7,6 +7,7 @@ using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
+using UnityEngine.Search;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
@@ -17,16 +18,18 @@ namespace Tiger.Events
     {
         [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
 
-        [Header("Initialization & Communication")] [SerializeField] [Tooltip("Initialize the channel with this value. (non-invoking, just a start value)")]
+        [Header("Initialization & Strategies")] 
+        [SerializeField] [Tooltip("Initialize the channel with this value. (non-invoking, just a start value)")]
         protected T defaultValue;
 
         [SerializeField] [Tooltip("What to do when the new value is the same as the old one.")]
-        private RepeatValueBehaviour onRepeatValue;
+        private RepeatValueStrategy onRepeatValue;
 
         [SerializeField] [Tooltip("What to do when no data was written yet.")]
-        private ReadbackBehaviour onReadBeforeFirstWrite;
+        private ReadEmptyStrategy onReadBeforeFirstWrite;
 
-        [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")]
+        [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")] 
+        [SearchContext("t: DebugSettings")]
         private DebugSettings debugSettings;
 
         private T _value;
@@ -74,19 +77,19 @@ namespace Tiger.Events
 
             switch (onRepeatValue, _value.Equals(data))
             {
-                case (RepeatValueBehaviour.IgnoreValue, true):
+                case (RepeatValueStrategy.IgnoreValue, true):
                     if (_written) return; //only ignore if value was actually written and isn't just the initial value.
                     break;
                 
-                case (RepeatValueBehaviour.LogWarning, true):
+                case (RepeatValueStrategy.LogWarning, true):
                     Debug.LogWarning($"DataChannel<{typeof(T).Name}> {name} emitted the same value twice: {data}", context);
                     break;
 
-                case (RepeatValueBehaviour.LogError, true):
+                case (RepeatValueStrategy.LogError, true):
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} emitted the same value twice: {data}", context);
                     break;
 
-                case (RepeatValueBehaviour.ThrowException, true):
+                case (RepeatValueStrategy.ThrowException, true):
                     throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} tried to emit the same value twice: {data}");
             }
 
@@ -101,18 +104,18 @@ namespace Tiger.Events
         {
             switch (onReadBeforeFirstWrite)
             {
-                case ReadbackBehaviour.ThrowException:
+                case ReadEmptyStrategy.ThrowException:
                     throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} accessed before first Emit()");
 
-                case ReadbackBehaviour.LogError:
+                case ReadEmptyStrategy.LogError:
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", context);
                     return default;
 
-                case ReadbackBehaviour.LogWarning:
+                case ReadEmptyStrategy.LogWarning:
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", context);
                     return default;
 
-                case ReadbackBehaviour.ReturnDefault:
+                case ReadEmptyStrategy.ReturnDefault:
                     return defaultValue;
 
                 default:
@@ -129,12 +132,12 @@ namespace Tiger.Events
 
             switch (onReadBeforeFirstWrite)
             {
-                case ReadbackBehaviour.ThrowException:
-                case ReadbackBehaviour.LogError:
-                case ReadbackBehaviour.LogWarning:
+                case ReadEmptyStrategy.ThrowException:
+                case ReadEmptyStrategy.LogError:
+                case ReadEmptyStrategy.LogWarning:
                     if (debugSettings.enabled) debugSettings.Log($"<b>INIT</b> {name} (empty)", this);
                     break;
-                case ReadbackBehaviour.ReturnDefault:
+                case ReadEmptyStrategy.ReturnDefault:
                     if (debugSettings.enabled) debugSettings.Log($"<b>INIT</b> {name} : {value}", this);
                     break;
                 default:
@@ -170,7 +173,7 @@ namespace Tiger.Events
         #endregion
     }
 
-    internal enum ReadbackBehaviour
+    internal enum ReadEmptyStrategy
     {
         ThrowException = default,
         LogError,
@@ -178,7 +181,7 @@ namespace Tiger.Events
         ReturnDefault
     }
 
-    internal enum RepeatValueBehaviour
+    internal enum RepeatValueStrategy
     {
         EmitNormally = default,
         IgnoreValue,

@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
+using UnityEngine.Search;
 
 namespace Tiger.Events
 {
@@ -11,7 +12,7 @@ namespace Tiger.Events
     [Preserve]
     public sealed class ChannelAction : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField] [SearchContext("t: Channel")]
         private Channel channel;
 
         [SerializeField] 

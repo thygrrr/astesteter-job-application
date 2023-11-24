@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.Scripting;
+using UnityEngine.Search;
 
 namespace Tiger.Events
 {
@@ -9,7 +10,8 @@ namespace Tiger.Events
     [Preserve]
     public abstract class ChannelResponder : SealableEnableDisableBehaviour
     {
-        [SerializeField] private Channel channel;
+        [SerializeField] [SearchContext("t: Channel")] 
+        private Channel channel;
 
         /// <summary>
         /// Called when events are emitted to the channel.
