@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 724657358511670570}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2079}
+  m_LocalPosition: {x: 0, y: 0, z: -2000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -304,6 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1650659735765592737}
+  - component: {fileID: 4004505711607244905}
   m_Layer: 10
   m_Name: Barycenter
   m_TagString: Untagged
@@ -328,6 +329,18 @@ Transform:
   - {fileID: 3035630032475952973}
   m_Father: {fileID: 6076558392550628327}
   m_LocalEulerAnglesHint: {x: -20.72, y: 239.153, z: 189.942}
+--- !u!114 &4004505711607244905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216020534816184051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ef372163912a8459f7c789d20ccd3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3317688575519657478
 GameObject:
   m_ObjectHideFlags: 0

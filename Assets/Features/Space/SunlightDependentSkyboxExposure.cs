@@ -42,20 +42,22 @@ namespace Features.Space
         private void OnTweenUpdate(TweenInstance<Transform, float> _, float value)
         {
             _value = value;
-            SetExposureAndAmbient();
+            SetAmbientAndExposure();
         }
 
-        private void SetExposureAndAmbient()
+        private void SetAmbientAndExposure()
         {
-            RenderSettings.skybox.SetFloat(exposure, math.lerp(darkExposure, litExposure, _value));
             RenderSettings.ambientSkyColor = Color.Lerp(darkAmbientLight, litAmbientLight, _value);
+            
+            if (!RenderSettings.skybox) return;
+            RenderSettings.skybox.SetFloat(exposure, math.lerp(darkExposure, litExposure, _value));
         }
 
         protected override void OnDisableOverride()
         {
             gameObject.CancelTweens();
             _value = 1;
-            SetExposureAndAmbient();
+            SetAmbientAndExposure();
         }
 
         protected override void OnValidate()
@@ -65,6 +67,7 @@ namespace Features.Space
             if (litAmbientLight == default) litAmbientLight = RenderSettings.ambientSkyColor;
             else RenderSettings.ambientSkyColor = litAmbientLight;
 
+            if (!RenderSettings.skybox) return;
             RenderSettings.skybox.SetFloat(exposure, litExposure);
         }
     }

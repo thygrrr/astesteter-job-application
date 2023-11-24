@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd306063f4abb643b10dddcab3b6bc4, type: 3}
-  m_Name: Cannon Shot
+  m_Name: Cannon Reload
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 74def0cae468ef146a275c7991d26c10, type: 3}
