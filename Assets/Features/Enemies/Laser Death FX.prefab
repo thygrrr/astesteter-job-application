@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3921700499092474538}
   - component: {fileID: 3920439475522346498}
   - component: {fileID: -1584517286876477556}
+  - component: {fileID: 5380563796243522321}
   m_Layer: 1
   m_Name: Laser Death FX
   m_TagString: Untagged
@@ -4843,3 +4844,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   velocityScale: 1
+--- !u!114 &5380563796243522321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3794296734949986384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd104bc247dae4647be559327ec9bf10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

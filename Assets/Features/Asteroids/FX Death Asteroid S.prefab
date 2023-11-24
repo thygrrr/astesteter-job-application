@@ -122,7 +122,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1589019458639318, guid: fb2dbd343895b6c47888986bf91da33c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7703467343646177147}
+      addedObject: {fileID: 931729659858834516}
   m_SourcePrefab: {fileID: 100100000, guid: fb2dbd343895b6c47888986bf91da33c, type: 3}
 --- !u!1 &1478560222944472915 stripped
 GameObject:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   velocityScale: 1
---- !u!114 &7703467343646177147
+--- !u!114 &931729659858834516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
