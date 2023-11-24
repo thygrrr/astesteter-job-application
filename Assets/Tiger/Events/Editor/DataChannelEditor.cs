@@ -14,7 +14,7 @@ namespace Tiger.Events.Editor
 			
 			DrawDefaultInspector();
 
-				EditorGUI.BeginDisabledGroup(Application.isPlaying || serializedObject.isEditingMultipleObjects);
+				EditorGUI.BeginDisabledGroup(!Application.isPlaying || serializedObject.isEditingMultipleObjects);
 
 				// Use reflection to get the generic type of the target
 				var targetType = target.GetType();
