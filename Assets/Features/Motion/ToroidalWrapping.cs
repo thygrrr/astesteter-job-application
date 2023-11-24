@@ -1,6 +1,5 @@
 //SPDX-License-Identifier: Unlicense
 
-using Features.Space;
 using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
@@ -11,7 +10,26 @@ namespace Features.Motion
     public class ToroidalWrapping : MonoBehaviour
     {
         private WorldBounds _world;
-        private Vector3 _ownSize;
+
+        private Vector3 ownSize
+        {
+            get
+            {
+                if (_renderers.Length == 0) return default;
+                
+                //We need to evaluate this lazily as the engine updates this each frame
+                var bounds = _renderers[0].bounds;
+                
+                // There usually is only one.
+                for (var i = 1; i < _renderers.Length; i++)
+                {
+                    bounds.Encapsulate(_renderers[i].bounds);
+                }
+
+                return bounds.size;
+            }
+        }
+        private Renderer[] _renderers;
 
         private IntegratePositionAndRotation _integrator;
         
@@ -19,8 +37,9 @@ namespace Features.Motion
         
         protected void Awake()
         {
+            _world = GetComponentInParent<WorldBounds>();
             _integrator = GetComponent<IntegratePositionAndRotation>();
-            DetermineOwnSize();
+            _renderers = GetComponentsInChildren<Renderer>(); 
         }
 
         private void LateUpdate()
@@ -28,7 +47,7 @@ namespace Features.Motion
             Wrap();   
         }
 
-        private void OnTransformChildrenChanged() => DetermineOwnSize();
+        private void OnTransformChildrenChanged() => _renderers = GetComponentsInChildren<Renderer>();
         
         #endregion
         
@@ -37,7 +56,7 @@ namespace Features.Motion
             var planar = transform.localPosition.fx0z();
             var origin = _world.bounds.center.fx0z();
             var wrapBounds = _world.bounds;
-            wrapBounds.Expand(_ownSize);
+            wrapBounds.Expand(ownSize);
 
             //Only wrap coordinates that are outside the bounds and whose dimension is moving away
             if (!wrapBounds.Contains(planar))
@@ -49,19 +68,6 @@ namespace Features.Motion
                 wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
                 transform.localPosition = wrapped;
             }
-        }
-        
-        private void DetermineOwnSize()
-        {
-            _world = GetComponentInParent<WorldBounds>();            
-            
-            var renderBounds = new Bounds();
-            foreach (var r in GetComponentsInChildren<Renderer>())
-            {
-                renderBounds.Encapsulate(r.bounds);
-            }
-
-            _ownSize = new float3(math.cmax(renderBounds.size));
         }
     }
 }
