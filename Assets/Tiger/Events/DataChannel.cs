@@ -12,18 +12,16 @@ namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/channel.png")]
     [Preserve]
-    public class DataChannel<T> : ScriptableObject
+    public class DataChannel<T> : AbstractDataChannel
     {
         [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
-        
-        [Header("Initialization")] 
-        [SerializeField] [Tooltip("What to do when no data was written yet.")]
+
+        [Header("Initialization")] [SerializeField] [Tooltip("What to do when no data was written yet.")]
         private ReadbackBehaviour onValueReadBeforeFirstWrite;
 
         [SerializeField] public T defaultValue;
 
-        [Header("Logs & Error Handling")] 
-        [SerializeField] [Tooltip("Debug Settings Asset")]
+        [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")]
         private DebugSettings debugSettings;
 
 
@@ -69,7 +67,7 @@ namespace Tiger.Events
             {
                 debugSettings.Log(_written ? $"<b>EVENT</b> {name} : {data}" : $"<b>FIRST</b> {name} : {data}", context != null ? context : this);
             }
-            
+
             _written = true;
             _value = data;
             _subscriptions.Invoke(data);
@@ -99,9 +97,7 @@ namespace Tiger.Events
             }
         }
 
-        private void OnEnable() => Init();
-
-        private void Init()
+        protected internal override void Init()
         {
             _subscriptions.RemoveAllListeners();
 
@@ -113,10 +109,10 @@ namespace Tiger.Events
                 case ReadbackBehaviour.ThrowException:
                 case ReadbackBehaviour.LogError:
                 case ReadbackBehaviour.LogWarning:
-                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT EMPTY</b> {name}", this);
+                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT</b> {name} (empty)", this);
                     break;
                 case ReadbackBehaviour.ReturnDefault:
-                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT VALUE</b> {name} : {value}", this);
+                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT</b> {name} : {value}", this);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
