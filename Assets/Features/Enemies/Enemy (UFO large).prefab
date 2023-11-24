@@ -164,7 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   velocityScale: 1
-  spawnInheritVelocityFactor: 1
 --- !u!114 &6800797124392699812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,12 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remnantsToSpawn: 2
+  remnantsToSpawn: 1
   randomizeRotation: 1
   minDisplacement: 0
   maxDisplacement: 0
   remnantPrefabs:
-  - {fileID: 9057541738682061871, guid: 94620cdd24ac1b04d80c04699339ce44, type: 3}
+  - {fileID: 8476089283740508897, guid: 94620cdd24ac1b04d80c04699339ce44, type: 3}
 --- !u!114 &-1679610644336912236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,8 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a1928e5352b049ad24b9f23fbae28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleVelocity: 70
-  accuracy: 10
+  inaccuracy: 10
   laserPrefab: {fileID: -7634380173890113765, guid: de499a6bdacc5284a9854d4ad43b3007,
     type: 3}
 --- !u!114 &-752938194630801106

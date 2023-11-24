@@ -309,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 6681335034744154708, guid: d30546528f8d747479f6cb7e54a15a05,
         type: 3}
       propertyPath: velocityScale
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6681335034744154708, guid: d30546528f8d747479f6cb7e54a15a05,
         type: 3}

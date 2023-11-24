@@ -42,7 +42,7 @@ namespace Features.Game
             for (var i = 0; i < remnantsToSpawn; i++)
             {
                 //TODO: Add planar & mapped random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
-
+                
                 //Split perpendicular to player direction. Nobody wants an Asteroid to the face if they can help it.
                 var length = maxDisplacement * Random.value + minDisplacement;
 
