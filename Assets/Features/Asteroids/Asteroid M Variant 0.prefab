@@ -118,6 +118,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2030479936859480064, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
+    - target: {fileID: 6009777178822069718, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantsToSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009777178822069718, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009777178822069718, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 355534049539748941, guid: 552be43d7b95dfa439b65e62e3f2970d,
+        type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxDisplacement

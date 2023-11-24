@@ -9,10 +9,10 @@ using Random = UnityEngine.Random;
 
 namespace Features.Game
 {
-    using Log = Loggers.Create<SpawnIntegratedRemnantsOnDeath>;
+    using Log = Loggers.Create<SpawnPerpendicularRemnantsOnDeath>;
     
     [RequireComponent(typeof(ProvideIntegration))]
-    public class SpawnIntegratedRemnantsOnDeath : MonoBehaviour, IOnDeath
+    public class SpawnPerpendicularRemnantsOnDeath : MonoBehaviour, IOnDeath
     {
         [Header("On Death")] 
         [SerializeField] private int remnantsToSpawn = 0;
