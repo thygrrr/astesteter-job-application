@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzleVelocity: 70
-  accuracy: 5
+  accuracy: 10
   laserPrefab: {fileID: -7634380173890113765, guid: de499a6bdacc5284a9854d4ad43b3007,
     type: 3}
 --- !u!114 &-752938194630801106
