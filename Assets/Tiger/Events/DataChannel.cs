@@ -17,14 +17,17 @@ namespace Tiger.Events
     {
         [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
 
-        [Header("Initialization")] [SerializeField] [Tooltip("What to do when no data was written yet.")]
-        private ReadbackBehaviour onValueReadBeforeFirstWrite;
+        [Header("Initialization & Communication")] [SerializeField] [Tooltip("Initialize the channel with this value. (non-invoking, just a start value)")]
+        protected T defaultValue;
 
-        [SerializeField] protected T defaultValue;
+        [SerializeField] [Tooltip("What to do when the new value is the same as the old one.")]
+        private RepeatValueBehaviour onRepeatValue;
+
+        [SerializeField] [Tooltip("What to do when no data was written yet.")]
+        private ReadbackBehaviour onReadBeforeFirstWrite;
 
         [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")]
         private DebugSettings debugSettings;
-
 
         private T _value;
         private bool _written;
@@ -35,7 +38,7 @@ namespace Tiger.Events
         /// </summary>
         /// <exception cref="InvalidDataException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public T value => _written ? _value : HandleUninitializedRead();
+        public T value => _written ? _value : HandleUninitializedRead(this);
 
         /// <summary>
         /// Subscribe to this channel.
@@ -61,7 +64,7 @@ namespace Tiger.Events
         /// Emit a value on this channel. All subscriber actions will be invoked with the value.
         /// </summary>
         /// <param name="data">An object or value of type T</param>
-        /// <param name="context">UnityEngine.Object that become the potential Debut console highlight cuplrit.</param>
+        /// <param name="context">UnityEngine.Object to becomes the potential Debug Console highlight culprit.</param>
         public void Emit(T data, Object context = null)
         {
             if (debugSettings.enabled)
@@ -69,25 +72,44 @@ namespace Tiger.Events
                 debugSettings.Log(_written ? $"<b>EVENT</b> {name} : {data}" : $"<b>FIRST</b> {name} : {data}", context != null ? context : this);
             }
 
-            _written = true;
+            switch (onRepeatValue, _value.Equals(data))
+            {
+                case (RepeatValueBehaviour.IgnoreValue, true):
+                    if (_written) return; //only ignore if value was actually written and isn't just the initial value.
+                    break;
+                
+                case (RepeatValueBehaviour.LogWarning, true):
+                    Debug.LogWarning($"DataChannel<{typeof(T).Name}> {name} emitted the same value twice: {data}", context);
+                    break;
+
+                case (RepeatValueBehaviour.LogError, true):
+                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} emitted the same value twice: {data}", context);
+                    break;
+
+                case (RepeatValueBehaviour.ThrowException, true):
+                    throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} tried to emit the same value twice: {data}");
+            }
+
             _value = data;
+            _written = true;
             _subscriptions.Invoke(data);
         }
 
-        #region Life Cycle
-        private T HandleUninitializedRead()
+        #region Life Cycle & Error Handlers
+
+        private T HandleUninitializedRead(Object context)
         {
-            switch (onValueReadBeforeFirstWrite)
+            switch (onReadBeforeFirstWrite)
             {
                 case ReadbackBehaviour.ThrowException:
                     throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} accessed before first Emit()");
 
                 case ReadbackBehaviour.LogError:
-                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
+                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", context);
                     return default;
 
                 case ReadbackBehaviour.LogWarning:
-                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
+                    Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", context);
                     return default;
 
                 case ReadbackBehaviour.ReturnDefault:
@@ -104,8 +126,8 @@ namespace Tiger.Events
 
             _value = default;
             _written = false;
-            
-            switch (onValueReadBeforeFirstWrite)
+
+            switch (onReadBeforeFirstWrite)
             {
                 case ReadbackBehaviour.ThrowException:
                 case ReadbackBehaviour.LogError:
@@ -119,6 +141,7 @@ namespace Tiger.Events
                     throw new ArgumentOutOfRangeException();
             }
         }
+
         #endregion
 
         #region Reflection Accessors
@@ -128,7 +151,7 @@ namespace Tiger.Events
         /// Guaranteed to not return null; returns an empty array instead if T is not an enum
         /// or the concrete type has implemented no values to list.
         /// </summary>
-        public virtual bool Enumerate([NotNull] out string[] names, [NotNull] out T[] values) 
+        public virtual bool Enumerate([NotNull] out string[] names, [NotNull] out T[] values)
         {
             if (typeof(T).IsEnum)
             {
@@ -140,10 +163,10 @@ namespace Tiger.Events
             {
                 names = Array.Empty<string>();
                 values = Array.Empty<T>();
-                return false;                
+                return false;
             }
         }
-        
+
         #endregion
     }
 
@@ -153,6 +176,15 @@ namespace Tiger.Events
         LogError,
         LogWarning,
         ReturnDefault
+    }
+
+    internal enum RepeatValueBehaviour
+    {
+        EmitNormally = default,
+        IgnoreValue,
+        LogWarning,
+        LogError,
+        ThrowException,
     }
 }
 

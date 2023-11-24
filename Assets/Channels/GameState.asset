@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8203a9978f631e4986a12193e27909f, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
-  onValueReadBeforeFirstWrite: 3
   defaultValue: 0
+  onRepeatValue: 4
+  onReadBeforeFirstWrite: 3
   debugSettings: {fileID: 11400000, guid: 74e2965c2e24e734cb4611ed3fed150a, type: 2}

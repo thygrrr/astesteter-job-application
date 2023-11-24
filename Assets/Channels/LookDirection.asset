@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29b9a6e4ebfbf44390989cde73c9903, type: 3}
   m_Name: LookDirection
   m_EditorClassIdentifier: 
+  defaultValue: {x: 0, y: 0, z: 0}
+  onRepeatValue: 0
+  onReadBeforeFirstWrite: 3
   debugSettings: {fileID: 11400000, guid: 6be8cec992f965a458594deede2a9503, type: 2}
-  onValueReadBeforeFirstWrite: 3

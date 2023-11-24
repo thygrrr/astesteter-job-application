@@ -2,6 +2,7 @@
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Internal;
 
 namespace Tiger.Events.Editor
 {
@@ -30,7 +31,7 @@ namespace Tiger.Events.Editor
 		}
 
 
-		private object ExtractValue()
+		private object ExtractCurrent()
 		{
 			var targetType = target.GetType();
 			var valueField = targetType.GetField("_value", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -73,6 +74,7 @@ namespace Tiger.Events.Editor
 		{
 			if (!ExtractEnumerated(out var enumNames, out var enumValues)) return;
 			var defaultValue = ExtractDefault();
+			var currentValue = ExtractCurrent();
 			
 			var targetType = target.GetType();
 			var emitMethod = targetType.GetMethod("Emit");
@@ -84,6 +86,12 @@ namespace Tiger.Events.Editor
 			{
 				var enumName = enumNames[i];
 				var value = enumValues.GetValue(i);
+				if (value.Equals(currentValue))
+				{
+					GUI.color = Color.yellow;
+					enumName += " (Current)";
+				}
+				else
 				if (value.Equals(defaultValue))
 				{
 					GUI.color = Color.green;
