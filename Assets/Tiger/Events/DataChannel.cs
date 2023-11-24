@@ -67,7 +67,7 @@ namespace Tiger.Events
         {
             if (debugSettings.enabled)
             {
-                debugSettings.Log(_written ? $"<b>EVENT</b> {name} : {data}" : $"<b>FIRST WRITE</b> {name} : {data}", context != null ? context : this);
+                debugSettings.Log(_written ? $"<b>EVENT</b> {name} : {data}" : $"<b>FIRST</b> {name} : {data}", context != null ? context : this);
             }
             
             _written = true;
