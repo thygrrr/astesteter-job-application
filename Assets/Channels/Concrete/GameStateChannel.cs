@@ -7,7 +7,7 @@ using UnityEngine.Scripting;
 
 namespace Channels.Concrete
 {
-    [CreateAssetMenu(menuName = "Event/GameState")]
+    [CreateAssetMenu]
     [Preserve]
     public class GameStateChannel : DataChannel<GameState>
     {

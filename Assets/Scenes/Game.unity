@@ -4858,9 +4858,9 @@ MonoBehaviour:
   - {fileID: 3301825394724319113, guid: 14ef85eeda01d6043832469a27c86b86, type: 3}
   - {fileID: 3301825394724319113, guid: 615265b997a68e3428f9eb73cd6ee4d6, type: 3}
   - {fileID: 3301825394724319113, guid: 36970c77eed66e441b9ecb862e6278c1, type: 3}
-  preGameTime: 10
+  preGameTime: 5
   initialWaveTime: 10
-  minSpawnTime: 5
+  minSpawnTime: 4
 --- !u!1 &1763424512
 GameObject:
   m_ObjectHideFlags: 0
