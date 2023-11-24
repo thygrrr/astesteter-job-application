@@ -10,15 +10,17 @@ using Random = UnityEngine.Random;
 
 namespace Features.Game
 {
-    using Log = Loggers.Create<SpawnPerpendicularRemnantsOnDeath>;
+    using Log = Loggers.Create<SpawnEjectedRemnantsOnDeath>;
     
     [RequireComponent(typeof(ProvideIntegration))]
-    public class SpawnPerpendicularRemnantsOnDeath : MonoBehaviour, IOnDeath
+    public class SpawnEjectedRemnantsOnDeath : MonoBehaviour, IOnDeath
     {
         [Header("On Death")] 
         [SerializeField] private int remnantsToSpawn = 0;
         [SerializeField] private bool randomizeRotation = true;
 
+        [SerializeField] private float minEjectionSpeed = 5;
+        [SerializeField] private float maxEjectionSpeed = 10;
         [SerializeField] private float minDisplacement = 0;
         [SerializeField] private float maxDisplacement = 0;
 
@@ -42,31 +44,36 @@ namespace Features.Game
         {
             for (var i = 0; i < remnantsToSpawn; i++)
             {
-                //TODO: Add planar & mapped random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
+                
+                //Split direction
+                Vector3 direction;
                 
                 //Split perpendicular to player direction. Nobody wants an Asteroid to the face if they can help it.
-                Vector3 ejection;
-                var amount = Random.Range(minDisplacement, maxDisplacement);
-                if (remnantsToSpawn < 2 || amount == 0)
+                var splitting = remnantsToSpawn > 1;
+                if (splitting)
                 {
-                    //Single remnant, don't do perpendicular.
-                    ejection  = Random.onUnitSphere._xz0();
+                    //Perpendicular split
+                    var directionToPlayer = Vector3.Normalize(transform.localPosition - playerPosition);
+                    var ccw = i % 2 == 0 ? Vector3.up : Vector3.down;
+                    direction = Vector3.Cross(directionToPlayer, ccw);
                 }
                 else
                 {
-                    var directionToPlayer = Vector3.Normalize(transform.position - playerPosition);
-                    var ccw = i % 2 == 0 ? Vector3.up : Vector3.down;
-                    ejection = Vector3.Cross(directionToPlayer, ccw);
+                    //Single remnant, displace randomly
+                    direction = math.normalizesafe(Random.onUnitSphere._xz0());
+                    //TODO: Add planar & mapped random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
                 }
 
-                var displacement = ejection * amount;
+                var magnitude = Random.Range(minDisplacement, maxDisplacement);
+                var displacement = direction * magnitude;
                 var position = transform.position + displacement;
                 var rotation = randomizeRotation ? Random.rotationUniform : Quaternion.identity;
 
-                var ejectionVelocity = amount > 0 ? ejection * math.length(_ownIntegrator.velocity) : Vector3.zero;
-
                 var remnant = Instantiate(remnantPrefabs.Pick(), position, rotation, transform.parent);
-                remnant.velocity = _ownIntegrator.velocity + (float3) ejectionVelocity;
+                remnant.velocity = _ownIntegrator.velocity;
+                
+                var ejectionVelocity = splitting ? direction * Random.Range(minEjectionSpeed, maxEjectionSpeed) : Vector3.zero;
+                remnant.velocity += (float3) ejectionVelocity; //repeated for readability
             }
         }
 

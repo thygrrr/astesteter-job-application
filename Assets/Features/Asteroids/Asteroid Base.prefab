@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -3045249594538662202}
   - component: {fileID: 7062729138601155574}
   - component: {fileID: 3377324117870318584}
-  - component: {fileID: 8762438314016114898}
   - component: {fileID: -4869385575592489912}
   - component: {fileID: 6009777178822069718}
   m_Layer: 18
@@ -77,6 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remnantsToSpawn: 0
   randomizeRotation: 1
+  minEjectionSpeed: 5
+  maxEjectionSpeed: 10
   minDisplacement: 0
   maxDisplacement: 0
   remnantPrefabs: []
@@ -94,23 +95,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   velocityScale: 1
---- !u!114 &8762438314016114898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7756458137397592947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4f91f534d204934f87e19d8e1ec0801, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <integrator>k__BackingField: {fileID: 3377324117870318584}
-  minMaxSpeed:
-    x: 0
-    y: 0
-  lookDirection: {fileID: 11400000, guid: a048d1f43772fb44dba7341dfff5250d, type: 2}
 --- !u!114 &-4869385575592489912
 MonoBehaviour:
   m_ObjectHideFlags: 0
