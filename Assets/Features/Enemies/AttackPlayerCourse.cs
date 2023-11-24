@@ -1,6 +1,7 @@
 using System.Collections;
 using Features.Game;
 using Features.Motion;
+using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -39,7 +40,7 @@ namespace Features.Enemies
             //var rotation = Quaternion.LookRotation(-transform.position.normalized, Vector3.up);
             //_velocityGoal = rotation * Vector3.forward * magnitude;
             //... but we can just charge the player instead. (player will be moving so it's not too aggressive)
-            _velocityGoal = -transform.position.normalized * magnitude;
+            _velocityGoal = -transform.position.normalized._x0z() * magnitude;
         }
     }
 }
