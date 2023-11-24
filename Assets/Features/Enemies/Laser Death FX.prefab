@@ -16,7 +16,7 @@ GameObject:
   m_Layer: 1
   m_Name: Laser Death FX
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: de0c0298f127a324788f024e1bed48fc, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

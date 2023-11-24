@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1639891835088740, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2800000, guid: de0c0298f127a324788f024e1bed48fc, type: 3}
+    - target: {fileID: 1639891835088740, guid: d30546528f8d747479f6cb7e54a15a05, type: 3}
       propertyPath: m_Name
       value: Ship Death FX
       objectReference: {fileID: 0}
