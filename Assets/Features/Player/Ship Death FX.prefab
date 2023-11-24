@@ -231,6 +231,11 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6681335034744154708, guid: d30546528f8d747479f6cb7e54a15a05,
+        type: 3}
+      propertyPath: spawnInheritVelocityFactor
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

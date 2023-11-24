@@ -6,11 +6,22 @@ namespace Features.Space
 {
     public class PlayerDrivenGravity : DataChannelResponder<Vector3Channel, Vector3>
     {
+        //Doesn't work with particles in Unity 2023. IKR?
+#if !UNITY_2023_1_OR_NEWER
         protected override void OnEvent(Vector3 data)
         {
-            #if !UNITY_2023_1_OR_NEWER
-            Physics.gravity = data; //Doesn't work with particles in Unity 2023. IKR?  
-            #endif
+            Physics.gravity = data;  
+        }
+
+        private void Awake()
+        {
+            Physics.gravity = Vector3.zero;  
+        }
+
+        private void OnDestroy()
+        {
+            Physics.gravity = Vector3.zero;  
+#endif
         }
     }
 }
