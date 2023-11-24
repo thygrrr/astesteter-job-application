@@ -14,15 +14,13 @@ namespace Features.Motion
         [Header("World-Relative Motion")] [SerializeField]
         private float velocityScale = 1;
 
-        [SerializeField] private float spawnInheritVelocityFactor = 1;
-        
         protected override void OnEvent(Vector3 data) => _worldVelocity = data;
         
         #region Unity Events
 
         private void Awake()
         {
-            _worldVelocity = channel.value * spawnInheritVelocityFactor;
+            _worldVelocity = channel.value;
         }
 
         private void LateUpdate()

@@ -15,8 +15,6 @@ namespace Features.Motion
         [Header("World-Relative Motion")] [SerializeField]
         private float velocityScale = 1;
 
-        [SerializeField] private float spawnInheritVelocityFactor = 1;
-        
         private Rigidbody _body;
         
         protected override void OnEvent(Vector3 data) => _worldVelocity = data;
@@ -24,7 +22,7 @@ namespace Features.Motion
         private void Awake()
         {
             _body = GetComponent<Rigidbody>();
-            _worldVelocity = channel.value * spawnInheritVelocityFactor;
+            _worldVelocity = channel.value;
         }
 
         private void FixedUpdate() //sic - we're using physics with dynamic update (see Project Settings -> Physics)
