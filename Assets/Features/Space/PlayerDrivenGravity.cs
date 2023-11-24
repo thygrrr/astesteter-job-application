@@ -21,7 +21,7 @@ namespace Features.Space
         private void OnDestroy()
         {
             Physics.gravity = Vector3.zero;  
-#endif
         }
+#endif
     }
 }
