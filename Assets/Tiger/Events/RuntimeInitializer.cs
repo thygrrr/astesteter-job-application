@@ -9,7 +9,6 @@ namespace Tiger.Events
         {
             foreach (var channel in Resources.FindObjectsOfTypeAll<AbstractChannel>())
             {
-                Debug.LogFormat($"Init {channel}", channel);
                 channel.Init();
             }
         }

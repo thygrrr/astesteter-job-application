@@ -566,7 +566,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hello, Rigs! I'm [Camera].
   m_TagString: MainCamera
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: 7cba34d70552e144586a4d3ce4a33de5, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5748,6 +5748,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5359163382759880274, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
+        type: 3}
+      propertyPath: period
+      value: 3500
+      objectReference: {fileID: 0}
     - target: {fileID: 6076558392550628327, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
         type: 3}
       propertyPath: m_LocalPosition.x
