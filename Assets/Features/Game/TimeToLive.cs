@@ -1,12 +1,18 @@
 //SPDX-License-Identifier: Unlicense
 
+using System.Collections;
 using UnityEngine;
 
 namespace Features.Game
 {
-    public class TimeToLive : MonoBehaviour
+    public class TimeToLive : Killable
     {
         [SerializeField] private float secondsUntilDestruction = 1f;
-        private void Start() => Destroy(gameObject, secondsUntilDestruction);
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(secondsUntilDestruction);
+            Die();
+        }
     }
 }
