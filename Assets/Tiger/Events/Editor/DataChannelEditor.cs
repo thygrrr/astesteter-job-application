@@ -21,42 +21,89 @@ namespace Tiger.Events.Editor
 			
 			EditorGUI.BeginDisabledGroup(!Application.isPlaying || serializedObject.isEditingMultipleObjects);
 			EditorGUILayout.Space();
+			
 			EditorGUILayout.BeginFoldoutHeaderGroup(_foldout, "Emit Value (Runtime Only)");
-			ListEnumeratedStates(targetType);
+			ListAvailableStates();
 			EditorGUILayout.EndFoldoutHeaderGroup();
+			
 			EditorGUI.EndDisabledGroup();
 		}
 
-		private void ListEnumeratedStates(System.Type targetType)
+
+		private object ExtractValue()
 		{
-			// Now we need to find the Emit method and the defaultValue field
-			var emitMethod = targetType.GetMethod("Emit");
-			var enumerateMethod = targetType.GetMethod("Enumerate");
-			
+			var targetType = target.GetType();
+			var valueField = targetType.GetField("_value", BindingFlags.Instance | BindingFlags.NonPublic);
+			var value = valueField?.GetValue(target);
+			return value;
+		}
+
+		private object ExtractDefault()
+		{
+			var targetType = target.GetType();
 			var defaultValueField = targetType.GetField("defaultValue", BindingFlags.Instance | BindingFlags.NonPublic);
 			var defaultValue = defaultValueField?.GetValue(target);
+			return defaultValue;
+		}
 
-			if (emitMethod == null || enumerateMethod == null) return;
+		private bool ExtractEnumerated(out string[] enumNames, out Array enumValues)
+		{
+			enumNames = null;
+			enumValues = null;
 			
+			// Now we need to find the Emit method and the defaultValue field
+			var targetType = target.GetType();
+			var enumerateMethod = targetType.GetMethod("Enumerate");
+
+			if (enumerateMethod == null) return false;
+
 			// Invoke the methods if they exist
 			object[] arguments = {null, null};
 
 			//Nothing?
-			if (!(bool) enumerateMethod.Invoke(target, arguments)) return;
-			
-			// After invocation, the array contains the out parameter values.
-			string[] enumNames = (string[]) arguments[0];
-			Array enumValues = (Array) arguments[1];
+			var success = (bool) enumerateMethod.Invoke(target, arguments);
 
+			// After invocation, the array contains the out parameter values.
+			enumNames = (string[]) arguments[0];
+			enumValues = (Array) arguments[1];
+			return success;
+		}
+		
+		private void ListAvailableStates()
+		{
+			if (!ExtractEnumerated(out var enumNames, out var enumValues)) return;
+			var defaultValue = ExtractDefault();
+			
+			var targetType = target.GetType();
+			var emitMethod = targetType.GetMethod("Emit");
+			if (emitMethod == null) return;
+			
+			var color = GUI.color;
+			GUILayout.BeginHorizontal();
 			for (var i = 0; i < enumNames.Length; i++)
 			{
 				var enumName = enumNames[i];
-				if (GUILayout.Button($"Emit {enumName}"))
+				var value = enumValues.GetValue(i);
+				if (value.Equals(defaultValue))
+				{
+					GUI.color = Color.green;
+					enumName += " (Default)"; 
+				}
+				
+				if (GUILayout.Button(enumName))
 				{
 					// Invoke the Emit method with the enum value
-					emitMethod.Invoke(target, new[] {enumValues.GetValue(i), this});
+					emitMethod.Invoke(target, new[] {value, this});
 				}
+				
+				GUI.color = color;
+				
+				if (i % 2 != 1) continue;
+				GUILayout.EndHorizontal();
+				GUILayout.BeginHorizontal();
 			}
+
+			GUILayout.EndHorizontal();
 		}
 	}
 }

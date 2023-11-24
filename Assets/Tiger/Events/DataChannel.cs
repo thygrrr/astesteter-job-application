@@ -20,7 +20,7 @@ namespace Tiger.Events
         [Header("Initialization")] [SerializeField] [Tooltip("What to do when no data was written yet.")]
         private ReadbackBehaviour onValueReadBeforeFirstWrite;
 
-        [SerializeField] public T defaultValue;
+        [SerializeField] protected T defaultValue;
 
         [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")]
         private DebugSettings debugSettings;
