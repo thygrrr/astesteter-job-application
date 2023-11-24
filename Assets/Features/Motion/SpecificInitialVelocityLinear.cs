@@ -1,6 +1,6 @@
+using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Features.Motion
 {
@@ -11,7 +11,8 @@ namespace Features.Motion
 
         private void Start()
         {
-            integrator.velocity = transform.TransformDirection(initialVelocity);
+            //Sometimes gives y values > epsilon
+            integrator.velocity = transform.TransformDirection(initialVelocity)._x0z();
         }
     }
 }

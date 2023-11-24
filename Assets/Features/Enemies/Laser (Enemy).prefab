@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1905445360410149792}
   - component: {fileID: -444225227380725164}
-  - component: {fileID: 6440213632360126628}
   - component: {fileID: -1732286145749265111}
+  - component: {fileID: 6440213632360126628}
   - component: {fileID: -7634380173890113765}
   - component: {fileID: -1556500202868959697}
   - component: {fileID: -7070601809653455304}
   - component: {fileID: 5405054707152763118}
-  - component: {fileID: 7658026849953143476}
+  - component: {fileID: 1803432827601914898}
   m_Layer: 25
   m_Name: Laser (Enemy)
   m_TagString: Untagged
@@ -53,18 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsUntilDestruction: 4
---- !u!114 &6440213632360126628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2868303231184607814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8689ce6b8925f9e4cad8c0f0f344b3aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1732286145749265111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +65,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba80bfe70a41bd4f9c60d45c8ae0be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePoints: 1
+  damagePoints: 10
+--- !u!114 &6440213632360126628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868303231184607814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8689ce6b8925f9e4cad8c0f0f344b3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &-7634380173890113765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 75
---- !u!114 &7658026849953143476
+--- !u!114 &1803432827601914898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,15 +158,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2868303231184607814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f221afdba8402d49a05ec1b11961383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remnantsToSpawn: 2
-  randomizeRotation: 1
+  remnantsToSpawn: 1
+  randomizeRotation: 0
   minDisplacement: 0
   maxDisplacement: 0
   remnantPrefabs:
-  - {fileID: -1703425878545586155, guid: f63be3586b187d34a84b74581057ddaa, type: 3}
+  - {fileID: 3794296734949986384, guid: 7def6832243ed2047a967d946cd5063f, type: 3}
 --- !u!1 &5379195586534242163
 GameObject:
   m_ObjectHideFlags: 0
