@@ -30,22 +30,18 @@ namespace Features.Motion
 
         private void Wrap()
         {
-            float3 position = _body.position;
-            float3 velocity = _body.velocity;
-
             var planar = _body.position.fx0z();
             var origin = _world.bounds.center.fx0z();
             var wrapBounds = _world.bounds;
             wrapBounds.Expand(wrapPadding);
 
-            var outOfBounds = !wrapBounds.Contains(planar);
-            var movingAway = math.any(velocity * (planar - origin) > 0);
-
-
-            if (outOfBounds && movingAway)
+            //Only wrap coordinates that are outside the bounds and whose dimension is moving away
+            if (!wrapBounds.Contains(planar))
             {
-                //Only wrap the largest coordinate.
-                var wrapped = math.select(origin - planar, planar, math.abs(planar) < math.cmax(math.abs(planar)));
+                var outOfBounds = math.abs(planar - (float3) wrapBounds.center) > wrapBounds.extents;
+                var movingAway = _body.velocity * (planar - origin) > 0;
+                var wrapped = math.select(planar, origin - planar, movingAway & outOfBounds);
+                
                 wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
                 _body.position = wrapped;
             }

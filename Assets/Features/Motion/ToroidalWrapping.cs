@@ -38,14 +38,14 @@ namespace Features.Motion
             var origin = _world.bounds.center.fx0z();
             var wrapBounds = _world.bounds;
             wrapBounds.Expand(_ownSize);
-            
-            var outOfBounds = !wrapBounds.Contains(planar);
-            var movingAway = math.any(_integrator.finalVelocity * (planar-origin) > 0);
 
-            if (outOfBounds && movingAway)
+            //Only wrap coordinates that are outside the bounds and whose dimension is moving away
+            if (!wrapBounds.Contains(planar))
             {
-                //Only wrap the largest coordinate.
-                var wrapped = math.select(origin - planar, planar, math.abs(planar) < math.cmax(math.abs(planar)));
+                var outOfBounds = math.abs(planar - (float3) wrapBounds.center) > wrapBounds.extents;
+                var movingAway = _integrator.finalVelocity * (planar - origin) > 0;
+                var wrapped = math.select(planar, origin - planar, movingAway & outOfBounds);
+
                 wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
                 transform.localPosition = wrapped;
             }
