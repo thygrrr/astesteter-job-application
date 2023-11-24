@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 namespace Features.Enemies
 {
     [RequireComponent(typeof(IntegratePositionAndRotation))]
-    public class RandomZigZagCourse : ProvideVelocityLinear
+    public class AttackPlayerCourse : ProvideVelocityLinear
     {
         [SerializeField] [Tooltip("The velocity range of the Object.")]
         private float2 minMaxSpeed = new(30, 50);
@@ -35,8 +35,11 @@ namespace Features.Enemies
         private void SetRandomVelocityGoal()
         {
             var magnitude = math.remap(0, 1, minMaxSpeed.x, minMaxSpeed.y, Random.value);
-            var rotation = Quaternion.Euler(0f, Random.Range(-180f, 180f), 0f);
-            _velocityGoal = rotation * Vector3.forward * magnitude;
+            //This used to be a randomized rotation...
+            //var rotation = Quaternion.LookRotation(-transform.position.normalized, Vector3.up);
+            //_velocityGoal = rotation * Vector3.forward * magnitude;
+            //... but we can just charge the player instead. (player will be moving so it's not too aggressive)
+            _velocityGoal = -transform.position.normalized * magnitude;
         }
     }
 }
