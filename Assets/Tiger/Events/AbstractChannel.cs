@@ -4,7 +4,7 @@ using UnityEngine.Scripting;
 namespace Tiger.Events
 {
     [Preserve]
-    public abstract class AbstractDataChannel : ScriptableObject
+    public abstract class AbstractChannel : ScriptableObject
     {
         protected internal abstract void Init();
     }

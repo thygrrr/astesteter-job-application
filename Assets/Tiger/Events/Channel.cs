@@ -9,10 +9,10 @@ using Object = UnityEngine.Object;
 
 namespace Tiger.Events
 {
-    [CreateAssetMenu(fileName="New (void) Channel", menuName="Event/(void) Channel", order=0)]
+    [CreateAssetMenu(menuName="Event/(void) Channel")]
     [Icon("Assets/Tiger/Events/Editor/Icons/channel.png")]
     [Preserve]
-    public class Channel : ScriptableObject
+    public class Channel : AbstractChannel
     {
         [Header("Logs & Error Handling")]        
         [SerializeField] [Tooltip("Debug Settings Asset")]
@@ -52,6 +52,12 @@ namespace Tiger.Events
                 debugSettings.Log($"<b>EVENT</b> {name}", context != null ? context : this);
             }
             _subscriptions.Invoke();
+        }
+
+        protected internal override void Init()
+        {
+            if (debugSettings.enabled) debugSettings.Log($"<b>INIT</b> {name} (void)", this);
+            _subscriptions.RemoveAllListeners();
         }
     }
 }

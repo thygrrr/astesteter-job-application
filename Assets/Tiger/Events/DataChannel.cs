@@ -12,7 +12,7 @@ namespace Tiger.Events
 {
     [Icon("Assets/Tiger/Events/Editor/Icons/channel.png")]
     [Preserve]
-    public class DataChannel<T> : AbstractDataChannel
+    public class DataChannel<T> : AbstractChannel
     {
         [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
 
