@@ -37,7 +37,7 @@ namespace Features.Space
         private void LateUpdate()
         {
             var dt = Time.deltaTime;
-            var velocity = _bodyVelocity._xz() * bodyVelocityScale;
+            var velocity = _bodyVelocity.fxz() * bodyVelocityScale;
             _toroidalPosition += velocity * dt;
             _toroidalPosition = mathex.eumod(_toroidalPosition, period);
         

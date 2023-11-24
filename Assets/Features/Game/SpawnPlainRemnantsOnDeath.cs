@@ -36,7 +36,7 @@ namespace Features.Game
 
                 //Split perpendicular to player direction. Nobody wants an Asteroid to the face if they can help it.
                 var length = maxDisplacement * Random.value + minDisplacement;
-                var displacement = length * Vector3.Normalize(Random.onUnitSphere._x0z()); 
+                var displacement = length * Vector3.Normalize(Random.onUnitSphere.vx0z()); 
                 
                 var position = transform.position + displacement ;
                 var rotation = randomizeRotation ? Random.rotationUniform : Quaternion.identity;

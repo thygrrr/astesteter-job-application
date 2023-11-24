@@ -34,8 +34,8 @@ namespace Features.Motion
         
         private void Wrap()
         {
-            var planar = transform.localPosition._x0z();
-            var origin = _world.bounds.center._x0z();
+            var planar = transform.localPosition.fx0z();
+            var origin = _world.bounds.center.fx0z();
             var wrapBounds = _world.bounds;
             wrapBounds.Expand(_ownSize);
             

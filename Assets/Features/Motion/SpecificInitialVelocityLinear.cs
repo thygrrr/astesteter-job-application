@@ -12,7 +12,7 @@ namespace Features.Motion
         private void Start()
         {
             //Sometimes gives y values > epsilon
-            integrator.velocity = transform.TransformDirection(initialVelocity)._x0z();
+            integrator.velocity = transform.TransformDirection(initialVelocity).fx0z();
         }
     }
 }

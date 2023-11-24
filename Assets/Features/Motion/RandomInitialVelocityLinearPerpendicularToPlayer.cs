@@ -17,7 +17,7 @@ namespace Features.Motion
 
         private void Start()
         {
-            var planar = math.normalizesafe(transform.localPosition._x0z());
+            var planar = math.normalizesafe(transform.localPosition.fx0z());
             var direction = math.normalizesafe(lookDirection.value);
             
             //"Best" effort to make motion of newly spawned object perpendicular to player direction.

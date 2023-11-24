@@ -62,7 +62,7 @@ namespace Features.Game
                 else
                 {
                     //Single remnant, displace randomly
-                    direction = math.normalizesafe(Random.onUnitSphere._xz0());
+                    direction = Random.onUnitSphere.vxz0().normalized;
                     //TODO: Add planar & mapped random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
                 }
 
@@ -75,7 +75,7 @@ namespace Features.Game
                 remnant.velocity = _ownIntegrator.velocity;
                 
                 var ejectionVelocity = splitting ? direction * Random.Range(minEjectionSpeed, maxEjectionSpeed) : Vector3.zero;
-                ejectionVelocity += (Vector3) Random.insideUnitSphere._x0z() * randomDirectionSpeed;
+                ejectionVelocity += Random.insideUnitSphere.vx0z() * randomDirectionSpeed;
                 remnant.velocity += (float3) ejectionVelocity; //repeated for readability
             }
         }

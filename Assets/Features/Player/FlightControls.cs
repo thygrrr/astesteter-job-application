@@ -103,7 +103,7 @@ namespace Features.Player
             var effectiveThrust = _thrust * boost;
             
             _acceleration = effectiveThrust * _steeringDirection;
-            _acceleration = _acceleration._x0z();
+            _acceleration = _acceleration.vx0z();
             accelerationChannel.Emit(-_acceleration);
 
             if (_thrustTarget > 0) ScreenShake.Add(body.position, 0, engineShakeRunning * Time.deltaTime);

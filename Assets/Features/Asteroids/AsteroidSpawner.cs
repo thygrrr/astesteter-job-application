@@ -42,9 +42,9 @@ namespace Features.Asteroids
 
             while (Application.isPlaying)
             {
-                var spawnRange = _world.bounds.size._x0z();
+                var spawnRange = _world.bounds.size.fx0z();
                 var spawnCenter = _world.bounds.center;
-                Vector3 spawnXZ = Random.insideUnitCircle.normalized._x0y() * 2 * spawnRange;
+                Vector3 spawnXZ = Random.insideUnitCircle.normalized.fx0y() * 2 * spawnRange;
 
                 //BUG: The bounds need to be expanded by the prefab's bounds, rarely you can see them popping in.
                 var position = _world.bounds.ClosestPoint(spawnCenter + spawnXZ);

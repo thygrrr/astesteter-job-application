@@ -29,7 +29,7 @@ namespace Features.Rendering
         void IHierarchicalUpdate.HierarchicUpdate(float deltaTime)
         {
             _position = Vector3.SmoothDamp(_position, _positionGoal, ref _positionDerivative, smoothLambda);
-            targetChild.localPosition = (_position._xyz() * positionFactors._xyz());
+            targetChild.localPosition = _position.fxyz() * positionFactors.fxyz();
 
             targetChild.LookAt(_position * lookFactor, Vector3.up + Vector3.forward);
         }
