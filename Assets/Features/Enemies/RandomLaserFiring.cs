@@ -19,7 +19,8 @@ namespace Features.Enemies
 
                 //Player is always at origin, but we could read the player position channel if needed.
                 //That would require us to consider that a planar position, though. (e.g. swizzling _x0z, or otherwise)
-                var towardsPlayer = Vector3.zero-(position + Random.onUnitSphere.vx0z()).normalized * inaccuracy;
+                var fuzzyPlayerPosition = Random.insideUnitCircle.vx0y() * inaccuracy;
+                var towardsPlayer = (fuzzyPlayerPosition - position).normalized; 
                 var rotation = Quaternion.LookRotation(towardsPlayer, Vector3.up);
                 
                 Instantiate(laserPrefab, position, rotation, transform.parent);
