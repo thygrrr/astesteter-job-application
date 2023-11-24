@@ -6,6 +6,7 @@ using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
@@ -20,7 +21,7 @@ namespace Tiger.Events
         [SerializeField] [Tooltip("What to do when no data was written yet.")]
         private ReadbackBehaviour onValueReadBeforeFirstWrite;
 
-        [SerializeField] public T initializeWithValue;
+        [SerializeField] public T defaultValue;
 
         [Header("Logs & Error Handling")] 
         [SerializeField] [Tooltip("Debug Settings Asset")]
@@ -91,11 +92,8 @@ namespace Tiger.Events
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
                     return default;
 
-                case ReadbackBehaviour.DefaultToDefault:
-                    return default;
-                
                 case ReadbackBehaviour.DefaultToValue:
-                    return initializeWithValue;
+                    return defaultValue;
 
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -118,9 +116,6 @@ namespace Tiger.Events
                 case ReadbackBehaviour.LogWarning:
                     if (debugSettings.enabled) debugSettings.Log($"<b>INIT EMPTY</b> {name}", this);
                     break;
-                case ReadbackBehaviour.DefaultToDefault:
-                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT DEFAULT</b> {name} : {value}", this);
-                    break;
                 case ReadbackBehaviour.DefaultToValue:
                     if (debugSettings.enabled) debugSettings.Log($"<b>INIT VALUE</b> {name} : {value}", this);
                     break;
@@ -135,7 +130,6 @@ namespace Tiger.Events
         ThrowException = default,
         LogError,
         LogWarning,
-        DefaultToDefault,
         DefaultToValue
     }
 }

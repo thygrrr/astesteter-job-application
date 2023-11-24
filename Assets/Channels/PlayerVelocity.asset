@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29b9a6e4ebfbf44390989cde73c9903, type: 3}
   m_Name: PlayerVelocity
   m_EditorClassIdentifier: 
-  onValueReadBeforeFirstWrite: 4
-  initializeWithValue: {x: 0, y: 0, z: 0}
+  onValueReadBeforeFirstWrite: 3
+  defaultValue: {x: 0, y: 0, z: 0}
   debugSettings: {fileID: 11400000, guid: 6be8cec992f965a458594deede2a9503, type: 2}
