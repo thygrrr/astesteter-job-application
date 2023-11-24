@@ -35,6 +35,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
+      propertyPath: remnantsToSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
       propertyPath: remnantPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}

@@ -488,8 +488,8 @@ GameObject:
   - component: {fileID: 5277027288877948916}
   - component: {fileID: 1521103850300343516}
   - component: {fileID: 6728417527028694517}
-  - component: {fileID: 8211331589502431513}
   - component: {fileID: 3641793830696895761}
+  - component: {fileID: 5759645965239595711}
   m_Layer: 16
   m_Name: Ship (Player)
   m_TagString: Untagged
@@ -565,24 +565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40d764f809cfc444afa5e8c5422024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8211331589502431513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6181032893732889095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  remnantsToSpawn: 1
-  randomizeRotation: 0
-  minDisplacement: 0
-  maxDisplacement: 0
-  remnantPrefabs:
-  - {fileID: 3005604470869414250, guid: 25b6f9090ac1c9c4c854e7cde46238a4, type: 3}
 --- !u!114 &3641793830696895761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +578,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
+--- !u!114 &5759645965239595711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181032893732889095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f221afdba8402d49a05ec1b11961383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remnantsToSpawn: 1
+  randomizeRotation: 0
+  minDisplacement: 0
+  maxDisplacement: 0
+  remnantPrefabs:
+  - {fileID: 3005604470869414250, guid: 25b6f9090ac1c9c4c854e7cde46238a4, type: 3}
 --- !u!1 &6243318073222638044
 GameObject:
   m_ObjectHideFlags: 0

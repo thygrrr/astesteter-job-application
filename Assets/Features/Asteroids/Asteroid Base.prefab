@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remnantsToSpawn: 0
-  randomizeRotation: 1
+  randomizeRotation: 0
   minDisplacement: 0
   maxDisplacement: 0
   remnantPrefabs: []
