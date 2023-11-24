@@ -19,8 +19,10 @@ namespace Features.Game
         [SerializeField] private int remnantsToSpawn = 0;
         [SerializeField] private bool randomizeRotation = true;
 
+        [Header("Ejection")]
         [SerializeField] private float minEjectionSpeed = 5;
         [SerializeField] private float maxEjectionSpeed = 10;
+        [SerializeField] private float randomDirectionSpeed = 10;
         [SerializeField] private float minDisplacement = 0;
         [SerializeField] private float maxDisplacement = 0;
 
@@ -73,6 +75,7 @@ namespace Features.Game
                 remnant.velocity = _ownIntegrator.velocity;
                 
                 var ejectionVelocity = splitting ? direction * Random.Range(minEjectionSpeed, maxEjectionSpeed) : Vector3.zero;
+                ejectionVelocity += (Vector3) Random.insideUnitSphere._x0z() * randomDirectionSpeed;
                 remnant.velocity += (float3) ejectionVelocity; //repeated for readability
             }
         }

@@ -94,16 +94,26 @@ PrefabInstance:
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: maxDisplacement
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minDisplacement
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantsToSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: maxEjectionSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minEjectionSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
@@ -120,6 +130,16 @@ PrefabInstance:
         type: 3}
       propertyPath: maxDisplacement.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: randomizeRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: randomDirectionSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -224,6 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,

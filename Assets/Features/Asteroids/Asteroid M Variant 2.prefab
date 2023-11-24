@@ -171,6 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
+      propertyPath: randomDirectionSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
       propertyPath: remnantPrefabs.Array.size
       value: 3
       objectReference: {fileID: 0}
