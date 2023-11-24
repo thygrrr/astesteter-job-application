@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using Features.Motion;
+using Tiger.Swizzles;
 using Tiger.Util;
 using Unity.Mathematics;
 using UnityEngine;
@@ -44,19 +45,28 @@ namespace Features.Game
                 //TODO: Add planar & mapped random functions to LibTiger, this is pure jank. (non-uniform, type chaos, etc.)
                 
                 //Split perpendicular to player direction. Nobody wants an Asteroid to the face if they can help it.
-                var length = maxDisplacement * Random.value + minDisplacement;
+                Vector3 ejection;
+                var amount = Random.Range(minDisplacement, maxDisplacement);
+                if (remnantsToSpawn < 2 || amount == 0)
+                {
+                    //Single remnant, don't do perpendicular.
+                    ejection  = Random.onUnitSphere._xz0();
+                }
+                else
+                {
+                    var directionToPlayer = Vector3.Normalize(transform.position - playerPosition);
+                    var ccw = i % 2 == 0 ? Vector3.up : Vector3.down;
+                    ejection = Vector3.Cross(directionToPlayer, ccw);
+                }
 
-                var directionToPlayer = Vector3.Normalize(transform.position - playerPosition);
-                var ccw = i % 2 == 0 ? Vector3.up : Vector3.down;
-                var direction = Vector3.Cross(directionToPlayer, ccw);
-                var displacement = direction * length; 
-                
-                var position = transform.position + displacement ;
+                var displacement = ejection * amount;
+                var position = transform.position + displacement;
                 var rotation = randomizeRotation ? Random.rotationUniform : Quaternion.identity;
 
-                var velocity = direction * math.length(_ownIntegrator.velocity);
+                var ejectionVelocity = amount > 0 ? ejection * math.length(_ownIntegrator.velocity) : Vector3.zero;
+
                 var remnant = Instantiate(remnantPrefabs.Pick(), position, rotation, transform.parent);
-                remnant.velocity = velocity;
+                remnant.velocity = _ownIntegrator.velocity + (float3) ejectionVelocity;
             }
         }
 
