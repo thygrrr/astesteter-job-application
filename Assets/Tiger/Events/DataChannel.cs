@@ -1,13 +1,11 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
@@ -20,7 +18,7 @@ namespace Tiger.Events
         
         [Header("Initialization")] 
         [SerializeField] [Tooltip("What to do when no data was written yet.")]
-        private DefaultReadbackBehaviour onValueReadBeforeFirstWrite;
+        private ReadbackBehaviour onValueReadBeforeFirstWrite;
 
         [SerializeField] public T initializeWithValue;
 
@@ -30,6 +28,7 @@ namespace Tiger.Events
 
 
         private T _value;
+        private bool _written;
 
         /// <summary>
         /// The last value published on this Channel. Great for components that just care about the latest value once, and don't want to
@@ -37,7 +36,7 @@ namespace Tiger.Events
         /// </summary>
         /// <exception cref="InvalidDataException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public T value => !EqualityComparer<T>.Default.Equals(_value, default) ? _value : HandleUninitializedRead();
+        public T value => _written ? _value : HandleUninitializedRead();
 
         /// <summary>
         /// Subscribe to this channel.
@@ -66,7 +65,12 @@ namespace Tiger.Events
         /// <param name="context">UnityEngine.Object that become the potential Debut console highlight cuplrit.</param>
         public void Emit(T data, Object context = null)
         {
-            if (debugSettings.enabled) debugSettings.Log($"<b>EVENT</b> {name} : {data}", context != null ? context : this);
+            if (debugSettings.enabled)
+            {
+                debugSettings.Log(_written ? $"<b>EVENT</b> {name} : {data}" : $"<b>FIRST WRITE</b> {name} : {data}", context != null ? context : this);
+            }
+            
+            _written = true;
             _value = data;
             _subscriptions.Invoke(data);
         }
@@ -76,21 +80,21 @@ namespace Tiger.Events
         {
             switch (onValueReadBeforeFirstWrite)
             {
-                case DefaultReadbackBehaviour.ThrowException:
+                case ReadbackBehaviour.ThrowException:
                     throw new InvalidDataException($"DataChannel<{typeof(T).Name}> {name} accessed before first Emit()");
 
-                case DefaultReadbackBehaviour.LogError:
+                case ReadbackBehaviour.LogError:
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
                     return default;
 
-                case DefaultReadbackBehaviour.LogWarning:
+                case ReadbackBehaviour.LogWarning:
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
                     return default;
 
-                case DefaultReadbackBehaviour.ReturnDefault:
+                case ReadbackBehaviour.DefaultToDefault:
                     return default;
                 
-                case DefaultReadbackBehaviour.ReturnInitialValue:
+                case ReadbackBehaviour.DefaultToValue:
                     return initializeWithValue;
 
                 default:
@@ -98,36 +102,41 @@ namespace Tiger.Events
             }
         }
 
+        private void OnEnable() => Init();
 
-        private void Awake()
+        private void Init()
         {
-            _value = default;
             _subscriptions.RemoveAllListeners();
-        }
 
-        /// <summary>
-        /// For better compatibility with enter edit mode options and other things that keep objects alive across plays.
-        /// </summary>
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void RuntimeInitializer()
-        {
-            Debug.Log($"DataChannel<{typeof(T).Name}> RuntimeInitializeOnLoadMethod");
-            var channels = FindObjectsByType<DataChannel<T>>(FindObjectsSortMode.None);
-            foreach (var channel in channels)
+            _value = default;
+            _written = false;
+            
+            switch (onValueReadBeforeFirstWrite)
             {
-                channel._subscriptions.RemoveAllListeners();
-                channel._value = default;
+                case ReadbackBehaviour.ThrowException:
+                case ReadbackBehaviour.LogError:
+                case ReadbackBehaviour.LogWarning:
+                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT EMPTY</b> {name}", this);
+                    break;
+                case ReadbackBehaviour.DefaultToDefault:
+                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT DEFAULT</b> {name} : {value}", this);
+                    break;
+                case ReadbackBehaviour.DefaultToValue:
+                    if (debugSettings.enabled) debugSettings.Log($"<b>INIT VALUE</b> {name} : {value}", this);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
 
-    internal enum DefaultReadbackBehaviour
+    internal enum ReadbackBehaviour
     {
         ThrowException = default,
         LogError,
         LogWarning,
-        ReturnDefault,
-        ReturnInitialValue
+        DefaultToDefault,
+        DefaultToValue
     }
 }
 

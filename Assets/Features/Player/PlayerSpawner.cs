@@ -44,7 +44,6 @@ namespace Features.Player
             
             _player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity, transform.parent);
             _player.name = _player.name.Split("(Clone)")[0];
-            Emit(GameState.Spawning);
         }
     }
 }
