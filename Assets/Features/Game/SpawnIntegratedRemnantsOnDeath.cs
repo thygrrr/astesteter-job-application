@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 
 using System.Collections.Generic;
-using Tiger.Events;
+using Features.Motion;
 using Tiger.Util;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,12 +9,13 @@ using Random = UnityEngine.Random;
 
 namespace Features.Game
 {
-    using Log = Loggers.Create<SpawnOnDeath>;
+    using Log = Loggers.Create<SpawnIntegratedRemnantsOnDeath>;
     
-    public class SpawnOnDeath : MonoBehaviour, IOnDeath
+    [RequireComponent(typeof(ProvideIntegration))]
+    public class SpawnIntegratedRemnantsOnDeath : MonoBehaviour, IOnDeath
     {
         [Header("On Death")] 
-        [SerializeField] private int remnantsToSpawn = 2;
+        [SerializeField] private int remnantsToSpawn = 0;
         [SerializeField] private bool randomizeRotation = true;
 
         [SerializeField] private float minDisplacement = 0;
@@ -27,8 +28,15 @@ namespace Features.Game
         
         [Header("Remnants")]
         [SerializeField]
-        private List<GameObject> remnantPrefabs;
-        
+        private List<ProvideIntegration> remnantPrefabs;
+
+        private ProvideIntegration _ownIntegrator;
+
+        private void Awake()
+        {
+            _ownIntegrator = GetComponent<ProvideIntegration>();
+        }
+
         public void OnDeath() 
         {
             for (var i = 0; i < remnantsToSpawn; i++)
@@ -38,14 +46,17 @@ namespace Features.Game
                 //Split perpendicular to player direction. Nobody wants an Asteroid to the face if they can help it.
                 var length = maxDisplacement * Random.value + minDisplacement;
 
-                var direction = Vector3.Normalize(transform.position - playerPosition);
+                var directionToPlayer = Vector3.Normalize(transform.position - playerPosition);
                 var ccw = i % 2 == 0 ? Vector3.up : Vector3.down;
-                var displacement = Vector3.Cross(direction, ccw) * length; 
+                var direction = Vector3.Cross(directionToPlayer, ccw);
+                var displacement = direction * length; 
                 
                 var position = transform.position + displacement ;
                 var rotation = randomizeRotation ? Random.rotationUniform : Quaternion.identity;
-                
-                Instantiate(remnantPrefabs.Pick(), position, rotation, transform.parent);
+
+                var velocity = direction * math.length(_ownIntegrator.velocity);
+                var remnant = Instantiate(remnantPrefabs.Pick(), position, rotation, transform.parent);
+                remnant.velocity = velocity;
             }
         }
 

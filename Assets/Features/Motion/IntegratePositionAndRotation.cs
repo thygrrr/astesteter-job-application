@@ -9,6 +9,7 @@ namespace Features.Motion
 {
     using Log = Loggers.Create<IntegratePositionAndRotation>;
 
+    [SelectionBase]
     public class IntegratePositionAndRotation : ProvideIntegration
     {
         [Header("World-Relative Motion")] [SerializeField]
@@ -31,7 +32,6 @@ namespace Features.Motion
 
             transform.SetPositionAndRotation(position, rotation);
         }
-
         #endregion
     }
 }

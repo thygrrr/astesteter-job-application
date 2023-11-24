@@ -33,6 +33,17 @@ PrefabInstance:
       propertyPath: hitPoints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: -3646988675453959451, guid: 7785600cae77a5246a7dd560bf17a7ce,
+        type: 3}
     - target: {fileID: 1531655831433568145, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -132,19 +143,19 @@ PrefabInstance:
         type: 3}
       propertyPath: remnantPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 3301825394724319113, guid: 14ef85eeda01d6043832469a27c86b86,
+      objectReference: {fileID: 7541457085417438978, guid: 14ef85eeda01d6043832469a27c86b86,
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 3301825394724319113, guid: 615265b997a68e3428f9eb73cd6ee4d6,
+      objectReference: {fileID: 7541457085417438978, guid: 615265b997a68e3428f9eb73cd6ee4d6,
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 3301825394724319113, guid: 36970c77eed66e441b9ecb862e6278c1,
+      objectReference: {fileID: 7541457085417438978, guid: 36970c77eed66e441b9ecb862e6278c1,
         type: 3}
     - target: {fileID: 7586494976009043411, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -228,11 +239,7 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3023096342872332848}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -7157616262712885954}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fcbf8d68c3b8f9498f8835f60f17721, type: 3}
 --- !u!4 &7120542115057436784 stripped
 Transform:
@@ -240,30 +247,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2117033865595303440}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8558332983021548899 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-    type: 3}
-  m_PrefabInstance: {fileID: 2117033865595303440}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-7157616262712885954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558332983021548899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  remnantsToSpawn: 1
-  randomizeRotation: 0
-  minDisplacement: 0
-  maxDisplacement: 0
-  remnantPrefabs:
-  - {fileID: 8553846712806990112, guid: 7785600cae77a5246a7dd560bf17a7ce, type: 3}
 --- !u!1001 &2582342122149330713
 PrefabInstance:
   m_ObjectHideFlags: 0

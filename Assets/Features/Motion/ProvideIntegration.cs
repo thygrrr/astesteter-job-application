@@ -37,5 +37,10 @@ namespace Features.Motion
         
         #endregion
         
+        public void InstantiateWithVelocity(Vector3 worldPosition, Quaternion worldRotation, Transform parent, Vector3 ownVelocity)
+        {
+            var instance = Instantiate(gameObject, worldPosition, worldRotation, parent).GetComponent<ProvideIntegration>();
+            instance._velocity = ownVelocity;
+        }
     }
 }

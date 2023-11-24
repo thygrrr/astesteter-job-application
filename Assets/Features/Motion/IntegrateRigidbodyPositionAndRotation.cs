@@ -9,6 +9,7 @@ namespace Features.Motion
 {
     using Log = Loggers.Create<IntegrateRigidBodyPositionAndRotation>;
 
+    [SelectionBase]
     [RequireComponent(typeof(Rigidbody))]
     public class IntegrateRigidBodyPositionAndRotation : ProvideIntegration
     {

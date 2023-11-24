@@ -38,6 +38,17 @@ PrefabInstance:
       propertyPath: hitPoints
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: remnantPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4555682432588601224, guid: 552be43d7b95dfa439b65e62e3f2970d,
+        type: 3}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantsToSpawn
@@ -136,19 +147,19 @@ PrefabInstance:
         type: 3}
       propertyPath: remnantPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 7127387237083081100, guid: 81616bf183cdc654fa2586d17a851ad7,
+      objectReference: {fileID: 2851696782251784455, guid: 81616bf183cdc654fa2586d17a851ad7,
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 7127387237083081100, guid: 80397d1a665ad6d4884cfe28ba9e2080,
+      objectReference: {fileID: 2851696782251784455, guid: 80397d1a665ad6d4884cfe28ba9e2080,
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 7127387237083081100, guid: e9629a8565f56564792ba848f1d71bcc,
+      objectReference: {fileID: 2851696782251784455, guid: e9629a8565f56564792ba848f1d71bcc,
         type: 3}
     - target: {fileID: 7621993490691142673, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -232,36 +243,8 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7757867558918885009}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1007351321928777983}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fcbf8d68c3b8f9498f8835f60f17721, type: 3}
---- !u!1 &3301825394724319113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
-    type: 3}
-  m_PrefabInstance: {fileID: 5077255695031446778}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1007351321928777983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3301825394724319113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  remnantsToSpawn: 1
-  randomizeRotation: 0
-  minDisplacement: 0
-  maxDisplacement: 0
-  remnantPrefabs:
-  - {fileID: 355534049539748941, guid: 552be43d7b95dfa439b65e62e3f2970d, type: 3}
 --- !u!4 &4163016422619812506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
@@ -276,6 +259,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4163016422619812506}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: e76b489f2c0dcee468a4643e8277a236,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 8e977e30e3801b94192c9847f17a7224, type: 3}
     - target: {fileID: 100000, guid: e76b489f2c0dcee468a4643e8277a236, type: 3}
       propertyPath: m_Name
       value: SM_Env_Astroid_Holes_02

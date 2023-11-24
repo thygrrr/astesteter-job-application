@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1556500202868959697}
   - component: {fileID: -7070601809653455304}
   - component: {fileID: 5405054707152763118}
-  - component: {fileID: -8410473259715173258}
+  - component: {fileID: 7658026849953143476}
   m_Layer: 25
   m_Name: Laser (Enemy)
   m_TagString: Untagged
@@ -132,7 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   velocityScale: 1
-  spawnInheritVelocityFactor: 1
 --- !u!114 &5405054707152763118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +149,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 75
---- !u!114 &-8410473259715173258
+--- !u!114 &7658026849953143476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,12 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e350581ac66f9f4c97d104cb7982a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remnantsToSpawn: 1
+  remnantsToSpawn: 2
   randomizeRotation: 1
   minDisplacement: 0
   maxDisplacement: 0
   remnantPrefabs:
-  - {fileID: 5899387571807922107, guid: f63be3586b187d34a84b74581057ddaa, type: 3}
+  - {fileID: -1703425878545586155, guid: f63be3586b187d34a84b74581057ddaa, type: 3}
 --- !u!1 &5379195586534242163
 GameObject:
   m_ObjectHideFlags: 0
