@@ -92,7 +92,7 @@ namespace Tiger.Events
                     Debug.LogError($"DataChannel<{typeof(T).Name}> {name} accessed before first before first Emit()", this);
                     return default;
 
-                case ReadbackBehaviour.DefaultToValue:
+                case ReadbackBehaviour.ReturnDefault:
                     return defaultValue;
 
                 default:
@@ -116,7 +116,7 @@ namespace Tiger.Events
                 case ReadbackBehaviour.LogWarning:
                     if (debugSettings.enabled) debugSettings.Log($"<b>INIT EMPTY</b> {name}", this);
                     break;
-                case ReadbackBehaviour.DefaultToValue:
+                case ReadbackBehaviour.ReturnDefault:
                     if (debugSettings.enabled) debugSettings.Log($"<b>INIT VALUE</b> {name} : {value}", this);
                     break;
                 default:
@@ -130,7 +130,7 @@ namespace Tiger.Events
         ThrowException = default,
         LogError,
         LogWarning,
-        DefaultToValue
+        ReturnDefault
     }
 }
 
