@@ -1,6 +1,7 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Loggers;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace Tiger.Events
             _subscriptions.Invoke(data);
         }
 
-
+        #region Life Cycle
         private T HandleUninitializedRead()
         {
             switch (onValueReadBeforeFirstWrite)
@@ -118,6 +119,32 @@ namespace Tiger.Events
                     throw new ArgumentOutOfRangeException();
             }
         }
+        #endregion
+
+        #region Reflection Accessors
+
+        /// <summary>
+        /// Gets the names of the enum values for type T, if applicable.
+        /// Guaranteed to not return null; returns an empty array instead if T is not an enum
+        /// or the concrete type has implemented no values to list.
+        /// </summary>
+        public virtual bool Enumerate([NotNull] out string[] names, [NotNull] out T[] values) 
+        {
+            if (typeof(T).IsEnum)
+            {
+                names = Enum.GetNames(typeof(T));
+                values = (T[]) Enum.GetValues(typeof(T));
+                return true;
+            }
+            else
+            {
+                names = Array.Empty<string>();
+                values = Array.Empty<T>();
+                return false;                
+            }
+        }
+        
+        #endregion
     }
 
     internal enum ReadbackBehaviour
