@@ -14,12 +14,10 @@ namespace Tiger.Events.Editor
 			
 			DrawDefaultInspector();
 
-			if (Application.isPlaying)
-			{
-				EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
+				EditorGUI.BeginDisabledGroup(Application.isPlaying || serializedObject.isEditingMultipleObjects);
 
 				// Use reflection to get the generic type of the target
-				System.Type targetType = target.GetType();
+				var targetType = target.GetType();
 
 				// Now we need to find the Emit method and the defaultValue field
 				var emitMethod = targetType.GetMethod("Emit");
@@ -32,18 +30,10 @@ namespace Tiger.Events.Editor
 					if (GUILayout.Button("Emit Default"))
 					{
 						// Invoke the Emit method with the defaultValue
-						emitMethod.Invoke(target, new[] {defaultValue});
+						emitMethod.Invoke(target, new[] {defaultValue, this});
 					}
 				}
-
-				if (GUILayout.Button("Emit Custom"))
-				{
-					// Here you would need to implement a way to let the user input a custom value to emit
-					// This could be through a serialized property or a EditorGUI field
-				}
-
 				EditorGUI.EndDisabledGroup();
-			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 
 using Features.Space;
+using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -32,9 +33,23 @@ namespace Features.Motion
             float3 position = _body.position;
             float3 velocity = _body.velocity;
 
-            if (MovingAway(velocity, position) && OutOfBounds(position)) 
+            var planar = _body.position.fx0z();
+            var origin = _world.bounds.center.fx0z();
+            var wrapBounds = _world.bounds;
+            wrapBounds.Expand(wrapPadding);
+
+            var outOfBounds = !wrapBounds.Contains(planar);
+            var movingAway = math.any(velocity * (planar - origin) > 0);
+
+
+            if (outOfBounds && movingAway)
             {
-                _body.position = _wrapBounds.center - (Vector3) position;
+                //_body.position = _wrapBounds.center - (Vector3) position;
+
+                //Only wrap the largest coordinate.
+                var wrapped = math.select(origin - planar, planar, math.abs(planar) < math.cmax(math.abs(planar)));
+                wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
+                _body.position = wrapped;
             }
         }
         

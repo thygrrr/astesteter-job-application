@@ -6,7 +6,6 @@ using Loggers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events

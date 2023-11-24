@@ -44,7 +44,8 @@ namespace Features.Motion
 
             if (outOfBounds && movingAway)
             {
-                var wrapped = origin - planar;
+                //Only wrap the largest coordinate.
+                var wrapped = math.select(origin - planar, planar, math.abs(planar) < math.cmax(math.abs(planar)));
                 wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
                 transform.localPosition = wrapped;
             }
