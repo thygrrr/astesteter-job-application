@@ -15,8 +15,8 @@ namespace Tiger.ScreenShake
         public Transform perceiver;
 
         [Header("Shake Frequency")] 
-        [Range(1f, 50f)] [Tooltip("Frequency of the noise used for shaking")] public float highFrequency = 30.0f;
-        [Range(1f, 50f)] [Tooltip("Frequency of the noise used for shaking")] public float lowFrequency = 5.0f;
+        [Range(1f, 100f)] [Tooltip("Frequency of the noise used for shaking")] public float highFrequency = 30.0f;
+        [Range(1f, 100f)] [Tooltip("Frequency of the noise used for shaking")] public float lowFrequency = 5.0f;
 
         [Header("Trauma ASDR")] 
         [Range(0f, 1f)] public float highFrequencyAttack = 0.0f;

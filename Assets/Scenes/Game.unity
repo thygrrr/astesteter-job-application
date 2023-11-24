@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585547}
   m_Layer: 0
-  m_Name: Hello, Rig! I'm [Camera].
+  m_Name: Hello, Rigs! I'm [Camera].
   m_TagString: MainCamera
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2671,19 +2671,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 330585546}
   perceiver: {fileID: 479974871}
-  highFrequency: 24
-  lowFrequency: 4
+  highFrequency: 50
+  lowFrequency: 10
   highFrequencyAttack: 0
   highFrequencySustain: 0.2
   lowFrequencyAttack: 0.1
   lowFrequencySustain: 1
   traumaHFIntensityExponent: 1
-  traumaLFIntensityExponent: 2
+  traumaLFIntensityExponent: 3
   distanceUnitScale: 1
   highFrequencyDistanceExponent: 2
   lowFrequencyDistanceExponent: 1
-  shakeAxisStrengthsHF: {x: 3, y: 3, z: 1}
-  shakeAxisStrengthsLF: {x: 1, y: 1, z: 3}
+  shakeAxisStrengthsHF: {x: 1.5, y: 1.5, z: 1.5}
+  shakeAxisStrengthsLF: {x: 0.5, y: 0.5, z: 1}
   shakeType: 0
 --- !u!1 &1043580094
 GameObject:
