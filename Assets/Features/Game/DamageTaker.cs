@@ -10,10 +10,20 @@ namespace Features.Game
     public class DamageTaker : Killable
     {
         [SerializeField] private float hitPoints = 1;
+        [SerializeField] private float spawnInvulnerabilitySeconds = 0.5f;
+
+        private float _invulnerableUntil;
+        
+        private void Start()
+        {
+            _invulnerableUntil = Time.time + spawnInvulnerabilitySeconds;
+        }
 
         public void ApplyDamage(float damage)
         {
-            hitPoints -= damage;
+            if (Time.time > _invulnerableUntil) hitPoints -= damage;
+            
+            //Still PRETEND to take damage.
             if (hitPoints <= 0) Die(); else HitFeedback();
         }
 
