@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 58ae17a90ee9bfa4d9df553aec2e0aac, type: 3}
   - {fileID: 8300000, guid: 3dee7745185617e40bd5291159eef056, type: 3}
   - {fileID: 8300000, guid: a2b0079e9a6b9294fae097db0c11ee3d, type: 3}
-  group: {fileID: -42984638266934083, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
+  group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
     maximum: 0
@@ -26,3 +26,4 @@ MonoBehaviour:
   pitch:
     minimum: 1.2845297
     maximum: 1.7757206
+  loop: 0

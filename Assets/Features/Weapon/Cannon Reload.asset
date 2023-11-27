@@ -18,7 +18,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d41d7e018a85ded4ba3359b55ef2ecd7, type: 3}
   - {fileID: 8300000, guid: bc9e1070f7b7a8f46b065b6f14e723ff, type: 3}
   - {fileID: 8300000, guid: da93c408eafa01c43a38a95174411816, type: 3}
-  group: {fileID: -5188298631041925576, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
+  - {fileID: 8300000, guid: dca74159a61f24e458cce8b48812159f, type: 3}
+  group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
     maximum: 0
@@ -28,3 +29,4 @@ MonoBehaviour:
   pitch:
     minimum: 0.8904355
     maximum: 1.090436
+  loop: 0
