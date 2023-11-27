@@ -327,6 +327,10 @@ MonoBehaviour:
   clipSize: 5
   reloadTime: 0.7
   cycleTime: 0.1
+  shotSound: {fileID: 11400000, guid: aaef5d7c2e1b4f5449560aba6c4d001c, type: 2}
+  servoSound: {fileID: 11400000, guid: 844bf887bf3e7814aa9e25b18cd21456, type: 2}
+  mechSound: {fileID: 11400000, guid: 88d6a74324f5dac42b519194662762d2, type: 2}
+  reloadSound: {fileID: 11400000, guid: 0eddec8039e78b247921cf2039d272cd, type: 2}
   reloadAudio: {fileID: 3537910805848506549}
   servoAudio: {fileID: 8310808126520975436}
   mechAudios:
@@ -428,7 +432,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.3
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

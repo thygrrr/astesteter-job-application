@@ -33,6 +33,12 @@ PrefabInstance:
       propertyPath: minSpeed
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -836916055677495046, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: audioEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: b16a5c206836e6442864003553c9fc3d,
+        type: 2}
     - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantsToSpawn

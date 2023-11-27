@@ -1,0 +1,25 @@
+﻿//SPDX-License-Identifier: Unlicense
+
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+namespace Tiger.Audio.Editor
+{
+	internal static class SoundEffectAssetCreator
+	{
+		[MenuItem("Assets/Create/Sound/Standard", false)]
+		public static void CreateSoundEffect()
+		{
+			var targets = Selection.GetFiltered<AudioClip>(SelectionMode.Assets);
+			Array.Sort(targets, (clip1, clip2) => string.Compare(clip1.ToString(), clip2.ToString(), StringComparison.Ordinal));
+			
+			var asset = ScriptableObject.CreateInstance<SoundEffect>();
+			asset.clips = new List<AudioClip>(targets);
+
+			const string fileName = "New Sound Effect.asset";
+			ProjectWindowUtil.CreateAsset(asset, fileName);
+		}
+	}
+}

@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Cannon Reload
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 74def0cae468ef146a275c7991d26c10, type: 3}
-  group: {fileID: -42984638266934083, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
+  - {fileID: 8300000, guid: 88f3e50291b69244b8b490fa25985139, type: 3}
+  - {fileID: 8300000, guid: f1198f3fd86876b408f01d02a3beaa30, type: 3}
+  - {fileID: 8300000, guid: d41d7e018a85ded4ba3359b55ef2ecd7, type: 3}
+  - {fileID: 8300000, guid: bc9e1070f7b7a8f46b065b6f14e723ff, type: 3}
+  - {fileID: 8300000, guid: da93c408eafa01c43a38a95174411816, type: 3}
+  group: {fileID: -5188298631041925576, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.9
-    maximum: 1
+    minimum: 0.46748987
+    maximum: 0.56749
   pitch:
-    minimum: 0.9
-    maximum: 1.1
+    minimum: 0.8904355
+    maximum: 1.090436

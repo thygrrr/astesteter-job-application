@@ -1,5 +1,6 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
+using System.Collections.Generic;
 using Tiger.Attributes;
 using Tiger.Util;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Tiger.Audio
     public class SoundEffect : AudioEvent
     {
         [Header("Audio Palette")]
-        public AudioClip[] clips;
+        public List<AudioClip> clips;
 
         [Header("Mixer")] 
         public AudioMixerGroup group;
@@ -26,6 +27,8 @@ namespace Tiger.Audio
         [MinMaxRange(0, 2)]
         public RangedFloat pitch = new() {minimum = 0.9f, maximum = 1.1f};
 
+        public bool loop;
+        
         public override void Play(AudioSource source)
         {
             source.clip = clips.Pick();

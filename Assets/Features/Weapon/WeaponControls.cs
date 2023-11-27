@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using Feature.Ui;
 using Features.Motion;
-using Features.Space;
+using Tiger.Audio;
 using Tiger.Events.Concrete;
 using Tiger.ScreenShake;
 using Tiger.Util;
@@ -8,7 +9,7 @@ using Tweens;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Features.Player
+namespace Features.Weapon
 {
     using Log = Loggers.Create<WeaponControls>;
 
@@ -27,10 +28,14 @@ namespace Features.Player
         [SerializeField] private float reloadTime = 1;
         [SerializeField] private float cycleTime = 0.05f;
 
+        [SerializeField] private AudioEvent shotSound;
+        [SerializeField] private AudioEvent servoSound;
+        [SerializeField] private AudioEvent mechSound;
+        [SerializeField] private AudioEvent reloadSound;
         [SerializeField] private AudioSource reloadAudio;
         [SerializeField] private AudioSource servoAudio;
-        [SerializeField] private AudioSource[] mechAudios;
-        [SerializeField] private AudioSource[] shotAudios;
+        [SerializeField] private List<AudioSource> mechAudios;
+        [SerializeField] private List<AudioSource> shotAudios;
         
         
         private int _bullets;
@@ -64,7 +69,7 @@ namespace Features.Player
             {
                 _bullets = clipSize;
                 ammoCountChannel.Emit(_bullets);
-                reloadAudio.Play();
+                reloadSound.Play(reloadAudio);
                 servoAudio.Stop();
             }
         }
@@ -101,15 +106,10 @@ namespace Features.Player
 
             AddRecoilEffects();
             
-            if (!servoAudio.isPlaying) servoAudio.Play();
+            if (!servoAudio.isPlaying) servoSound.Play(servoAudio);
             
-            var mech = mechAudios.Shift();
-            mech.pitch = Random.Range(0.95f, 1.05f);
-            mech.Play();
-            
-            var shot = shotAudios.Shift();
-            shot.pitch = Random.Range(0.95f, 1.05f);
-            shot.Play();
+            mechSound.Play(mechAudios);            
+            shotSound.Play(shotAudios);
         }
 
         private void AddRecoilEffects()

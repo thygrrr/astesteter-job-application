@@ -189,6 +189,12 @@ namespace Tiger.Events
         LogError,
         ThrowException,
     }
+
+    public interface IDataChannelBinding<C>
+    {
+        public C channel { get; set; }
+    }
+    
 }
 
 /*

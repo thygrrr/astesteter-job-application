@@ -23,11 +23,57 @@ namespace Tiger.Audio
         /// </summary>
         /// <param name="sourcesRingBuffer">the AudioSources to shift and then play it on.</param>
         public void Play(IList<AudioSource> sourcesRingBuffer) => Play(sourcesRingBuffer.Shift());
+
+        /// <summary>
+        /// Play this Audio on a centrally managed AudioSource.
+        /// </summary>
+        /// <param name="position">world position (if unattached) or local position (if attached)</param>
+        /// <param name="attachTo">optional transform to follow (in </param>
+        /// <returns>AudioSource that is playing the 1-shot.</returns>
+        public AudioSource PlayOneShot(Vector3 position = default, Transform attachTo = null)
+        {
+            var oneShot = new GameObject();
+            //TODO: Pull from ring buffer created in RuntimeInitializeOnLoadMethod
+            //oneShot = ...                
+            
+            if (attachTo)
+            {
+                oneShot.AddComponent<FollowTransform>().target = attachTo;
+                oneShot.transform.localPosition = position;
+            }
+            else
+            {
+                oneShot.transform.position = position;
+            }
+
+            var source = oneShot.AddComponent<AudioSource>();
+            Play(source);
+
+            if (!source.loop)
+            {
+                oneShot.name = $"\u266b 1-Shot ({name})";
+                Destroy(oneShot, source.clip.length + PRE_DESTROY_COOLDOWN);
+            }
+            else
+            {
+                oneShot.name = $"\u266b Loop ({name})";
+            }
+
+            return source;
+        }
+
+        /// <summary>
+        /// Play this Audio, following the given transform.
+        /// </summary>
+        /// <param name="attachTo">transform to follow</param>
+        public AudioSource PlayOneShot(Transform attachTo) => PlayOneShot(Vector3.zero, attachTo);
+
+        private const float PRE_DESTROY_COOLDOWN = 0.1f;
     }
 }
 
 /*
-Written by Moritz Voss in 2018
+Written by Moritz Voss in 2018, 2023
 
 This is free and unencumbered software released into the public domain.
 
