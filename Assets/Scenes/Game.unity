@@ -903,7 +903,7 @@ GameObject:
   m_Layer: 0
   m_Name: Game Playfield
   m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: f64528e1d51f6d74c9f7a1738deaa602, type: 3}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2464,7 +2464,7 @@ GameObject:
   m_Layer: 0
   m_Name: 'Environment '
   m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: de0c0298f127a324788f024e1bed48fc, type: 3}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2845,10 +2845,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
   targetChild: {fileID: 280831925}
-  maxRadius: 25
+  maxRadius: 20
   positionFactors: {x: -1, y: 0, z: -1}
   lookFactor: 0.85
-  smoothLambda: 1
+  smoothLambda: 0.7
 --- !u!1 &1059388064
 GameObject:
   m_ObjectHideFlags: 0
@@ -4078,8 +4078,11 @@ VisualEffect:
       - m_Value: 0.29
         m_Name: _stretch
         m_Overridden: 1
-      - m_Value: 400
+      - m_Value: 800
         m_Name: Density
+        m_Overridden: 1
+      - m_Value: 100
+        m_Name: Radius
         m_Overridden: 1
     m_Vector2f:
       m_Array:
@@ -5942,7 +5945,7 @@ PrefabInstance:
     - target: {fileID: 554390908323565004, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6076558392550628327, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
         type: 3}
@@ -5992,6 +5995,11 @@ PrefabInstance:
     - target: {fileID: 6076558392550628327, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387518844563685902, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7639118275653151798, guid: f7bba1d1bf0dc634cb0fe237c45eeced,
