@@ -1,6 +1,4 @@
-using Channels.Concrete;
 using Feature.Ui;
-using Tiger.Events;
 using Tiger.Events.Concrete;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -68,7 +66,7 @@ namespace Features.Player
         public void Awake()
         {
             Debug.Logger.filterLogType = LogType.Warning;
-            _camera = Camera.main;
+            _camera = Camera.main; //Camera.main is often the scene view in the editor.
             forwardFx.SetActive(false);
             
             //This channel is special and must be readable before first emit (see channel object)
@@ -153,7 +151,7 @@ namespace Features.Player
         private void OrientShipFromMouse()
         {
             var mouse = Mouse.current.position.ReadValue();
-            if (!_camera.pixelRect.Contains(mouse)) return;
+            //if (!_camera.pixelRect.Contains(mouse)) return;
             
             var ray = _camera.ScreenPointToRay(mouse);
             var plane = new Plane(Vector3.up, Vector3.zero);
