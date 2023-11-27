@@ -38,6 +38,12 @@ PrefabInstance:
       propertyPath: hitPoints
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -836916055677495046, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: audioEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 80515f91fb033904f83cddfcfe07117a,
+        type: 2}
     - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: remnantsToSpawn

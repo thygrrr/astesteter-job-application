@@ -2845,8 +2845,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
   targetChild: {fileID: 280831925}
-  maxRadius: 15
-  positionFactors: {x: -1.2, y: 0, z: -1.2}
+  maxRadius: 25
+  positionFactors: {x: -1, y: 0, z: -1}
   lookFactor: 0.85
   smoothLambda: 1
 --- !u!1 &1059388064

@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using Tiger.Audio;
 using UnityEngine;
-using Tiger.Audio; 
 
-public class OnAwakePlayOneShotAudio : MonoBehaviour
+namespace Features.Game
 {
-    [SerializeField] private AudioEvent audioEvent;
-    
-    private void Awake()
+    public class OnAwakePlayOneShotAudio : MonoBehaviour
     {
-        audioEvent.PlayOneShot(transform.position);
+        [SerializeField] private AudioEvent audioEvent;
+    
+        private void Awake()
+        {
+            audioEvent.PlayOneShot(transform.position);
+        }
     }
 }
