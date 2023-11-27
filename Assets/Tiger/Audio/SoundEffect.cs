@@ -8,7 +8,6 @@ using UnityEngine.Audio;
 
 namespace Tiger.Audio
 {
-    [CreateAssetMenu(menuName = "Sound/Sound Effect")]
     [Icon("Assets/Tiger/Audio/Editor/sound.png")]
     public class SoundEffect : AudioEvent
     {

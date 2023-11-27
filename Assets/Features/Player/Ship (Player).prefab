@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 6728417527028694517}
   - component: {fileID: 3641793830696895761}
   - component: {fileID: 5759645965239595711}
+  - component: {fileID: 5087448503922876430}
   m_Layer: 16
   m_Name: Ship (Player)
   m_TagString: Untagged
@@ -596,6 +597,19 @@ MonoBehaviour:
   maxDisplacement: 0
   remnantPrefabs:
   - {fileID: 3005604470869414250, guid: 25b6f9090ac1c9c4c854e7cde46238a4, type: 3}
+--- !u!114 &5087448503922876430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181032893732889095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700e6236709b8ca42addcfe80f848823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 39ac4b78328e7584fa99e958e83ad8e6, type: 2}
 --- !u!1 &6243318073222638044
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,10 +703,125 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 673533523549355864}
     m_Modifications:
+    - target: {fileID: 386607701565375575, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 386607701565375575, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243430381859781752, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243430381859781752, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2638167088265469435, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
       propertyPath: m_Name
       value: Ship Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537910805848506549, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537910805848506549, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537910805848506549, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154281716068666770, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154281716068666770, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228699868265118110, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228699868265118110, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545363538571870028, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545363538571870028, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705006724559218389, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705006724559218389, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860258927843909279, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860258927843909279, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761245516219717126, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761245516219717126, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287062404700609725, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287062404700609725, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8310808126520975436, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8310808126520975436, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: MinDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8401988846577413784, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}

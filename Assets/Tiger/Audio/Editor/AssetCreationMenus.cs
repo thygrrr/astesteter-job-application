@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Tiger.Audio.Editor
 {
-	internal static class SoundEffectAssetCreator
+	internal static class AssetCreationMenus
 	{
-		[MenuItem("Assets/Create/Sound/Standard", false)]
+		[MenuItem("Assets/Create/Sound/Sound Effect", false)]
 		public static void CreateSoundEffect()
 		{
 			var targets = Selection.GetFiltered<AudioClip>(SelectionMode.Assets);

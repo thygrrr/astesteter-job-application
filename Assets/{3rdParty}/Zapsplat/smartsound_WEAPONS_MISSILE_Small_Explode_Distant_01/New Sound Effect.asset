@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd306063f4abb643b10dddcab3b6bc4, type: 3}
+  m_Name: New Sound Effect
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 4276a9cb2fd0b164e86c3ab34c0aadcc, type: 3}
+  - {fileID: 8300000, guid: 72de52a811824e0449c5a08443d540db, type: 3}
+  - {fileID: 8300000, guid: a55b5553605b8884c99810ea1d551aa4, type: 3}
+  group: {fileID: 0}
+  delay:
+    minimum: 0
+    maximum: 0
+  volume:
+    minimum: 0.9
+    maximum: 1
+  pitch:
+    minimum: 0.9
+    maximum: 1.1
+  loop: 0
