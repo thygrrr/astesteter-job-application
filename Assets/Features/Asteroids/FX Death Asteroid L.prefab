@@ -86,6 +86,11 @@ PrefabInstance:
       propertyPath: InitialModule.gravityModifier.scalar
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 198314923554681370, guid: 4cf45cdce36e66e4a93614abb5ae7821,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 199167130600116412, guid: 4cf45cdce36e66e4a93614abb5ae7821,
         type: 3}
       propertyPath: m_Materials.Array.size

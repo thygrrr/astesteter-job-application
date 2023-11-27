@@ -244,6 +244,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198192500169632356, guid: ed511b7776af6174e9b1255c7a81e59c,
         type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198192500169632356, guid: ed511b7776af6174e9b1255c7a81e59c,
+        type: 3}
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
@@ -251,11 +256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
       value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
-        type: 3}
-      propertyPath: stopAction
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198195352207415246, guid: ed511b7776af6174e9b1255c7a81e59c,
         type: 3}
