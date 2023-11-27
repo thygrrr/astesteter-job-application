@@ -157,6 +157,7 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &4803744657970552330
@@ -230,7 +231,7 @@ GameObject:
   - component: {fileID: 6344569644480240913}
   - component: {fileID: 8995283835912801620}
   - component: {fileID: 6626563040597423250}
-  m_Layer: 24
+  m_Layer: 16
   m_Name: Thruster Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +430,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 262144
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -650,7 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3666209703127189303}
   - component: {fileID: 5944377705128995456}
-  m_Layer: 24
+  m_Layer: 16
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,6 +702,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 673533523549355864}
     m_Modifications:
+    - target: {fileID: 57576813275573862, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 58090642608847100, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 386607701565375575, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
       propertyPath: MaxDistance
@@ -710,6 +721,16 @@ PrefabInstance:
         type: 3}
       propertyPath: MinDistance
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 726303257733375758, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 726966410265735572, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2243430381859781752, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
@@ -791,6 +812,16 @@ PrefabInstance:
       propertyPath: MinDistance
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6504620256252885509, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505415882744589471, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 7761245516219717126, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
       propertyPath: MaxDistance
@@ -800,6 +831,16 @@ PrefabInstance:
         type: 3}
       propertyPath: MinDistance
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221869354877110002, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222199020289871976, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8287062404700609725, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
