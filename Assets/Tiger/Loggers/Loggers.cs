@@ -124,7 +124,7 @@ namespace Loggers
         /// <summary>
         /// Set this color to change the colour of the Tag / ShortTag (if in use)
         /// </summary>
-        public static Color TagColor = Color.cyan;
+        public static Color TagColor = Color.white;
 
         // We want this exact behaviour here - a new field for every specialized type
 #if UNITY_EDITOR 
