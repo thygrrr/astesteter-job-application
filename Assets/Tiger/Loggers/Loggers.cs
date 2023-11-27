@@ -124,7 +124,7 @@ namespace Loggers
         /// <summary>
         /// Set this color to change the colour of the Tag / ShortTag (if in use)
         /// </summary>
-        public static Color TagColor = Color.white;
+        public static Color TagColor = Color.cyan;
 
         // We want this exact behaviour here - a new field for every specialized type
 #if UNITY_EDITOR 
@@ -133,7 +133,7 @@ namespace Loggers
         private static string Tag => ShortTag;
 #endif
         
-        private static string ShortTag => $"<color={TagColor}>{typeof(T).Name}</color>";
+        private static string ShortTag => $"<color=#{ColorUtility.ToHtmlStringRGB(TagColor)}>{typeof(T).Name}</color>";
 
         private static readonly string FullTag = typeof(T).FullName;
         
