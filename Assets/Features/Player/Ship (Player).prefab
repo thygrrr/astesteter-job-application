@@ -533,7 +533,7 @@ MonoBehaviour:
   body: {fileID: 673533523549355864}
   enginePower: 40
   engineLambda: 0.05
-  rotationLambda: 0.12
+  rotationLambda: 0.2
   maxVelocity: 120
   engineBrakeFactor: 7
   engineShakeTurnOn: 0.2
@@ -705,21 +705,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ship Cannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 3154088907731465133, guid: 337f65e11ac03c445bfd2e06b719fb22,
-        type: 3}
-      propertyPath: clipSize
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3154088907731465133, guid: 337f65e11ac03c445bfd2e06b719fb22,
-        type: 3}
-      propertyPath: reloadTimeFull
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3154088907731465133, guid: 337f65e11ac03c445bfd2e06b719fb22,
-        type: 3}
-      propertyPath: reloadTimePartial
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8401988846577413784, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}

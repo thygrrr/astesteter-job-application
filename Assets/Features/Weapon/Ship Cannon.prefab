@@ -460,9 +460,9 @@ MonoBehaviour:
   ammoCountChannel: {fileID: 11400000, guid: 6b3b80b22de4b784c927361349bab64d, type: 2}
   bulletPrefab: {fileID: -7634380173890113765, guid: f2cdafe0a7b6b9b4fac0b7ea577ffe15,
     type: 3}
-  clipSize: 5
-  reloadTimePartial: 1
-  reloadTimeFull: 0.8
+  clipSize: 6
+  reloadTimePartial: 0.8
+  reloadTimeFull: 1
   cycleTime: 0.1
   shotSound: {fileID: 11400000, guid: aaef5d7c2e1b4f5449560aba6c4d001c, type: 2}
   pewSound: {fileID: 11400000, guid: c76c33722f2b6e1489ec7d009fb91052, type: 2}

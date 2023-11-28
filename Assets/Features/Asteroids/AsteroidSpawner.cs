@@ -39,9 +39,9 @@ namespace Features.Asteroids
         
             _currentSpawnTime = initialWaveTime;
 
-            while (Application.isPlaying)
+            while (channel.value == GameState.Alive)
             {
-                var spawnRange = _world.bounds.size.fx0z();
+                var spawnRange = _world.bounds.size.fx0z() * 1.25f;
                 var spawnCenter = _world.bounds.center;
                 Vector3 spawnXZ = Random.insideUnitCircle.normalized.fx0y() * 2 * spawnRange;
 
@@ -57,8 +57,8 @@ namespace Features.Asteroids
     
         protected override void OnEvent(GameState data)
         {
+            StopAllCoroutines();
             if (data == GameState.Alive) StartCoroutine(Spawning());
-            else StopAllCoroutines();
         }
     }
 }
