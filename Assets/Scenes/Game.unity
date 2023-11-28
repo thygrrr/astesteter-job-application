@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9d74a7f98ce974db4b636520f704a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 200, y: 50, z: 200}
+  size: {x: 250, y: 50, z: 250}
   globalExtentsParameter: _ToroidalWorldExtents
   globalOriginParameter: _ToroidalWorldOrigin
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -2237,7 +2237,7 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 4e674e0d7f561914fbf95e3c32e33fdb, type: 2}
   targetChild: {fileID: 1033891160}
   positionFactors: {x: -10, y: 0, z: -10}
-  curveExponent: 0.5
+  curveExponent: 0.7
   speedScale: 100
   smoothLambda: 1
 --- !u!1001 &951115563
@@ -2851,9 +2851,9 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 898787faec827d743a4a9c09ca80e261, type: 2}
   targetChild: {fileID: 280831925}
   maxRadius: 20
-  positionFactors: {x: -1, y: 0, z: -1.2}
+  positionFactors: {x: -1.2, y: 0, z: -0.8}
   lookFactor: 0.85
-  smoothLambda: 0.7
+  smoothLambda: 0.9
 --- !u!1 &1059388064
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,7 +4193,7 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: 01ddb001a65812d4a99c9eee3f9b3222, type: 2}
   ufoPrefabs:
   - {fileID: 6884740017198028425, guid: 9f22deb3e16d9f84db08b2d21e493928, type: 3}
-  graceTimer: 3
+  graceTimer: 5
 --- !u!1001 &1446445655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5085,7 +5085,7 @@ MonoBehaviour:
   - {fileID: 3301825394724319113, guid: 14ef85eeda01d6043832469a27c86b86, type: 3}
   - {fileID: 3301825394724319113, guid: 615265b997a68e3428f9eb73cd6ee4d6, type: 3}
   - {fileID: 3301825394724319113, guid: 36970c77eed66e441b9ecb862e6278c1, type: 3}
-  preGameTime: 5
+  preGameTime: 7
   initialWaveTime: 10
   minSpawnTime: 3
 --- !u!1 &1763424512

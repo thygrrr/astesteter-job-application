@@ -87,10 +87,15 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64946518047812334, guid: 04510a9b75554b4499ab7aa4628e2c4c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1902721522172972, guid: 04510a9b75554b4499ab7aa4628e2c4c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3869243154597467299}
   m_SourcePrefab: {fileID: 100100000, guid: 04510a9b75554b4499ab7aa4628e2c4c, type: 3}
 --- !u!4 &525513934719945938 stripped
 Transform:
@@ -98,6 +103,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 529756550737746848}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &530527852241051532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1902721522172972, guid: 04510a9b75554b4499ab7aa4628e2c4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 529756550737746848}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &3869243154597467299
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530527852241051532}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.24, z: 0}
 --- !u!1001 &670448627062729471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,12 +141,12 @@ PrefabInstance:
     - target: {fileID: -8997493114234396212, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minMaxSpeed.x
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8997493114234396212, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minMaxSpeed.y
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4869385575592489912, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
