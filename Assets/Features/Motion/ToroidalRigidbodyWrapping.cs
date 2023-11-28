@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 
-using Tiger.Swizzles;
+using Tiger.Math;
 using Unity.Mathematics;
 using UnityEngine;
 

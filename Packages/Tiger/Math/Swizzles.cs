@@ -1,13 +1,13 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
-using UnityEngine;
-using Unity.Mathematics;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
+using UnityEngine;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable InconsistentNaming
 
-namespace Tiger.Swizzles
+namespace Tiger.Math
 {
 
     public static class VectorToFloatSwizzles

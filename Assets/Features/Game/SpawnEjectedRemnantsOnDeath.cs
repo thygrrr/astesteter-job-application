@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using Features.Motion;
-using Tiger.Swizzles;
+using Tiger.Math;
 using Tiger.Util;
 using Unity.Mathematics;
 using UnityEngine;

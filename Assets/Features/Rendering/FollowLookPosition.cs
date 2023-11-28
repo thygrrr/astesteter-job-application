@@ -1,6 +1,6 @@
 using Tiger.Events;
 using Tiger.Events.Concrete;
-using Tiger.Swizzles;
+using Tiger.Math;
 using UnityEngine;
 
 namespace Features.Rendering

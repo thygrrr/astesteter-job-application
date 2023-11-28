@@ -1,5 +1,5 @@
 using Tiger.Events;
-using Tiger.Swizzles;
+using Tiger.Math;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;

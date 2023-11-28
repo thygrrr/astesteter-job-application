@@ -2,7 +2,6 @@ using Feature.Ui;
 using Tiger.Events.Concrete;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Tiger.Swizzles;
 using Tiger.Math;
 using Tiger.ScreenShake;
 using Unity.Mathematics;

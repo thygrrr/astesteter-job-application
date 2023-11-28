@@ -1,7 +1,7 @@
 using System.Collections;
 using Features.Game;
 using Features.Motion;
-using Tiger.Swizzles;
+using Tiger.Math;
 using Tiger.Util;
 using Unity.Mathematics;
 using UnityEngine;

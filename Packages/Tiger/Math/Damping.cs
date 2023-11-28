@@ -3,7 +3,7 @@
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 
-namespace Tiger.Util
+namespace Tiger.Math
 {
     public static class Damping
     {

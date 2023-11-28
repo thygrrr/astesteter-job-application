@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 
 using System.Collections.Generic;
-using Tiger.Swizzles;
+using Tiger.Math;
 using Tiger.Util;
 using UnityEngine;
 using Random = UnityEngine.Random;

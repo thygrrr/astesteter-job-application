@@ -1,5 +1,5 @@
 using System.Collections;
-using Tiger.Swizzles;
+using Tiger.Math;
 using UnityEngine;
 
 namespace Features.Enemies

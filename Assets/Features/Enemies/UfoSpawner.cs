@@ -3,7 +3,7 @@ using Features.Motion;
 using Features.Space;
 using Tiger.Events;
 using Tiger.Events.Concrete;
-using Tiger.Swizzles;
+using Tiger.Math;
 using Tiger.Util;
 using UnityEngine;
 using UnityEngine.Serialization;

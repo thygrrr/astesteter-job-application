@@ -1,7 +1,7 @@
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
 
-namespace Tiger.Util
+namespace Tiger.Math
 {
     public struct PerlinOscillator
     {
