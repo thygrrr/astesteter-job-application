@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Feature.Ui;
 using Features.Motion;
 using Tiger.Audio;
@@ -8,7 +7,6 @@ using Tiger.Util;
 using Tweens;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Features.Weapon
 {
@@ -36,11 +34,9 @@ namespace Features.Weapon
         [SerializeField] private AudioEvent servoSound;
         [SerializeField] private AudioEvent mechSound;
         [SerializeField] private AudioEvent reloadSound;
-        
-        [SerializeField] private AudioSource reloadAudio;
-        [SerializeField] private AudioSource servoAudio;
-        [SerializeField] private List<AudioSource> gunAudios;
-        
+
+        [SerializeField] private AudioPool audioPool;
+        private AudioSource _servoAudio;
         
         private int _bullets;
         private float _reloadTimer;
@@ -56,6 +52,9 @@ namespace Features.Weapon
 
             _world = GetComponentInParent<WorldBounds>();
             if (!_world) Log.Error("No world bounds found in parent!", this);
+
+            if (!audioPool) audioPool = GetComponentInParent<AudioPool>();
+            _servoAudio = audioPool.Take();
         }
 
         private void OnEnable()
@@ -73,8 +72,8 @@ namespace Features.Weapon
             {
                 _bullets = clipSize;
                 ammoCountChannel.Emit(_bullets);
-                reloadSound.Play(reloadAudio);
-                servoAudio.Stop();
+                reloadSound.Play(audioPool);
+                _servoAudio.Stop();
             }
         }
 
@@ -110,12 +109,12 @@ namespace Features.Weapon
 
             AddRecoilEffects();
             
-            if (!servoAudio.isPlaying) servoSound.Play(servoAudio);
+            if (!_servoAudio.isPlaying) servoSound.Play(_servoAudio);
             
-            mechSound.Play(gunAudios);
-            shotSound.Play(gunAudios);
-            pewSound.Play(gunAudios);
-            if (_bullets == 0) pingSound.Play(gunAudios);
+            mechSound.Play(audioPool);
+            shotSound.Play(audioPool);
+            pewSound.Play(audioPool);
+            if (_bullets == 0) pingSound.Play(audioPool);
         }
 
         private void AddRecoilEffects()

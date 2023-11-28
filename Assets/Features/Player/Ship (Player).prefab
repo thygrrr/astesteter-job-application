@@ -473,6 +473,51 @@ Transform:
   - {fileID: 4379966311923198481}
   m_Father: {fileID: 673533523549355864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6177523095022127890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7637985966459899460}
+  - component: {fileID: 2454851340225672498}
+  m_Layer: 16
+  m_Name: AudioPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7637985966459899460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177523095022127890}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 3756204032950153180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2454851340225672498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177523095022127890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a711815c3e979d40bf2f9ee47320689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capacity: 10
 --- !u!1 &6181032893732889095
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +557,7 @@ Transform:
   - {fileID: 4616923196250813188}
   - {fileID: 7378082302941471602}
   - {fileID: 5093784730647824892}
+  - {fileID: 7637985966459899460}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5277027288877948916
@@ -706,6 +752,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 3154088907731465133, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: audioPool
+      value: 
+      objectReference: {fileID: 2454851340225672498}
     - target: {fileID: 8401988846577413784, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -21,8 +21,15 @@ namespace Tiger.Audio
         /// Play this Audio on the given ring buffer (IList) of audio sources.
         /// It will play it on the first one, then move that source to the end of the list.
         /// </summary>
-        /// <param name="sourcesRingBuffer">the AudioSources to shift and then play it on.</param>
-        public void Play(IList<AudioSource> sourcesRingBuffer) => Play(sourcesRingBuffer.Shift());
+        /// <param name="ringBuffer">the AudioSources to shift and then play it on.</param>
+        public void Play(IList<AudioSource> ringBuffer) => Play(ringBuffer.Shift());
+
+        /// <summary>
+        /// Play this Audio on a local AudioPool.
+        /// </summary>
+        /// <param name="source">the AudioSource to play it on.</param>
+        /// <param name="pool">pool object that provides the sources</param>
+        public void Play(AudioPool pool) => Play(pool.sources);
 
         /// <summary>
         /// Play this Audio on a centrally managed AudioSource.
