@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3987c19389d4640a368387a76249fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsUntilDestruction: 1.1
+  secondsUntilDestruction: 0.8
 --- !u!114 &6440213632360126628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   initialVelocity:
     x: 0
     y: 0
-    z: 180
+    z: 250
 --- !u!114 &-4095930013028760077
 MonoBehaviour:
   m_ObjectHideFlags: 0

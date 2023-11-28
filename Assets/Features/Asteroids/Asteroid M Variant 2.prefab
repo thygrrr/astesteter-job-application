@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8997493114234396212, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8997493114234396212, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: minMaxSpeed.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: -4869385575592489912, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minMaxSpeed.x
@@ -50,7 +60,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 351587097112039081, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
+      propertyPath: 'remnantPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 4555682432588601224, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
@@ -66,19 +76,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
+      propertyPath: 'remnantPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 7127387237083081100, guid: 81616bf183cdc654fa2586d17a851ad7,
         type: 3}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[1]
+      propertyPath: 'remnantPrefabs.Array.data[1]'
       value: 
       objectReference: {fileID: 7127387237083081100, guid: 80397d1a665ad6d4884cfe28ba9e2080,
         type: 3}
     - target: {fileID: 2935983636243217348, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[2]
+      propertyPath: 'remnantPrefabs.Array.data[2]'
       value: 
       objectReference: {fileID: 7127387237083081100, guid: e9629a8565f56564792ba848f1d71bcc,
         type: 3}
@@ -104,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4250552742727909141, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
+      propertyPath: 'remnantPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 2030479936859480064, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
@@ -120,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6009777178822069718, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
+      propertyPath: 'remnantPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 355534049539748941, guid: 552be43d7b95dfa439b65e62e3f2970d,
         type: 3}
@@ -172,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: randomDirectionSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
@@ -181,19 +191,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[0]
+      propertyPath: 'remnantPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 2851696782251784455, guid: 81616bf183cdc654fa2586d17a851ad7,
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[1]
+      propertyPath: 'remnantPrefabs.Array.data[1]'
       value: 
       objectReference: {fileID: 2851696782251784455, guid: 80397d1a665ad6d4884cfe28ba9e2080,
         type: 3}
     - target: {fileID: 7062729138601155574, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
-      propertyPath: remnantPrefabs.Array.data[2]
+      propertyPath: 'remnantPrefabs.Array.data[2]'
       value: 
       objectReference: {fileID: 2851696782251784455, guid: e9629a8565f56564792ba848f1d71bcc,
         type: 3}
@@ -360,7 +370,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: b1fc5ae39a01d5b4ca8e92cfcd492f03, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 75fac0468adc9924fae8f6c021c30fb7, type: 2}
     m_RemovedComponents: []

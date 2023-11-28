@@ -6,7 +6,7 @@ namespace Tiger.Audio
 {
 	[CreateAssetMenu(menuName="Effect/Composite Audio")]
 	[Icon("Assets/Tiger/Audio/Editor/Icons/sound.png")]
-	public class CompositeAudioEvent : AudioEvent
+	public class WeightedRandomAudioEvent : AudioEvent
 	{
 		[Serializable]
 		public struct CompositeEntry

@@ -77,7 +77,7 @@ namespace Tiger.Events
 
             switch (onRepeatValue, _value.Equals(data))
             {
-                case (RepeatValueStrategy.IgnoreValue, true):
+                case (RepeatValueStrategy.Ignore, true):
                     if (_written) return; //only ignore if value was actually written and isn't just the initial value.
                     break;
                 
@@ -184,7 +184,7 @@ namespace Tiger.Events
     internal enum RepeatValueStrategy
     {
         EmitNormally = default,
-        IgnoreValue,
+        Ignore,
         LogWarning,
         LogError,
         ThrowException,

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7062729138601155574}
   - component: {fileID: 3377324117870318584}
   - component: {fileID: -4869385575592489912}
+  - component: {fileID: -8997493114234396212}
   - component: {fileID: 6009777178822069718}
   - component: {fileID: -836916055677495046}
   - component: {fileID: 237950444830728223}
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 1
-  spawnInvulnerabilitySeconds: 0.5
+  spawnInvulnerabilitySeconds: 0.3
 --- !u!114 &7062729138601155574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +82,6 @@ MonoBehaviour:
   randomizeRotation: 1
   minEjectionSpeed: 5
   maxEjectionSpeed: 10
-  randomDirectionSpeed: 10
   minDisplacement: 0
   maxDisplacement: 0
   remnantPrefabs: []
@@ -116,6 +116,22 @@ MonoBehaviour:
   minMaxSpeed:
     x: 10
     y: 20
+--- !u!114 &-8997493114234396212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756458137397592947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b576621b746b65d4db685fe0c8cdfba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <integrator>k__BackingField: {fileID: 3377324117870318584}
+  minMaxSpeed:
+    x: 5
+    y: 15
 --- !u!114 &6009777178822069718
 MonoBehaviour:
   m_ObjectHideFlags: 0

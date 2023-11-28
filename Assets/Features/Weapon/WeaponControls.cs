@@ -8,6 +8,7 @@ using Tiger.Util;
 using Tweens;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Features.Weapon
 {
@@ -25,17 +26,20 @@ namespace Features.Weapon
         private Rigidbody bulletPrefab;
 
         [SerializeField] private int clipSize = 4; // Our 1979 ancestor had 4 shots
-        [SerializeField] private float reloadTime = 1;
+        [SerializeField] private float reloadTimePartial = 1.25f;
+        [SerializeField] private float reloadTimeFull = 1f;
         [SerializeField] private float cycleTime = 0.05f;
 
         [SerializeField] private AudioEvent shotSound;
+        [SerializeField] private AudioEvent pewSound;
+        [SerializeField] private AudioEvent pingSound;
         [SerializeField] private AudioEvent servoSound;
         [SerializeField] private AudioEvent mechSound;
         [SerializeField] private AudioEvent reloadSound;
+        
         [SerializeField] private AudioSource reloadAudio;
         [SerializeField] private AudioSource servoAudio;
-        [SerializeField] private List<AudioSource> mechAudios;
-        [SerializeField] private List<AudioSource> shotAudios;
+        [SerializeField] private List<AudioSource> gunAudios;
         
         
         private int _bullets;
@@ -57,7 +61,7 @@ namespace Features.Weapon
         private void OnEnable()
         {
             _bullets = 0;
-            _reloadTimer = reloadTime;
+            _reloadTimer = reloadTimePartial;
         }
 
         private void Update()
@@ -96,7 +100,7 @@ namespace Features.Weapon
             _bullets--;
             ammoCountChannel.Emit(_bullets);
             _cycleTimer = cycleTime;
-            _reloadTimer = reloadTime;
+            _reloadTimer = _bullets == 0 ? reloadTimeFull : reloadTimePartial;
 
             //Our ship may actually be facing outside the plane (because the body is so nimble)
             //Let's ensure the player still shoots perfectly straight.
@@ -108,8 +112,10 @@ namespace Features.Weapon
             
             if (!servoAudio.isPlaying) servoSound.Play(servoAudio);
             
-            mechSound.Play(mechAudios);            
-            shotSound.Play(shotAudios);
+            mechSound.Play(gunAudios);
+            shotSound.Play(gunAudios);
+            pewSound.Play(gunAudios);
+            if (_bullets == 0) pingSound.Play(gunAudios);
         }
 
         private void AddRecoilEffects()

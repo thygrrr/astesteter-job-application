@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd306063f4abb643b10dddcab3b6bc4, type: 3}
-  m_Name: Cannon Mech
+  m_Name: Cannon Pew
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: d0e7356b189204a459c04d40984b6cad, type: 3}
-  - {fileID: 8300000, guid: 155cc530784e72b44bedf848579a1b7a, type: 3}
-  - {fileID: 8300000, guid: ed78887b8837a95448db6837bd070680, type: 3}
-  - {fileID: 8300000, guid: ec3eb5e276e8ca14185fcfd09c416962, type: 3}
+  - {fileID: 8300000, guid: 25080ec355cb42f4c85aba1f38a23127, type: 3}
+  - {fileID: 8300000, guid: cb7c1238f5fda504ca1ce18bff13c00c, type: 3}
+  - {fileID: 8300000, guid: a90d3e395dbb94b47b517cecbab19110, type: 3}
+  - {fileID: 8300000, guid: cb35ac9e51f555745abf6fea3b27829e, type: 3}
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.09980115
-    maximum: 0.1998013
+    minimum: 0.8999999
+    maximum: 1
   pitch:
-    minimum: 0.90481967
-    maximum: 1.0015547
+    minimum: 0.8996969
+    maximum: 1.1492414
   loop: 0
