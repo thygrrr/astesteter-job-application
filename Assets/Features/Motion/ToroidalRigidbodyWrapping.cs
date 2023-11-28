@@ -1,6 +1,5 @@
 //SPDX-License-Identifier: Unlicense
 
-using Features.Space;
 using Tiger.Swizzles;
 using Unity.Mathematics;
 using UnityEngine;
@@ -35,16 +34,15 @@ namespace Features.Motion
             var wrapBounds = _world.bounds;
             wrapBounds.Expand(wrapPadding);
 
+            if (wrapBounds.Contains(planar)) return;
+
             //Only wrap coordinates that are outside the bounds and whose dimension is moving away
-            if (!wrapBounds.Contains(planar))
-            {
-                var outOfBounds = math.abs(planar - (float3) wrapBounds.center) > wrapBounds.extents;
-                var movingAway = _body.velocity * (planar - origin) > 0;
-                var wrapped = math.select(planar, origin - planar, movingAway & outOfBounds);
+            var outOfBounds = math.abs(planar - (float3) wrapBounds.center) > wrapBounds.extents;
+            var movingAway = _body.velocity * (planar - origin) > 0;
+            var wrapped = math.select(planar, origin - planar, movingAway & outOfBounds);
                 
-                wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
-                _body.position = wrapped;
-            }
+            wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane
+            _body.position = wrapped;
         }
         
         private void SetUpBounds()
