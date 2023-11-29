@@ -2,7 +2,6 @@
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Internal;
 
 namespace Tiger.Events.Editor
 {
@@ -23,7 +22,7 @@ namespace Tiger.Events.Editor
 			EditorGUI.BeginDisabledGroup(!Application.isPlaying || serializedObject.isEditingMultipleObjects);
 			EditorGUILayout.Space();
 			
-			EditorGUILayout.BeginFoldoutHeaderGroup(_foldout, "Emit Value (Runtime Only)");
+			_foldout = EditorGUILayout.BeginFoldoutHeaderGroup(_foldout, "Emit Value (Runtime Only)");
 			ListAvailableStates();
 			EditorGUILayout.EndFoldoutHeaderGroup();
 			
@@ -88,13 +87,13 @@ namespace Tiger.Events.Editor
 				var value = enumValues.GetValue(i);
 				if (value.Equals(currentValue))
 				{
-					GUI.color = Color.yellow;
+					GUI.color = Color.green;
 					enumName += " (Current)";
 				}
 				else
 				if (value.Equals(defaultValue))
 				{
-					GUI.color = Color.green;
+					GUI.color = Color.white;
 					enumName += " (Default)"; 
 				}
 				

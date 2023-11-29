@@ -27,9 +27,18 @@ namespace Tiger.Audio
         /// <summary>
         /// Play this Audio on a local AudioPool.
         /// </summary>
-        /// <param name="source">the AudioSource to play it on.</param>
         /// <param name="pool">pool object that provides the sources</param>
         public void Play(AudioPool pool) => Play(pool.sources);
+
+        /// <summary>
+        /// Play this Audio on game object. The object needs to have an AudioSource component in its hierarchy.
+        /// </summary>
+        /// <remarks>
+        /// This function is generally not recommended, as it is not clear which AudioSource will be used.
+        /// Preferably, use the overloads that take an AudioSource or an AudioPool.
+        /// </remarks>
+        /// <param name="gameObject"></param>
+        public void Play(GameObject gameObject) => Play(gameObject.GetComponent<AudioSource>());
 
         /// <summary>
         /// Play this Audio on a centrally managed AudioSource.

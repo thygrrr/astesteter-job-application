@@ -95,9 +95,9 @@ namespace Features.Player
             _thrust = Mathf.SmoothDamp(_thrust, _thrustTarget, ref _thrustDerivative, engineLambda);
 
             // We use _steeringDirection instead of body.forward because we want user input to feel much snappier.
-            var braking = math.smoothstep(0, -1, Vector3.Dot(_velocity.normalized, _steeringDirection));
-            var boost = math.remap(-0.5f * math.SQRT2, 1, 1, engineBrakeFactor, braking); 
-            var effectiveThrust = _thrust * boost;
+            var braking = math.smoothstep(1, -1, Vector3.Dot(_velocity.normalized, _steeringDirection));
+            var boost = math.remap(0, 1, 1, engineBrakeFactor, braking); 
+            var effectiveThrust = _thrust + _thrust * boost;
             
             _acceleration = effectiveThrust * _steeringDirection;
             _acceleration = _acceleration.vx0z();
