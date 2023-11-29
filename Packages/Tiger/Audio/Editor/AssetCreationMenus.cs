@@ -9,7 +9,7 @@ namespace Tiger.Audio.Editor
 {
 	internal static class AssetCreationMenus
 	{
-		[MenuItem("Assets/Create/Sound/Sound Effect", false)]
+		[MenuItem("Assets/Create/Audio/Sound Effect", false)]
 		public static void CreateSoundEffect()
 		{
 			var targets = Selection.GetFiltered<AudioClip>(SelectionMode.Assets);
@@ -20,19 +20,23 @@ namespace Tiger.Audio.Editor
 
 			const string fileName = "New Sound Effect.asset";
 			ProjectWindowUtil.CreateAsset(asset, fileName);
+
+			EditorUtility.SetDirty(asset);
 		}
 
-		[MenuItem("Assets/Create/Sound/Composite Effect", false)]
+		[MenuItem("Assets/Create/Audio/Composite", false, priority = 0)]
 		public static void CreateCompositeEffect()
 		{
 			var targets = Selection.GetFiltered<AudioEvent>(SelectionMode.Assets);
 			Array.Sort(targets, (clip1, clip2) => string.Compare(clip1.ToString(), clip2.ToString(), StringComparison.Ordinal));
 
-			var asset = ScriptableObject.CreateInstance<CompositeEffect>();
-			asset.simultaneous = new List<AudioEvent>(targets);
+			var asset = ScriptableObject.CreateInstance<AudioComposite>();
+			asset.simultaneous.AddRange(targets);
 
 			const string fileName = "New Composite Effect.asset";
 			ProjectWindowUtil.CreateAsset(asset, fileName);
+
+			EditorUtility.SetDirty(asset);
 		}
 	}
 }

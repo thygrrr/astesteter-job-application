@@ -29,7 +29,7 @@ namespace Features.Weapon
         [SerializeField] private float reloadTimeFull = 1f;
         [SerializeField] private float cycleTime = 0.05f;
 
-        [SerializeField] private CompositeEffect gunComposite;
+        [FormerlySerializedAs("gunComposite")] [SerializeField] private AudioComposite gunAudioComposite;
         [SerializeField] private AudioEvent pingSound;
         [SerializeField] private AudioEvent servoSound;
         [SerializeField] private AudioEvent reloadSound;
@@ -110,7 +110,7 @@ namespace Features.Weapon
             
             if (!_servoAudio.isPlaying) servoSound.Play(_servoAudio);
             
-            gunComposite.Play(audioPool);
+            gunAudioComposite.Play(audioPool);
             if (_bullets == 0) pingSound.Play(audioPool);
         }
 

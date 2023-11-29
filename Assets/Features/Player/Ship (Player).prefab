@@ -52,6 +52,8 @@ MonoBehaviour:
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
   delay: 0.3
   duration: 1
+  audioPool: {fileID: 2454851340225672498}
+  spawnSound: {fileID: 11400000, guid: 59ef50f7e0f481f489af82842a30fdf0, type: 2}
 --- !u!114 &7477117187613619619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3233,6 +3235,26 @@ PrefabInstance:
       propertyPath: audioPool
       value: 
       objectReference: {fileID: 2454851340225672498}
+    - target: {fileID: 6377479011125155945, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.maxCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377479011125155945, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377479011125155945, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.maxCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377479011125155945, guid: 337f65e11ac03c445bfd2e06b719fb22,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8401988846577413784, guid: 337f65e11ac03c445bfd2e06b719fb22,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -21,8 +21,8 @@ MonoBehaviour:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.59884465
-    maximum: 0.75174385
+    minimum: 0.69531316
+    maximum: 0.84821236
   pitch:
     minimum: 1.6970711
     maximum: 1.9031646
@@ -30,7 +30,7 @@ MonoBehaviour:
   spatializer:
     enabled: 1
     spatialBlend: 0.2
-    spread: 90
+    spread: 270
     rolloffMode: 0
     minDistance: 10
     maxDistance: 100

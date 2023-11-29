@@ -1,5 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 using Features.Game;
+using Tiger.Audio;
 using Tweens;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ namespace Features.Player
     {
         [SerializeField] private float delay = 1f;
         [SerializeField] private float duration = 0.5f;
+        
+        [SerializeField] private AudioPool audioPool;
+        [SerializeField] private AudioComposite spawnSound;
         
         private void Start()
         {
@@ -25,6 +29,9 @@ namespace Features.Player
             };
             
             gameObject.AddTween(tween);
+            
+            if (!audioPool) audioPool = GetComponentInParent<AudioPool>();
+            spawnSound.Play(audioPool);
         }
 
         private void OnAdd(TweenInstance<Transform, Vector3> instance)

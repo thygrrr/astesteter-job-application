@@ -1,5 +1,6 @@
 using Features.Game;
 using Tiger.Util;
+using UnityEngine;
 
 namespace Features.Ui
 {
@@ -12,7 +13,11 @@ namespace Features.Ui
             ShowChildExclusive(state);
         }
 
-        private void Awake() => ShowChildExclusive(default);
+        private void Awake()
+        {
+            Log.Logger.filterLogType = LogType.Warning;
+            ShowChildExclusive(default);   
+        }
 
         /// <remarks>
         /// This is a new pattern for me; I originally had a selector using PlayerInput.currentControlScheme

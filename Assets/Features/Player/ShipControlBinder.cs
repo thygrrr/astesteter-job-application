@@ -16,6 +16,7 @@ namespace Features.Player
         private void Awake()
         {
             Log.TagColor = Color.yellow;
+            Log.Logger.filterLogType = LogType.Warning;
             _input = new GameInputActions();
 
             foreach (var client in GetComponentsInChildren<GameInputActions.IFlightActions>())
