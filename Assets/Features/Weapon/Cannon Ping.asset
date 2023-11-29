@@ -25,3 +25,11 @@ MonoBehaviour:
     minimum: 0.99582726
     maximum: 1.1957815
   loop: 0
+  spatializer:
+    enabled: 1
+    spatialBlend: 0.2
+    spread: 90
+    rolloffMode: 0
+    minDistance: 10
+    maxDistance: 100
+    dopplerLevel: 1

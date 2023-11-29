@@ -7,6 +7,7 @@ using Tiger.Util;
 using Tweens;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Features.Weapon
 {
@@ -28,11 +29,9 @@ namespace Features.Weapon
         [SerializeField] private float reloadTimeFull = 1f;
         [SerializeField] private float cycleTime = 0.05f;
 
-        [SerializeField] private AudioEvent shotSound;
-        [SerializeField] private AudioEvent pewSound;
+        [SerializeField] private CompositeEffect gunComposite;
         [SerializeField] private AudioEvent pingSound;
         [SerializeField] private AudioEvent servoSound;
-        [SerializeField] private AudioEvent mechSound;
         [SerializeField] private AudioEvent reloadSound;
 
         [SerializeField] private AudioPool audioPool;
@@ -111,9 +110,7 @@ namespace Features.Weapon
             
             if (!_servoAudio.isPlaying) servoSound.Play(_servoAudio);
             
-            mechSound.Play(audioPool);
-            shotSound.Play(audioPool);
-            pewSound.Play(audioPool);
+            gunComposite.Play(audioPool);
             if (_bullets == 0) pingSound.Play(audioPool);
         }
 

@@ -13,19 +13,9 @@ MonoBehaviour:
   m_Name: Audio Death Asteroid L
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 58992a67f1638da48ab8459a25fe5322, type: 3}
-  - {fileID: 8300000, guid: 556c712d524c62f488dd5539ba64cdb5, type: 3}
-  - {fileID: 8300000, guid: 4a69c03b3acd26444b417961ed9035b1, type: 3}
-  - {fileID: 8300000, guid: 8c3b451bdd3a2ae429b7f7c629250b76, type: 3}
-  - {fileID: 8300000, guid: fbda7cb4b956c4e45ad8eb367487a803, type: 3}
-  - {fileID: 8300000, guid: 22d307cdbee502e4eb04252242140ee5, type: 3}
-  - {fileID: 8300000, guid: 479570d01d39cae40ad7798f717daef1, type: 3}
-  - {fileID: 8300000, guid: 83d776e93e519cc4fbe8905c0f6bf1ac, type: 3}
-  - {fileID: 8300000, guid: 7ce1981dbd8f6384085c3bc3fb920676, type: 3}
-  - {fileID: 8300000, guid: a44acb40936185b4e90f5ec199c8a709, type: 3}
-  - {fileID: 8300000, guid: 7457145463dfaf74c9d544724934ab39, type: 3}
-  - {fileID: 8300000, guid: 283206f1fed2fe945a5e0c39a4102759, type: 3}
-  - {fileID: 8300000, guid: 5583ca2a62c65ba4e9a5530daa7d3c9b, type: 3}
+  - {fileID: 8300000, guid: 158b0f85f62b4fc41add8b7a6bb381ce, type: 3}
+  - {fileID: 8300000, guid: d8153202f3985ab4eb68ab5b23c6f250, type: 3}
+  - {fileID: 8300000, guid: e4954bddf748b454e8d29a2bbe068c71, type: 3}
   group: {fileID: -42984638266934083, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
@@ -37,3 +27,11 @@ MonoBehaviour:
     minimum: 0.9
     maximum: 1.1
   loop: 0
+  spatializer:
+    enabled: 1
+    spatialBlend: 0.7
+    spread: 90
+    rolloffMode: 0
+    minDistance: 5
+    maxDistance: 100
+    dopplerLevel: 1

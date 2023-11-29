@@ -1,5 +1,6 @@
 ﻿//SPDX-License-Identifier: Unlicense
 
+using System;
 using System.Collections.Generic;
 using Tiger.Attributes;
 using Tiger.Util;
@@ -25,16 +26,45 @@ namespace Tiger.Audio
         
         [MinMaxRange(0, 2)]
         public RangedFloat pitch = new() {minimum = 0.9f, maximum = 1.1f};
-
+        
+        [Header("Looping")]
         public bool loop;
+
+        [Header("Spatial Parameters")]
+        public SpatializerConfig spatializer = new();
         
         public override void Play(AudioSource source)
         {
+            source.Stop();
             source.clip = clips.Pick();
             source.pitch = pitch.Random();
             source.volume = volume.Random();
             source.outputAudioMixerGroup = group;
+
+            source.spatialize = spatializer.enabled;
+            if (spatializer.enabled)
+            {
+                source.spatialBlend = spatializer.spatialBlend;
+                source.minDistance = spatializer.minDistance;
+                source.maxDistance = spatializer.maxDistance;
+                source.rolloffMode = spatializer.rolloffMode;
+                source.spread = spatializer.spread;
+                source.dopplerLevel = spatializer.dopplerLevel;
+            }
+            
             source.PlayDelayed(delay.Random());
+        }
+
+        [Serializable]
+        public class SpatializerConfig
+        {
+            public bool enabled = false;
+            [Range(0, 1)] public float spatialBlend = 0.5f;
+            [Range(0, 360)] public float spread = 90f;
+            public AudioRolloffMode rolloffMode = AudioRolloffMode.Logarithmic;
+            public float minDistance = 10f;
+            public float maxDistance = 100f;
+            public float dopplerLevel = 1f;
         }
     }    
 }

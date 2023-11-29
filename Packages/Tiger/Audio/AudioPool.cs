@@ -12,7 +12,7 @@ namespace Tiger.Audio
     public class AudioPool : MonoBehaviour
     {
         [SerializeField]
-        private int capacity = 5;
+        private int capacity = 10;
         
         public List<AudioSource> sources => sourceComponents;
         
@@ -37,7 +37,6 @@ namespace Tiger.Audio
         private void OnValidate()
         {
             if (capacity == sources.Count && sources.All(s => s)) return;
-            Debug.LogWarning("AudioPool: Capacity and source count do not match, trying to fix.", this);
             UnityEditor.EditorApplication.delayCall += EnsureComponents;
         }
 

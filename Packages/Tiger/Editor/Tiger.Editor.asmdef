@@ -1,6 +1,6 @@
 {
     "name": "Tiger.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "Tiger",
     "references": [
         "GUID:eba4c156aa1d2414ab6764f7ff08b829"
     ],

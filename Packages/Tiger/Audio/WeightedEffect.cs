@@ -4,37 +4,37 @@ using Random = UnityEngine.Random;
 
 namespace Tiger.Audio
 {
-	[CreateAssetMenu(menuName="Effect/Composite Audio")]
+	[CreateAssetMenu(menuName="Audio/Weighted Random Effect")]
 	[Icon("Assets/Tiger/Audio/Editor/Icons/sound.png")]
-	public class WeightedRandomAudioEvent : AudioEvent
+	public class WeightedRandomEffect : AudioEvent
 	{
 		[Serializable]
-		public struct CompositeEntry
+		public struct WeightedEntry
 		{
 			public AudioEvent item;
 			public float weight;
 		}
 
-		public CompositeEntry[] entries;
+		public WeightedEntry[] randomized;
 
 		public override void Play(AudioSource source)
 		{
 			float totalWeight = 0;
-			for (var i = 0; i < entries.Length; ++i)
+			for (var i = 0; i < randomized.Length; ++i)
 			{
-				totalWeight += entries[i].weight;			
+				totalWeight += randomized[i].weight;
 			}
 
 			var pick = Random.Range(0, totalWeight);
-			for (var i = 0; i < entries.Length; ++i)
+			for (var i = 0; i < randomized.Length; ++i)
 			{
-				if (pick > entries[i].weight)
+				if (pick > randomized[i].weight)
 				{
-					pick -= entries[i].weight;
+					pick -= randomized[i].weight;
 					continue;
 				}
 
-				entries[i].item.Play(source);
+				randomized[i].item.Play(source);
 				return;
 			}
 		}

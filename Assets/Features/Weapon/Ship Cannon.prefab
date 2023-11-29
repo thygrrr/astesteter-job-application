@@ -61,11 +61,9 @@ MonoBehaviour:
   reloadTimePartial: 0.8
   reloadTimeFull: 1
   cycleTime: 0.1
-  shotSound: {fileID: 11400000, guid: aaef5d7c2e1b4f5449560aba6c4d001c, type: 2}
-  pewSound: {fileID: 11400000, guid: c76c33722f2b6e1489ec7d009fb91052, type: 2}
+  gunComposite: {fileID: 11400000, guid: f49b447fd9fc8c34fa0479749ed150e4, type: 2}
   pingSound: {fileID: 11400000, guid: e4c0dc4ead2cb794a9fbb5310033fe43, type: 2}
   servoSound: {fileID: 11400000, guid: 844bf887bf3e7814aa9e25b18cd21456, type: 2}
-  mechSound: {fileID: 11400000, guid: 88d6a74324f5dac42b519194662762d2, type: 2}
   reloadSound: {fileID: 11400000, guid: 0eddec8039e78b247921cf2039d272cd, type: 2}
   audioPool: {fileID: 0}
 --- !u!1001 &2341804772363735145
