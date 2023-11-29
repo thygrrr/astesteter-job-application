@@ -44,7 +44,12 @@ namespace Tiger.Audio
             source.spatialize = spatializer.enabled;
             if (spatializer.enabled)
             {
+#if UNITY_WEBGL
+                //WebGL has a spatializer issue, case IN-62035
+                source.spatialBlend = spatializer.spatialBlend * Mathf.Round(spatializer.spatialBlend);
+#else
                 source.spatialBlend = spatializer.spatialBlend;
+#endif
                 source.minDistance = spatializer.minDistance;
                 source.maxDistance = spatializer.maxDistance;
                 source.rolloffMode = spatializer.rolloffMode;
