@@ -9,7 +9,7 @@ namespace Features.Game
     
         private void Awake()
         {
-            audioEvent.PlayOneShot(transform.position);
+            if (audioEvent) audioEvent.PlayOneShot(transform.position);
         }
     }
 }

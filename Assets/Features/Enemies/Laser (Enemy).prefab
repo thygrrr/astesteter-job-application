@@ -149,7 +149,7 @@ MonoBehaviour:
   initialVelocity:
     x: 0
     y: 0
-    z: 85
+    z: 120
 --- !u!114 &1803432827601914898
 MonoBehaviour:
   m_ObjectHideFlags: 0

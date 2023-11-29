@@ -1,4 +1,5 @@
 using System.Collections;
+using Tiger.Audio;
 using Tiger.Math;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace Features.Enemies
     {
         public float inaccuracy = 10;
         public Rigidbody laserPrefab;
+        
+        public AudioEvent laserSound;
+        public AudioSource laserSource;
 
         private IEnumerator Start()
         {
@@ -24,6 +28,7 @@ namespace Features.Enemies
                 var rotation = Quaternion.LookRotation(towardsPlayer, Vector3.up);
                 
                 Instantiate(laserPrefab, position, rotation, transform.parent);
+                laserSound.Play(laserSource);
             }
         }
     }

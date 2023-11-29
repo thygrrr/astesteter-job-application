@@ -10,28 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd306063f4abb643b10dddcab3b6bc4, type: 3}
-  m_Name: Ship Death Audio
+  m_Name: Enemy Death Audio
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 44cd89afeafdbc646a970935c1198c14, type: 3}
-  - {fileID: 8300000, guid: 9c800ecbf6b11f348a3e74a545576501, type: 3}
-  - {fileID: 8300000, guid: fcfa292e688eef1438f380503f6309af, type: 3}
-  group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
+  - {fileID: 8300000, guid: 8cd07ceeeb69839418c186fea8502697, type: 3}
+  group: {fileID: -42984638266934083, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
-    maximum: 0
+    maximum: 0.046923883
   volume:
-    minimum: 0.9
-    maximum: 1
+    minimum: 0.70187664
+    maximum: 0.8018766
   pitch:
-    minimum: 0.9
-    maximum: 1.1
+    minimum: 0.8996969
+    maximum: 1.0866761
   loop: 0
   spatializer:
     enabled: 1
-    spatialBlend: 0.3
-    spread: 270
+    spatialBlend: 0.7
+    spread: 200
     rolloffMode: 0
     minDistance: 5
-    maxDistance: 100
+    maxDistance: 200
     dopplerLevel: 1

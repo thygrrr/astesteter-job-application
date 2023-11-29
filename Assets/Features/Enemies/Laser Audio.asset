@@ -10,28 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd306063f4abb643b10dddcab3b6bc4, type: 3}
-  m_Name: Ship Death Audio
+  m_Name: Laser Audio
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 44cd89afeafdbc646a970935c1198c14, type: 3}
-  - {fileID: 8300000, guid: 9c800ecbf6b11f348a3e74a545576501, type: 3}
-  - {fileID: 8300000, guid: fcfa292e688eef1438f380503f6309af, type: 3}
-  group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
+  - {fileID: 8300000, guid: 4ae33a891b76b9247837dd43160ba723, type: 3}
+  - {fileID: 8300000, guid: 9b10a380729359749a2c841b43a21512, type: 3}
+  group: {fileID: -42984638266934083, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
-    maximum: 0
+    maximum: 0.046923883
   volume:
-    minimum: 0.9
+    minimum: 0.8999999
     maximum: 1
   pitch:
-    minimum: 0.9
-    maximum: 1.1
+    minimum: 0.46174097
+    maximum: 0.71128523
   loop: 0
   spatializer:
     enabled: 1
-    spatialBlend: 0.3
-    spread: 270
+    spatialBlend: 0.6
+    spread: 90
     rolloffMode: 0
-    minDistance: 5
+    minDistance: 10
     maxDistance: 100
     dopplerLevel: 1

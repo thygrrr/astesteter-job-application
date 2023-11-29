@@ -20,7 +20,7 @@ MonoBehaviour:
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
-    maximum: 0
+    maximum: 0.046923883
   volume:
     minimum: 0.8999999
     maximum: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
   spatializer:
     enabled: 1
     spatialBlend: 0.2
-    spread: 90
+    spread: 180
     rolloffMode: 0
     minDistance: 10
     maxDistance: 100

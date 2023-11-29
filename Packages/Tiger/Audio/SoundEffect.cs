@@ -33,7 +33,7 @@ namespace Tiger.Audio
         [Header("Spatial Parameters")]
         public SpatializerConfig spatializer = new();
         
-        public override void Play(AudioSource source)
+        public override float Play(AudioSource source)
         {
             source.Stop();
             source.clip = clips.Pick();
@@ -56,8 +56,10 @@ namespace Tiger.Audio
                 source.spread = spatializer.spread;
                 source.dopplerLevel = spatializer.dopplerLevel;
             }
-            
-            source.PlayDelayed(delay.Random());
+
+            var wait = delay.Random();
+            source.PlayDelayed(wait);
+            return wait;
         }
 
         [Serializable]

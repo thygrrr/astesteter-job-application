@@ -1,4 +1,6 @@
-﻿using System;
+﻿//SPDX-License-Identifier: Unlicense
+
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +19,7 @@ namespace Tiger.Audio
 
 		public WeightedEntry[] randomized;
 
-		public override void Play(AudioSource source)
+		public override float Play(AudioSource source)
 		{
 			float totalWeight = 0;
 			for (var i = 0; i < randomized.Length; ++i)
@@ -25,18 +27,13 @@ namespace Tiger.Audio
 				totalWeight += randomized[i].weight;
 			}
 
-			var pick = Random.Range(0, totalWeight);
+			var pick = Random.Range(0f, totalWeight);
 			for (var i = 0; i < randomized.Length; ++i)
 			{
-				if (pick > randomized[i].weight)
-				{
-					pick -= randomized[i].weight;
-					continue;
-				}
-
-				randomized[i].item.Play(source);
-				return;
+				if (pick <= randomized[i].weight) return randomized[i].item.Play(source);
+				pick -= randomized[i].weight;
 			}
+			return 0;
 		}
 	}
 }

@@ -32,7 +32,6 @@ namespace Tiger.Audio.Editor
 
 			var asset = ScriptableObject.CreateInstance<AudioComposite>();
 			asset.simultaneous.AddRange(targets);
-
 			const string fileName = "New Composite Effect.asset";
 			ProjectWindowUtil.CreateAsset(asset, fileName);
 

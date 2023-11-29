@@ -15,7 +15,7 @@ namespace Tiger.Audio
         /// Play this Audio.
         /// </summary>
         /// <param name="source">the AudioSource to play it on.</param>
-        public abstract void Play(AudioSource source);
+        public abstract float Play(AudioSource source);
         
         /// <summary>
         /// Play this Audio on game object. The object needs to have an AudioSource component in its hierarchy.
@@ -32,18 +32,18 @@ namespace Tiger.Audio
         /// It will play it on the first one, then move that source to the end of the list.
         /// </summary>
         /// <param name="ringBuffer">the AudioSources to shift and then play it on.</param>
-        public virtual void Play(IList<AudioSource> ringBuffer)
+        public float Play(IList<AudioSource> ringBuffer)
         {
             var source = ringBuffer.Shift();
             if (source.isPlaying) Debug.LogWarning($"{GetType()}: {source} is already playing. It will be interrupted by AudioEvent {name}. The RingBuffer / AudioPool may be too small", this);
-            Play(source);
+            return Play(source);
         }
 
         /// <summary>
         /// Play this Audio on a local AudioPool.
         /// </summary>
         /// <param name="pool">pool object that provides the sources</param>
-        public void Play(AudioPool pool) => Play(pool.sources);
+        public float Play(AudioPool pool) => Play(pool.sources);
 
         /// <summary>
         /// Play this Audio on a centrally managed AudioSource.
@@ -68,12 +68,12 @@ namespace Tiger.Audio
             }
 
             var source = oneShot.AddComponent<AudioSource>();
-            Play(source);
+            var delay = Play(source);
 
             if (!source.loop)
             {
                 oneShot.name = $"\u266b 1-Shot ({name})";
-                Destroy(oneShot, source.clip.length + PRE_DESTROY_COOLDOWN);
+                Destroy(oneShot, source.clip.length + delay + PRE_DESTROY_COOLDOWN);
             }
             else
             {

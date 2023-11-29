@@ -24,7 +24,7 @@ MonoBehaviour:
     minimum: 0.69531316
     maximum: 0.84821236
   pitch:
-    minimum: 1.6970711
+    minimum: 1.6032228
     maximum: 1.9031646
   loop: 0
   spatializer:

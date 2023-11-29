@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿//SPDX-License-Identifier: Unlicense
+
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
