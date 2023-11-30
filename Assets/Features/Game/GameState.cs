@@ -5,9 +5,9 @@ namespace Features.Game
     public enum GameState
     {
         TitleScreen = default,
-        Ready,
         Spawning,
         Alive,
+        Dying,
         Epitaph,
     }
 }

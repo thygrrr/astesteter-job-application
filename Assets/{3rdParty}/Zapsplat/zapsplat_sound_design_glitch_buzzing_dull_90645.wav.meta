@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb58960411fdf3d4790cdb5db437b80d
+guid: 536a3ca3094f9b142936cb8cf563166f
 labels:
 - Zapsplat.com
 AudioImporter:
@@ -11,7 +11,7 @@ AudioImporter:
     sampleRateSetting: 0
     sampleRateOverride: 44100
     compressionFormat: 1
-    quality: 0.5
+    quality: 1
     conversionMode: 0
     preloadAudioData: 0
   platformSettingOverrides: {}

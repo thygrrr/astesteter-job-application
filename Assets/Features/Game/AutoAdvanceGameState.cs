@@ -5,7 +5,7 @@ namespace Features.Game
 {
     public class AutoAdvanceGameState : GameStateEmitter
     {
-        public GameState destinationState = GameState.Ready;
+        public GameState destinationState = GameState.Epitaph;
         public float seconds = 3;
 
         private void OnEnable() => StartCoroutine(Advance());

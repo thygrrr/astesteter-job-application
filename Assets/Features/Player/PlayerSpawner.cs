@@ -26,7 +26,7 @@ namespace Features.Player
 
         private void OnExternalStateChange(GameState state)
         {
-            if (state == GameState.Ready) _input.UI.Enable();
+            if (state == GameState.Epitaph) _input.UI.Enable();
             else _input.UI.Disable();
         }
 

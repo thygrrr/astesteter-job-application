@@ -8,7 +8,7 @@ namespace Features.Player
     {
         public void OnDeath()
         {
-            Emit(GameState.Epitaph);            
+            Emit(GameState.Dying);            
         }
     }
 }
