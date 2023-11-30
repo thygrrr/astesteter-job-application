@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
   destinationState: 4
-  seconds: 2
+  seconds: 3
 --- !u!114 &579670656
 MonoBehaviour:
   m_ObjectHideFlags: 0
