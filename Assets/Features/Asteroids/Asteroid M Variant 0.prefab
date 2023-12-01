@@ -238,6 +238,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid M Variant 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7939449748018664419, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: score
+      value: 15000
+      objectReference: {fileID: 0}
     - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minMaxSpeed.x

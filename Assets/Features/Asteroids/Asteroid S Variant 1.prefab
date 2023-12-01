@@ -183,6 +183,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid S Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7939449748018664419, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      propertyPath: score
+      value: 30000
+      objectReference: {fileID: 0}
     - target: {fileID: 8762438314016114898, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
         type: 3}
       propertyPath: minMaxSpeed.x
@@ -267,8 +272,31 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5196929893579540926}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8338053263645898908}
   m_SourcePrefab: {fileID: 100100000, guid: 0fcbf8d68c3b8f9498f8835f60f17721, type: 3}
+--- !u!1 &7127387237083081100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7756458137397592947, guid: 0fcbf8d68c3b8f9498f8835f60f17721,
+    type: 3}
+  m_PrefabInstance: {fileID: 670448627062729471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8338053263645898908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127387237083081100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700e6236709b8ca42addcfe80f848823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 3a45bcad131f16248b078576d312f9e4, type: 2}
 --- !u!4 &8574256926824223903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9200863136539917920, guid: 0fcbf8d68c3b8f9498f8835f60f17721,

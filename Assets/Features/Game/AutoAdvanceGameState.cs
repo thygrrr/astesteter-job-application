@@ -5,6 +5,8 @@ namespace Features.Game
 {
     public class AutoAdvanceGameState : GameStateEmitter
     {
+        public ScoreBoard board;
+        
         public GameState destinationState = GameState.Epitaph;
         public float seconds = 3;
 
@@ -13,7 +15,14 @@ namespace Features.Game
         private IEnumerator Advance()
         {
             yield return new WaitForSeconds(seconds);
-            Emit(destinationState);
+            if (board.lives > 0)
+            {
+                Emit(destinationState);
+            }
+            else
+            {
+                Emit(GameState.GameOver);
+            }
         }
     }
 }

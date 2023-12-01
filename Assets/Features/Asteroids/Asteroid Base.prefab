@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6009777178822069718}
   - component: {fileID: -836916055677495046}
   - component: {fileID: 237950444830728223}
+  - component: {fileID: 7939449748018664419}
   m_Layer: 18
   m_Name: Asteroid Base
   m_TagString: Untagged
@@ -189,3 +190,17 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7939449748018664419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756458137397592947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7102da7fbf36fc04fab073caeea08120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: {fileID: 11400000, guid: b84c70e1e43f868458b69a18a4533a04, type: 2}
+  score: 10000

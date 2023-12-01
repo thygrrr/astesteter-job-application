@@ -2,6 +2,7 @@
 
 using Tweens;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Features.Game
 {

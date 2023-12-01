@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tiger.Events;
+using Tiger.Events.Concrete;
 using UnityEngine;
 
 namespace Features.Game
@@ -11,7 +13,7 @@ namespace Features.Game
         
         private bool _dying;
 
-        protected void Die()
+        protected virtual void Die()
         {
             if (!_dying) StartCoroutine(DeathProcedure());   
         } 

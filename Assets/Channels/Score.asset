@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727f160906ff342479234b1d1fab2534, type: 3}
   m_Name: Score
   m_EditorClassIdentifier: 
-  debugSettings: {fileID: 11400000, guid: 27751f0749fa4824dbe55f0375e11cfe, type: 2}
+  defaultValue: 0
+  onRepeatValue: 0
+  onReadBeforeFirstWrite: 3
+  debugSettings: {fileID: 11400000, guid: f696eeb0e1bf43b409f93e15906b4e9e, type: 2}

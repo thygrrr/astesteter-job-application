@@ -15,8 +15,6 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 4d907ef07487ed74aa2fd92c5dc5f3f8, type: 3}
   - {fileID: 8300000, guid: 7b21a64e1c343db4b8158e90fa6ed4f0, type: 3}
-  - {fileID: 8300000, guid: 9b36e3800a709a14daace6e7333201d1, type: 3}
-  - {fileID: 8300000, guid: 7ec771b836def924d82ce680f29da13e, type: 3}
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
@@ -25,7 +23,7 @@ MonoBehaviour:
     minimum: 0.74623966
     maximum: 0.80127096
   pitch:
-    minimum: 0.6462292
+    minimum: 0.695234
     maximum: 0.7978459
   loop: 0
   spatializer:

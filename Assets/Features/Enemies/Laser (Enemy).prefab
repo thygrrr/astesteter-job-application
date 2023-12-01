@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -7070601809653455304}
   - component: {fileID: 5405054707152763118}
   - component: {fileID: 1803432827601914898}
+  - component: {fileID: 8312434594295340020}
   m_Layer: 25
   m_Name: Laser (Enemy)
   m_TagString: Untagged
@@ -168,6 +169,20 @@ MonoBehaviour:
   maxDisplacement: 0
   remnantPrefabs:
   - {fileID: 3794296734949986384, guid: 7def6832243ed2047a967d946cd5063f, type: 3}
+--- !u!114 &8312434594295340020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868303231184607814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7102da7fbf36fc04fab073caeea08120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: {fileID: 11400000, guid: b84c70e1e43f868458b69a18a4533a04, type: 2}
+  score: 25
 --- !u!1 &5379195586534242163
 GameObject:
   m_ObjectHideFlags: 0

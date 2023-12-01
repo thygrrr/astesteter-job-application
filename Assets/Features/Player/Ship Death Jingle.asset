@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Ship Death Jingle
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 53d644f26274f9d4495446662631b04a, type: 3}
+  - {fileID: 8300000, guid: 24edeb2117361c54bb8a23c13cd7b5b0, type: 3}
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
-    minimum: 0.9981805
-    maximum: 0.9981805
+    minimum: 1.2947037
+    maximum: 1.3096719
   volume:
-    minimum: 0.44938698
-    maximum: 0.5493871
+    minimum: 0.8999999
+    maximum: 1
   pitch:
     minimum: 1.0016415
     maximum: 1.0016415

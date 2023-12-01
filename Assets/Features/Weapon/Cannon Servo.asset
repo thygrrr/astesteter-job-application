@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: Cannon Servo
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: fabee4a33c2d7264b8708102c79c6691, type: 3}
+  - {fileID: 8300000, guid: 0c3b3cc20b7b68845973325d16e17d94, type: 3}
+  - {fileID: 8300000, guid: 645f64138b3d9c342bcdeb99d92340f1, type: 3}
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.104220405
-    maximum: 0.190353
+    minimum: 0.35486132
+    maximum: 0.4055014
   pitch:
-    minimum: 0.7295477
-    maximum: 0.94128984
+    minimum: 0.9512677
+    maximum: 1.0417037
   loop: 0
   spatializer:
     enabled: 1

@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Ship Spawn Engine
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 981d5941a2f3b4146a8b0200ebcde722, type: 3}
+  - {fileID: 8300000, guid: bc9c8b1c7cb1d8c4eadc633c08e49246, type: 3}
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
-    minimum: 0.45477974
-    maximum: 0.45477974
+    minimum: 0.20094803
+    maximum: 0.20094803
   volume:
-    minimum: 0.3969853
-    maximum: 0.49698532
+    minimum: 0.60063607
+    maximum: 0.70063615
   pitch:
-    minimum: 0.9
-    maximum: 1.1
+    minimum: 1.4942324
+    maximum: 1.4942324
   loop: 0
   spatializer:
     enabled: 0

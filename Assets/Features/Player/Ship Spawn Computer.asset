@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Ship Spawn Computer
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 2c71b72af8e77ad459987c84edbc34b5, type: 3}
+  - {fileID: 8300000, guid: 24093ad528b3d92408255b58a2b6717e, type: 3}
   group: {fileID: -7622840683627633322, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   delay:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.6028154
-    maximum: 0.7028154
+    minimum: 0.9
+    maximum: 1
   pitch:
     minimum: 0.9
     maximum: 1.1

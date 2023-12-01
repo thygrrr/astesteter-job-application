@@ -14,19 +14,19 @@ namespace Features.Player
         private GameObject _player;
     
         private GameInputActions _input;
-        
+
         protected void Awake()
         {
             _input = new GameInputActions();
             _input.UI.Spawn.performed += SpawnPlayer;
             _input.UI.Enable();
-            
+
             channel.Subscribe(OnExternalStateChange);
         }
 
         private void OnExternalStateChange(GameState state)
         {
-            if (state == GameState.Epitaph) _input.UI.Enable();
+            if (state is GameState.Epitaph or GameState.TitleScreen) _input.UI.Enable();
             else _input.UI.Disable();
         }
 

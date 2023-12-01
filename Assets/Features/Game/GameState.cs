@@ -9,5 +9,6 @@ namespace Features.Game
         Alive,
         Dying,
         Epitaph,
+        GameOver
     }
 }
