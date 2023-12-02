@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: -5188298631041925576, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   minDB: -80
-  maxDB: 7
+  maxDB: 3
   linearity: 0.5
 --- !u!1 &801886323
 GameObject:
@@ -4009,7 +4009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: 2674503700442531745, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   minDB: -80
-  maxDB: 7
+  maxDB: 3
   linearity: 0.5
 --- !u!1 &891219033
 GameObject:
@@ -4697,7 +4697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: 5502212935957682162, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   minDB: -80
-  maxDB: 7
+  maxDB: 3
   linearity: 0.5
 --- !u!1 &998426168
 GameObject:
@@ -7027,7 +7027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: -5506277237902010766, guid: 59e0927557db77b48afe0533a8596c04, type: 2}
   minDB: -80
-  maxDB: 7
+  maxDB: 3
   linearity: 0.5
 --- !u!1 &1374595807
 GameObject:
