@@ -22,10 +22,10 @@ namespace Tiger.Audio
         public float linearity = 0.5f;
 
         private Slider _slider;
+        private string prefsKey => $"MixerGroup/{group.name}";
 
         private void OnEnable()
         {
-            LoadValue();
             _slider.onValueChanged.AddListener(OnValueChanged);
         }
     
@@ -36,26 +36,27 @@ namespace Tiger.Audio
 
         private void Start()
         {
-            OnValueChanged(_slider.value);
+            _slider.value = PlayerPrefs.HasKey(prefsKey) ? PlayerPrefs.GetFloat(prefsKey) : ReadInitialValueFromMixer();
         }
-
-        private void LoadValue()
+        
+        private float ReadInitialValueFromMixer()
         {
             group.audioMixer.GetFloat(group.name, out var decibels);
             var normalized = math.saturate(math.remap(minDB, maxDB, 0, 1, decibels));
             var nonlinear = math.pow(normalized, 1f / linearity);
             var exponential = math.pow(10f, nonlinear);
             var remapped = math.remap(1, 10, 0, 1, exponential);
-            _slider.value = remapped;
+            return math.saturate(remapped);
         }
-    
+
         private void OnValueChanged(float sliderValue)
         {
-            var remapped = math.remap(0, 1, 1, 10, sliderValue);
+            var remapped = math.remap(0, 1, 1, 10, _slider.value);
             var logarithmic = math.saturate(math.log10(remapped));
             var nonlinear = math.pow(logarithmic, linearity);
             var decibels = math.remap(0f, 1f, minDB, maxDB, nonlinear);
             group.audioMixer.SetFloat(group.name, decibels);
+            PlayerPrefs.SetFloat(prefsKey, _slider.value);
         }
 
         private void OnValidate()

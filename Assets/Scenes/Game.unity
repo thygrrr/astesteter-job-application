@@ -4073,7 +4073,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.2509804}
-    m_HighlightedColor: {r: 0, g: 0.20850754, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.21560161, g: 0.35706493, b: 0.8962264, a: 1}
     m_PressedColor: {r: 0.9818833, g: 1, b: 0, a: 1}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -5002,7 +5002,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.2509804}
-    m_HighlightedColor: {r: 0, g: 0.20850754, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.21560161, g: 0.35706493, b: 0.8962264, a: 1}
     m_PressedColor: {r: 0.9818833, g: 1, b: 0, a: 1}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -5359,7 +5359,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0.2509804}
-    m_HighlightedColor: {r: 0, g: 0.20850754, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.21560161, g: 0.35706493, b: 0.8962264, a: 1}
     m_PressedColor: {r: 0.9818833, g: 1, b: 0, a: 1}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -5432,7 +5432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
-  destinationState: 5
+  destinationState: 0
 --- !u!1 &1033891159
 GameObject:
   m_ObjectHideFlags: 0

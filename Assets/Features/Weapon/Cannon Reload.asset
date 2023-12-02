@@ -20,11 +20,11 @@ MonoBehaviour:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.74623966
-    maximum: 0.80127096
+    minimum: 0.69745916
+    maximum: 0.75249046
   pitch:
-    minimum: 0.695234
-    maximum: 0.7978459
+    minimum: 0.6046417
+    maximum: 0.65150446
   loop: 0
   spatializer:
     enabled: 1
