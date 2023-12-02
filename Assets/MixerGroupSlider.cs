@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
@@ -10,14 +11,13 @@ public class MixerGroupSlider : MonoBehaviour
 
     [Tooltip("The minimum decibel value of the slider")]
     public float minDB = -80;
-    
-    [Tooltip("The maximum decibel value of the slider")]
-    public float maxDB = 7;
 
-    [Range(0.5f, 3f)]
-    [Tooltip("Slider curve weighting on top of logarithmic, 1 = linear, 2 = quadratic, 3 = cubic, etc.")]
-    public float exponent = 2;
-    
+    [Tooltip("The maximum decibel value of the slider")]
+    public float maxDB = 3;
+
+    [Tooltip("Additionally scale the slider along a nonlinear curve to give more precision in the middle to top range.")]
+    [Range(0.1f, 1f)]
+    public float linearity = 0.5f;
 
     private Slider _slider;
 
@@ -37,25 +37,32 @@ public class MixerGroupSlider : MonoBehaviour
         _slider.onValueChanged.RemoveListener(OnValueChanged);
     }
 
+    private void Start()
+    {
+        OnValueChanged(_slider.value);
+    }
+
     private void LoadValue()
     {
         group.audioMixer.GetFloat(group.name, out var decibels);
         var normalized = math.saturate(math.remap(minDB, maxDB, 0, 1, decibels));
-        var power = math.pow(normalized, exponent);
-        _slider.value = math.pow(10, power);
+        var nonlinear = math.pow(normalized, 1f / linearity);
+        var exponential = (math.pow(10f, nonlinear)-1f)/9f;
+        _slider.value = exponential;
     }
     
     private void OnValueChanged(float sliderValue)
     {
-        var root = math.pow(math.log10(sliderValue), 1.0f/exponent);
-        var decibels = math.remap(0f, 1f, minDB, maxDB, root);
+        var logarithmic = math.saturate(math.log10(sliderValue * 9 + 1));
+        var nonlinear = math.pow(logarithmic, linearity);
+        var decibels = math.remap(0f, 1f, minDB, maxDB, nonlinear);
         group.audioMixer.SetFloat(group.name, decibels);
     }
 
     private void OnValidate()
     {
         if (!_slider) _slider = GetComponent<Slider>();
-        _slider.minValue = 1;
-        _slider.maxValue = 10;
+        _slider.minValue = 0;
+        _slider.maxValue = 1;
     }
 }
