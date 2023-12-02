@@ -21,22 +21,27 @@ namespace Tiger.Audio
         [Range(0.1f, 1f)]
         public float linearity = 0.5f;
 
-        private Slider _slider;
+        [SerializeField]
+        [HideInInspector]
+        private Slider slider;
+        
         private string prefsKey => $"MixerGroup/{group.name}";
 
         private void OnEnable()
         {
-            _slider.onValueChanged.AddListener(OnValueChanged);
+            slider.onValueChanged.AddListener(OnValueChanged);
         }
     
         private void OnDisable()
         {
-            _slider.onValueChanged.RemoveListener(OnValueChanged);
+            slider.onValueChanged.RemoveListener(OnValueChanged);
         }
 
         private void Start()
         {
-            _slider.value = PlayerPrefs.HasKey(prefsKey) ? PlayerPrefs.GetFloat(prefsKey) : ReadInitialValueFromMixer();
+            var value = PlayerPrefs.HasKey(prefsKey) ? PlayerPrefs.GetFloat(prefsKey) : ReadInitialValueFromMixer();
+            OnValueChanged(value);
+            slider.value = value;
         }
         
         private float ReadInitialValueFromMixer()
@@ -51,19 +56,19 @@ namespace Tiger.Audio
 
         private void OnValueChanged(float sliderValue)
         {
-            var remapped = math.remap(0, 1, 1, 10, _slider.value);
+            var remapped = math.remap(0, 1, 1, 10, slider.value);
             var logarithmic = math.saturate(math.log10(remapped));
             var nonlinear = math.pow(logarithmic, linearity);
             var decibels = math.remap(0f, 1f, minDB, maxDB, nonlinear);
             group.audioMixer.SetFloat(group.name, decibels);
-            PlayerPrefs.SetFloat(prefsKey, _slider.value);
+            PlayerPrefs.SetFloat(prefsKey, slider.value);
         }
 
         private void OnValidate()
         {
-            if (!_slider) _slider = GetComponent<Slider>();
-            _slider.minValue = 0;
-            _slider.maxValue = 1;
+            if (!slider) slider = GetComponent<Slider>();
+            slider.minValue = 0;
+            slider.maxValue = 1;
         }
     }
 }
