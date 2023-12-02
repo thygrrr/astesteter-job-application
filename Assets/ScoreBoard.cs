@@ -110,7 +110,7 @@ public class ScoreBoard : DataChannelResponder<DataChannel<int>, int>
             var bonus = Mathf.FloorToInt(_speedBonusCurrent) * (4 - lives);
             _speedBonus = bonus switch
             {
-                >= 1000 => bonus / 1000 * 1000,
+                >= 500 => bonus / 500 * 500,
                 >= 100 => bonus / 100 * 100,
                 >= 10 => bonus / 10 * 10,
                 _ => 1
@@ -125,7 +125,14 @@ public class ScoreBoard : DataChannelResponder<DataChannel<int>, int>
 
         scoreDisplay.text = _score.ToString("#,0", _nfi);
 
-        speedDisplay.text = $"{_speedBonus}x";
+        if (_speedBonus <= 9000)
+        {
+            speedDisplay.text = $"{_speedBonus}x";
+        }
+        else
+        {
+            speedDisplay.text = @"OVER 9000";
+        }
     }
 
     private bool CheckGameOver()

@@ -24,7 +24,6 @@ namespace Features.Player
                 easeType = EaseType.BackOut,
                 from = Vector3.zero,
                 to = Vector3.one,
-                onAdd = OnAdd,
                 onEnd = OnEnd
             };
             
@@ -33,12 +32,7 @@ namespace Features.Player
             if (!audioPool) audioPool = GetComponentInParent<AudioPool>();
             spawnSound.Play(audioPool);
         }
-
-        private void OnAdd(TweenInstance<Transform, Vector3> instance)
-        {
-            Emit(GameState.Spawning);
-        }
-
+        
         private void OnEnd(TweenInstance<Transform, Vector3> instance)
         {
             Emit(GameState.Alive);

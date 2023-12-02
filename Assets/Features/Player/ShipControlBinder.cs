@@ -30,6 +30,8 @@ namespace Features.Player
                 Log.Info($"Binding WEAPON ActionMap for {client}");
                 _input.Weapon.AddCallbacks(client);
             }
+            
+            OnEvent(channel.value);
         }
 
         private void OnDestroy()
