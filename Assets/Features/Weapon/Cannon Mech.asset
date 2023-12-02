@@ -22,8 +22,8 @@ MonoBehaviour:
     minimum: 0
     maximum: 0
   volume:
-    minimum: 0.09980115
-    maximum: 0.1998013
+    minimum: 0.30189174
+    maximum: 0.40189192
   pitch:
     minimum: 0.90481967
     maximum: 1.0015547
