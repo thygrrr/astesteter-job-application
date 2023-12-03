@@ -1,10 +1,16 @@
+using Tiger.Audio;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Features.Game
 {
     public class GameStateButton : GameStateEmitter
     {
-        public GameState destinationState = GameState.Spawning;
+        [SerializeField]        
+        private GameState destinationState = GameState.Spawning;
+        [SerializeField]        
+        private AudioEvent onClick;
+
         private Button _button;
     
         private void OnEnable()
@@ -20,6 +26,7 @@ namespace Features.Game
 
         private void Advance()
         {
+            onClick.PlayOneShot();
             Emit(destinationState);
         }
     }

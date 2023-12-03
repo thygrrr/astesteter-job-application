@@ -4006,6 +4006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
   destinationState: 1
+  onClick: {fileID: 11400000, guid: 2562928e09e80304380ba3b8b943d553, type: 2}
 --- !u!1001 &927885613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4936,6 +4937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
   destinationState: 1
+  onClick: {fileID: 11400000, guid: 2562928e09e80304380ba3b8b943d553, type: 2}
 --- !u!1 &1017494300
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,6 +5295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
   destinationState: 0
+  onClick: {fileID: 11400000, guid: 2562928e09e80304380ba3b8b943d553, type: 2}
 --- !u!1 &1033891159
 GameObject:
   m_ObjectHideFlags: 0
