@@ -42,8 +42,8 @@ namespace Tiger.Events
 
         protected sealed override void OnEnable()
         {
-            channel.Subscribe(Trigger);
             OnEnableOverride();
+            channel.Subscribe(Trigger);
         }
 
         protected sealed override void OnDisable()

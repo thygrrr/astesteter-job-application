@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
 using UnityEngine.Search;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Tiger.Events
@@ -19,17 +20,20 @@ namespace Tiger.Events
         [NonSerialized] private readonly UnityEvent<T> _subscriptions = new();
 
         [Header("Initialization & Strategies")] 
-        [SerializeField] [Tooltip("Initialize the channel with this value. (non-invoking, just a start value)")]
-        protected T defaultValue;
+        [SerializeField] [Tooltip("What to do when no data was written yet.")]
+        private NewSubscriberStrategy onNewSubscription;
 
         [SerializeField] [Tooltip("What to do when the new value is the same as the old one.")]
         private RepeatValueStrategy onRepeatValue;
 
         [SerializeField] [Tooltip("What to do when no data was written yet.")]
         private ReadEmptyStrategy onReadBeforeFirstWrite;
+        
+        [Space]
+        [SerializeField] [Tooltip("Initialize the channel with this value. (non-invoking, just a start value)")]
+        protected T defaultValue;
 
-        [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")] 
-        [SearchContext("t: DebugSettings")]
+        [Header("Logs & Error Handling")] [SerializeField] [Tooltip("Debug Settings Asset")] [SearchContext("t: DebugSettings")]
         private DebugSettings debugSettings;
 
         private T _value;
@@ -50,6 +54,12 @@ namespace Tiger.Events
         public void Subscribe(UnityAction<T> action)
         {
             _subscriptions.AddListener(action);
+
+            if (onNewSubscription == NewSubscriberStrategy.ImmediatelyEmitIfValueAvailable 
+                && (_written || onReadBeforeFirstWrite == ReadEmptyStrategy.ReturnDefault))
+            {
+                action.Invoke(value);
+            }
         }
 
         /// <summary>
@@ -80,7 +90,7 @@ namespace Tiger.Events
                 case (RepeatValueStrategy.Ignore, true):
                     if (_written) return; //only ignore if value was actually written and isn't just the initial value.
                     break;
-                
+
                 case (RepeatValueStrategy.LogWarning, true):
                     Debug.LogWarning($"DataChannel<{typeof(T).Name}> {name} emitted the same value twice: {data}", context);
                     break;
@@ -144,7 +154,6 @@ namespace Tiger.Events
                     throw new ArgumentOutOfRangeException();
             }
         }
-
         #endregion
 
         #region Reflection Accessors
@@ -190,11 +199,11 @@ namespace Tiger.Events
         ThrowException,
     }
 
-    public interface IDataChannelBinding<C>
+    internal enum NewSubscriberStrategy
     {
-        public C channel { get; set; }
+        ImmediatelyEmitIfValueAvailable = default,
+        DoNothing,
     }
-    
 }
 
 /*

@@ -11,7 +11,7 @@ namespace Features.Space
         private VisualEffect _vfx;
         private readonly int _speed = Shader.PropertyToID("_velocity");
     
-        private void Start() => _vfx = GetComponent<VisualEffect>();
+        private void Awake() => _vfx = GetComponent<VisualEffect>();
         protected override void OnEvent(Vector3 data) => _vfx.SetVector3(_speed, data);
     }
 }

@@ -3300,6 +3300,7 @@ MonoBehaviour:
   minDB: -80
   maxDB: 3
   linearity: 0.5
+  slider: {fileID: 784306139}
 --- !u!1 &801886323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,7 +3840,6 @@ GameObject:
   - component: {fileID: 877124726}
   - component: {fileID: 877124728}
   - component: {fileID: 877124727}
-  - component: {fileID: 877124729}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -3891,19 +3891,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877124725}
   m_CullTransparentMesh: 1
---- !u!114 &877124729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877124725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04f7071619a2baf40b54feff16b34aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  channel: {fileID: 11400000, guid: c90564e9ff3324a44a3d407747e22ea1, type: 2}
 --- !u!1 &888190180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4011,6 +3998,7 @@ MonoBehaviour:
   minDB: -80
   maxDB: 3
   linearity: 0.5
+  slider: {fileID: 888190182}
 --- !u!1 &891219033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4699,6 +4687,7 @@ MonoBehaviour:
   minDB: -80
   maxDB: 3
   linearity: 0.5
+  slider: {fileID: 984512513}
 --- !u!1 &998426168
 GameObject:
   m_ObjectHideFlags: 0
@@ -7029,6 +7018,7 @@ MonoBehaviour:
   minDB: -80
   maxDB: 3
   linearity: 0.5
+  slider: {fileID: 1374393616}
 --- !u!1 &1374595807
 GameObject:
   m_ObjectHideFlags: 0

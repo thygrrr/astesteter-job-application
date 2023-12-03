@@ -15,4 +15,5 @@ MonoBehaviour:
   defaultValue: 0
   onRepeatValue: 4
   onReadBeforeFirstWrite: 3
+  onNewSubscription: 1
   debugSettings: {fileID: 11400000, guid: 74e2965c2e24e734cb4611ed3fed150a, type: 2}

@@ -39,8 +39,8 @@ namespace Features.Game
         {
             _nfi = new NumberFormatInfo {NumberGroupSeparator = "'"};
             _score = 0;
-            Update();
-        
+            enabled = false;
+
             gameState.Subscribe(OnGameState);
             playerAcceleration.Subscribe(OnAcceleration);
         }
@@ -55,32 +55,36 @@ namespace Features.Game
             switch (state)
             {
                 case GameState.TitleScreen:
-                    ResetScores(true);
+                    SetUpScores(true);
                     break;
-            
-                default:
-                    ResetScores(false);
+
+                case GameState.Spawning:
+                    enabled = true;
+                    SetUpScores();
                     break;
-            
+
                 case GameState.Dying:
                     lives--;
-                    ResetScores(false);
+                    SetUpScores();
                     break;
             
                 case GameState.GameOver:
+                    enabled = false;
                     finalScoreDisplay.text = _score.ToString("#,0", _nfi);
                     break;
             }
 
         }
 
-        private void ResetScores(bool full)
+        private void SetUpScores(bool newGame = false)
         {
-            if (full)
+            if (newGame)
             {
                 lives = 3;
                 _goal = 0;
+                Update();
             }
+            
             _speedBonus = 0;
             _speedBonusGoal = 0;
             _speedBonusCurrent = 0;
@@ -99,8 +103,6 @@ namespace Features.Game
 
         private void Update()
         {
-            if (CheckGameOver()) return;
-
             //Speed bonus
             var speed = math.saturate(math.remap(speedMin, speedMax, 0, 1, playerVelocity.value.magnitude));
             _speedBonusGoal = math.pow(speed, speedExponent) * (speedScore);
@@ -134,11 +136,6 @@ namespace Features.Game
             {
                 speedDisplay.text = @"OVER 9000";
             }
-        }
-
-        private bool CheckGameOver()
-        {
-            return (gameState.value == GameState.GameOver);
         }
 
         protected override void OnEvent(int data)
