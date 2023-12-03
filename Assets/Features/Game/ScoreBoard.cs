@@ -157,14 +157,23 @@ namespace Features.Game
             if (delta == 0) delta = (int) math.sign(_speedBonus - _speedBonusSmooth);
             _speedBonusSmooth += delta;
 
-            var color = (_speedBonus - _speedBonusSmooth) switch
+            if (_speedBonusSmooth <= 9000)
             {
-                > 0 => new Color(1, 1, 0, 1) * 2,
-                < 0 => new Color(1, 0, 0, 1) * 2,
-                _ => new Color(1, 1, 1, _displayAlpha)
-            };
-            speedDisplay.color = color;
-            speedDisplay.text = _speedBonusSmooth <= 9000 ? $"{_speedBonusSmooth}x" : @"OVER 9000";
+                var color = (_speedBonus - _speedBonusSmooth) switch
+                {
+                    > 0 => new Color(1, 1, 0, 1),
+                    < 0 => new Color(1, 0, 0, 1),
+                    _ => new Color(1, 1, 1, _displayAlpha)
+               };
+                speedDisplay.color = color;
+
+                speedDisplay.text = $"{_speedBonusSmooth}x";
+            }
+            else
+            {
+                speedDisplay.text = @"OVER 9000";
+                speedDisplay.color = new Color(0, 0.7f, 1, 1f - math.frac(Time.time * 4f));
+            }
         }
 
         private void OnScore(int data)
