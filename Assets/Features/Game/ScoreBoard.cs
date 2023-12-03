@@ -8,46 +8,59 @@ using UnityEngine;
 
 namespace Features.Game
 {
-    public class ScoreBoard : DataChannelResponder<DataChannel<int>, int>
+    public class ScoreBoard : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI speedDisplay;
-        [SerializeField] private TextMeshProUGUI scoreDisplay;
-        [SerializeField] private TextMeshProUGUI finalScoreDisplay;
-        [SerializeField] private TextMeshProUGUI livesDisplay;
-
-        [SerializeField] private Vector3Channel playerVelocity;
-        [SerializeField] private Vector3Channel playerAcceleration;
-        [SerializeField] private GameStateChannel gameState;
-    
+        [Space] [Header("Balance Parameters")]
         [SerializeField] private float speedScore = 3300f;
         [SerializeField] private float speedMin = 20f;
         [SerializeField] private float speedMax = 120f;
         [SerializeField] private float speedExponent = 5;
         [SerializeField] private float accelScore = 1f;
 
+        [Space][Header("Displays")]
+        [SerializeField] private TextMeshProUGUI speedDisplay;
+        [SerializeField] private TextMeshProUGUI scoreDisplay;
+        [SerializeField] private TextMeshProUGUI finalScoreDisplay;
+        [SerializeField] private TextMeshProUGUI livesDisplay;
+
+        [Space] [Header("Channels")]
+        [SerializeField] private DataChannel<int> scoreChannel;
+        [SerializeField] private Vector3Channel playerVelocity;
+        [SerializeField] private Vector3Channel playerAcceleration;
+        [SerializeField] private GameStateChannel gameState;
+
         private NumberFormatInfo _nfi;
-        private long _score = 0;
-        private long _goal = 0;
+        private long _score;
+        private long _goal;
 
         private long _speedBonus = 1;
-    
-        private float _speedBonusGoal = 0;
-        private float _speedBonusCurrent = 0;
+        private long _speedBonusSmooth = 1;
+
+        private float _speedBonusGoal;
+        private float _speedBonusCurrent;
+        
         public long lives { get; private set; } = 3;
+
+        private float _displayAlpha = 0.3f;
 
         private void Awake()
         {
             _nfi = new NumberFormatInfo {NumberGroupSeparator = "'"};
             _score = 0;
-            enabled = false;
 
             gameState.Subscribe(OnGameState);
-            playerAcceleration.Subscribe(OnAcceleration);
         }
 
-        private void OnAcceleration(Vector3 value)
+        private void OnEnable()
         {
-            _goal += Mathf.CeilToInt(value.sqrMagnitude * accelScore * Time.deltaTime) * _speedBonus;
+            //playerAcceleration.Subscribe(OnAcceleration);
+            scoreChannel.Subscribe(OnScore);
+        }
+
+        private void OnDisable()
+        {
+            //playerAcceleration.Unsubscribe(OnAcceleration);
+            scoreChannel.Unsubscribe(OnScore);
         }
 
         private void OnGameState(GameState state)
@@ -105,7 +118,7 @@ namespace Features.Game
         {
             //Speed bonus
             var speed = math.saturate(math.remap(speedMin, speedMax, 0, 1, playerVelocity.value.magnitude));
-            _speedBonusGoal = math.pow(speed, speedExponent) * (speedScore);
+            _speedBonusGoal = math.pow(speed, speedExponent) * speedScore;
             _speedBonusCurrent += (_speedBonusGoal - _speedBonusCurrent) / 10.0f * Time.deltaTime;
 
             if (gameState.value == GameState.Alive)
@@ -120,28 +133,49 @@ namespace Features.Game
                 };
             }
             else _speedBonus = 1;
-        
-            //Smooth increment
-            _goal = _goal / 50 * 50;
-            var delta = (_goal - _score) * 60 * Time.deltaTime;
-            _score += (long) delta;
 
-            scoreDisplay.text = _score.ToString("#,0", _nfi);
+            UpdateScoreDisplay();
 
-            if (_speedBonus <= 9000)
-            {
-                speedDisplay.text = $"{_speedBonus}x";
-            }
-            else
-            {
-                speedDisplay.text = @"OVER 9000";
-            }
+            UpdateSpeedBonusDisplay();
         }
 
-        protected override void OnEvent(int data)
+        private void UpdateScoreDisplay()
+        {
+            //Smooth increment, 20% per frame
+            var delta = (_goal - _score) / 5;
+            if (delta == 0) delta = (int) math.sign(_goal - _score);
+            _score += delta;
+
+            scoreDisplay.color = _score < _goal ? new Color(2, 2, 0, 1) : new Color(1, 1, 1, _displayAlpha);
+            scoreDisplay.text = _score.ToString("#,0", _nfi);
+        }
+
+        private void UpdateSpeedBonusDisplay()
+        {
+            //Smooth increment, 10% per frame
+            var delta = (_speedBonus - _speedBonusSmooth) / 10;
+            if (delta == 0) delta = (int) math.sign(_speedBonus - _speedBonusSmooth);
+            _speedBonusSmooth += delta;
+
+            var color = (_speedBonus - _speedBonusSmooth) switch
+            {
+                > 0 => new Color(1, 1, 0, 1) * 2,
+                < 0 => new Color(1, 0, 0, 1) * 2,
+                _ => new Color(1, 1, 1, _displayAlpha)
+            };
+            speedDisplay.color = color;
+            speedDisplay.text = _speedBonusSmooth <= 9000 ? $"{_speedBonusSmooth}x" : @"OVER 9000";
+        }
+
+        private void OnScore(int data)
         {
             long score = data;
             _goal += score * _speedBonus;
+        }
+
+        private void OnAcceleration(Vector3 value)
+        {
+            _goal += Mathf.CeilToInt(value.sqrMagnitude * accelScore * Time.deltaTime) * _speedBonus;
         }
     }
 }
