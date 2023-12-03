@@ -41,11 +41,11 @@ namespace Features.Game
         
         public long lives { get; private set; } = 3;
 
-        private float _displayAlpha = 0.3f;
+        private readonly float _displayAlpha = 0.3f;
 
         private void Awake()
         {
-            _nfi = new NumberFormatInfo {NumberGroupSeparator = "'"};
+            _nfi = new NumberFormatInfo {NumberGroupSeparator = ","};
             _score = 0;
 
             gameState.Subscribe(OnGameState);
