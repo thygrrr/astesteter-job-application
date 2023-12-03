@@ -123,7 +123,7 @@ namespace Features.Game
 
             if (gameState.value == GameState.Alive)
             {
-                var bonus = Mathf.FloorToInt(_speedBonusCurrent) * (4 - lives);
+                var bonus = Mathf.FloorToInt(_speedBonusCurrent) * (5 - lives);
                 _speedBonus = bonus switch
                 {
                     >= 500 => bonus / 500 * 500,
