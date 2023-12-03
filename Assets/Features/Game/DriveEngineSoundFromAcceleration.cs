@@ -15,7 +15,7 @@ namespace Features.Game
         private AudioSource rumbleSource;
 
         [SerializeField] private float maxAccel = 200f;
-        [SerializeField] private float baseVolume = 0f;
+        [SerializeField] private float baseVolume;
         [SerializeField] private float basePitch = 3f;
         [SerializeField] private float pitchScale = -2f;
         [SerializeField] private float volumeScale = 1f;
@@ -30,7 +30,17 @@ namespace Features.Game
         private float _derivativeThrust;
         private float _smoothRumble;
         private float _derivativeRumble;
-    
+
+        private void Awake()
+        {
+            thrusterSource.volume = 0;
+            rumbleSource.volume = 0;
+
+            _smoothThrust = 0;
+            _smoothRumble = 0;
+            _goal = 0;
+        }
+
         private void Update()
         {
             _smoothThrust = _smoothThrust <= _goal
@@ -40,7 +50,7 @@ namespace Features.Game
             _smoothRumble = _smoothRumble <= _goal
                 ? Mathf.SmoothDamp(_smoothRumble, _goal, ref _derivativeRumble, downRumbleLambda)
                 : Mathf.SmoothDamp(_smoothRumble, _goal, ref _derivativeRumble, upRumbleLambda);
-        
+
             thrusterSource.volume = baseVolume + _goal * volumeScale;
             thrusterSource.pitch = basePitch + _smoothThrust * pitchScale;
             rumbleSource.volume = baseVolume + _smoothRumble * volumeScale;

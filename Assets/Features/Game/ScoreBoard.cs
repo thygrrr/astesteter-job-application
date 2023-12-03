@@ -26,7 +26,6 @@ namespace Features.Game
         [Space] [Header("Channels")]
         [SerializeField] private DataChannel<int> scoreChannel;
         [SerializeField] private Vector3Channel playerVelocity;
-        [SerializeField] private Vector3Channel playerAcceleration;
         [SerializeField] private GameStateChannel gameState;
 
         private NumberFormatInfo _nfi;
@@ -41,7 +40,7 @@ namespace Features.Game
         
         public long lives { get; private set; } = 3;
 
-        private readonly float _displayAlpha = 0.3f;
+        private const float DisplayAlpha = 0.3f;
 
         private void Awake()
         {
@@ -53,13 +52,11 @@ namespace Features.Game
 
         private void OnEnable()
         {
-            //playerAcceleration.Subscribe(OnAcceleration);
             scoreChannel.Subscribe(OnScore);
         }
 
         private void OnDisable()
         {
-            //playerAcceleration.Unsubscribe(OnAcceleration);
             scoreChannel.Unsubscribe(OnScore);
         }
 
@@ -146,7 +143,7 @@ namespace Features.Game
             if (delta == 0) delta = (int) math.sign(_goal - _score);
             _score += delta;
 
-            scoreDisplay.color = _score < _goal ? new Color(2, 2, 0, 1) : new Color(1, 1, 1, _displayAlpha);
+            scoreDisplay.color = _score < _goal ? new Color(2, 2, 0, 1) : new Color(1, 1, 1, DisplayAlpha);
             scoreDisplay.text = _score.ToString("#,0", _nfi);
         }
 
@@ -163,7 +160,7 @@ namespace Features.Game
                 {
                     > 0 => new Color(1, 1, 0, 1),
                     < 0 => new Color(1, 0, 0, 1),
-                    _ => new Color(1, 1, 1, _displayAlpha)
+                    _ => new Color(1, 1, 1, DisplayAlpha)
                };
                 speedDisplay.color = color;
 
@@ -180,11 +177,6 @@ namespace Features.Game
         {
             long score = data;
             _goal += score * _speedBonus;
-        }
-
-        private void OnAcceleration(Vector3 value)
-        {
-            _goal += Mathf.CeilToInt(value.sqrMagnitude * accelScore * Time.deltaTime) * _speedBonus;
         }
     }
 }

@@ -10,6 +10,11 @@ namespace Features.Game
         [SerializeField] private float speedScale = 0.01f;
         [SerializeField] private float basePitch = 1f;
 
+        private void Awake()
+        {
+            source.pitch = basePitch;
+        }
+
         protected override void OnEvent(Vector3 data)
         {
             source.pitch = basePitch + data.magnitude * speedScale;
