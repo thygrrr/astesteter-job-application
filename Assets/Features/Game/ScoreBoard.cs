@@ -115,9 +115,9 @@ namespace Features.Game
         {
             //Speed bonus
             var speed = math.saturate(math.remap(speedMin, speedMax, 0, 1, playerVelocity.value.magnitude));
-            _speedBonusGoal = math.pow(speed, speedExponent) * speedScore;
+            _speedBonusGoal = math.clamp(math.pow(speed, speedExponent) * speedScore, 1, 10000);
             _speedBonusCurrent += (_speedBonusGoal - _speedBonusCurrent) / 10.0f * Time.deltaTime;
-
+            
             if (gameState.value == GameState.Alive)
             {
                 var bonus = Mathf.FloorToInt(_speedBonusCurrent) * (5 - lives);
