@@ -11,7 +11,7 @@ namespace Features.Motion
 
         private void Start()
         {
-            GetComponent<Rigidbody>().velocity = transform.TransformDirection(initialVelocity);
+            GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(initialVelocity);
         }
     }
 }

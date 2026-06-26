@@ -38,7 +38,7 @@ namespace Features.Motion
 
             //Only wrap coordinates that are outside the bounds and whose dimension is moving away
             var outOfBounds = math.abs(planar - (float3) wrapBounds.center) > wrapBounds.extents;
-            var movingAway = _body.velocity * (planar - origin) > 0;
+            var movingAway = _body.linearVelocity * (planar - origin) > 0;
             var wrapped = math.select(planar, origin - planar, movingAway & outOfBounds);
                 
             wrapped.y = -transform.localPosition.y; //allows us to have non-gameplay objects not all be in one plane

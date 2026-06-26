@@ -1,9 +1,11 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace Tiger.Util.Editor
 {
     [InitializeOnLoad]
+    [Obsolete("Obsolete")]
     public static class HierarchyIcons
     {
         const string IgnoreIcons = "d_GameObject Icon, d_Prefab Icon, d_PrefabVariant Icon";
@@ -13,13 +15,13 @@ namespace Tiger.Util.Editor
             EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
         }
 
-        private static void HandleHierarchyWindowItemOnGUI(int instance_id, Rect selection_rect)
+        private static void HandleHierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
         {
-            var content = EditorGUIUtility.ObjectContent(EditorUtility.InstanceIDToObject(instance_id), null);
+            var content = EditorGUIUtility.ObjectContent(EditorUtility.InstanceIDToObject(instanceID), null);
 
             if (content.image != null && !IgnoreIcons.Contains(content.image.name))
             {
-                GUI.DrawTexture(new Rect(selection_rect.xMax - 16, selection_rect.yMin, 16, 16), content.image);
+                GUI.DrawTexture(new Rect(selectionRect.xMax - 16, selectionRect.yMin, 16, 16), content.image);
             }
         }
     }

@@ -15,6 +15,7 @@ public abstract class DataChannelEmitter<TChannel, T> : MonoBehaviour where TCha
         [SerializeField] [SearchContext("p:")]
         protected TChannel channel;
 
+        [HideInCallstack]
         protected void Emit(T data) => channel.Emit(data, this);
 
 #if UNITY_EDITOR

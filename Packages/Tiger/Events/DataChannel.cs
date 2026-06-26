@@ -78,6 +78,7 @@ namespace Tiger.Events
         /// </summary>
         /// <param name="data">An object or value of type T</param>
         /// <param name="context">UnityEngine.Object to becomes the potential Debug Console highlight culprit.</param>
+        [HideInCallstack]
         public void Emit(T data, Object context = null)
         {
             if (debugSettings.enabled)
@@ -133,6 +134,7 @@ namespace Tiger.Events
             }
         }
 
+        [HideInCallstack]
         protected internal override void Init()
         {
             _subscriptions.RemoveAllListeners();

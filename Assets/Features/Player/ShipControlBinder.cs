@@ -36,6 +36,7 @@ namespace Features.Player
 
         private void OnDestroy()
         {
+            _input.Disable();
             foreach (var client in GetComponentsInChildren<GameInputActions.IFlightActions>())
             {
                 Log.Info($"Unbinding FLIGHT ActionMap for {client}");

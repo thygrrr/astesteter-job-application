@@ -15,7 +15,7 @@ namespace Features.Game
         [SerializeField] private float speedMin = 20f;
         [SerializeField] private float speedMax = 120f;
         [SerializeField] private float speedExponent = 5;
-        [SerializeField] private float accelScore = 1f;
+        //[SerializeField] private float accelScore = 1f;
 
         [Space][Header("Displays")]
         [SerializeField] private TextMeshProUGUI speedDisplay;

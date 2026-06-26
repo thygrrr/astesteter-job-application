@@ -20,6 +20,7 @@ namespace Loggers
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
+        [HideInCallstack]
         public void Log(string message, UnityEngine.Object context = null)
         {
             if (!enabled || level > LogLevel) return;
